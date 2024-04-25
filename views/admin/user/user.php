@@ -270,7 +270,7 @@ JOIN Role ON User.id_role = Role.id_role");
                                                
                                                 <td>
                                                 <div class="container text-center">
-                                                    <a href="#"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>&nbsp;&nbsp;
+                                                    <a href="user-edit.php?id_user=<?= $data['id_user']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>&nbsp;&nbsp;
                                                     <a  href="hapususer.php?id_user=<?= $data['id_user']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data <?= $data['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>

@@ -1,3 +1,10 @@
+<?php
+// Memanggil atau membutuhkan file function.php
+require '../../../koneksi.php';
+
+// Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
+$user = query("SELECT * FROM user")[0];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -234,39 +241,47 @@
                         <div class="card shadow mb-4">
                             
                                 <div class="card-body">
-                                <form action="tambahdatauser.php" method="post" enctype="multipart/form-data">
+                                <form action="edituser.php" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="nama"><strong>ID</strong></label>
+                                            
+                                            <input type="text" name="id_user" id="id_user" value="<?= $user['id_user']; ?>" autocomplete="off" class="form-control" readonly>
+                                        </div>
                                         <div class="form-group col-md-6">
                                             <label for="nama"><strong>Nama</strong></label>
-                                            <input type="text" name="nama" id="nama" placeholder="Masukkan Nama" autocomplete="off" class="form-control" required>
+                                            <input type="text" name="nama" id="nama" value="<?= $user['nama']; ?>" autocomplete="off" class="form-control" required>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="username"><strong>Username</strong></label>
-                                            <input type="text" name="username" id="username" placeholder="Masukkan Username" autocomplete="off" class="form-control" required>
-                                                
-                                        </div>
+                                        
                                     </div>
                                     <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="username"><strong>Username</strong></label>
+                                            <input type="text" name="username" id="username" value="<?= $user['username']; ?>" autocomplete="off" class="form-control" required>
+                                                
+                                        </div>
                                         <div class="form-group col-md-6">
                                             <label for="password"><strong>Password</strong></label>
                                                 <div class="input-group ">
                                             
-                                                <input type="password" name="password" id="password" placeholder="Masukkan Password" autocomplete="off" class="input form-control" aria-describedby="basic-addon1" required>
+                                                <input type="password" name="password" id="password" value="<?= $user['password']; ?>" autocomplete="off" class="input form-control" aria-describedby="basic-addon1" required>
                                                
                                                 </div>
+                                                <input type="checkbox" onclick="myFunction()"> Show Password
                                         </div>
+                                        
                                         <div class="form-group col-md-6">
                                             <label for="level"><strong>Role</strong></label>
                                             <select name="id_role" id="id_role" class="form-control" required>
                                                 <option value="">-- Silahkan Pilih --</option>
-                                                <option value="1">Pimpinan</option>
-                                                <option value="2">Operator Dinkes Provinsi</option>
-                                                <option value="3">Operator Dinkes Kabkota</option>
+                                                <option value="1" <?php if ($user['id_role'] == '1') { ?> selected='' <?php } ?>>Pimpinan</option>
+                                                <option value="2" <?php if ($user['id_role'] == '2') { ?> selected='' <?php } ?>>Operator Dinkes Provinsi</option>
+                                                <option value="3" <?php if ($user['id_role'] == '3') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota</option>
                                             </select>
                                         </div>
                                     
                                     </div>
-                                    <input type="checkbox" onclick="myFunction()"> Show Password
+                                    
                                 </div>
                            
                         </div>
