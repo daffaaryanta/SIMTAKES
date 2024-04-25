@@ -22,19 +22,17 @@ function query($query)
 }
 
 // Membuat fungsi tambah
-// function tambah($data)
+// function tambahuser($data)
 // {
 //     global $koneksi;
 
-//     $nim = htmlspecialchars($data['nim']);
-//     $nama = htmlspecialchars($data['nama']);
-//     $kelas = htmlspecialchars($data['kelas']);
-//     $jurusan = $data['jurusan'];
-// 	$jk = $data['jk'];
-//     $Semester = htmlspecialchars($data['Semester']);
-// 	$catatan = htmlspecialchars($data['catatan']);
+//     $nama = $data['nama'];
+//     $username = $data['username'];
+//     $password = $data['password'];
+//     $id_role = $data['id_role'];
+	
 
-//     $sql = "INSERT INTO mahasiswa(nim, nama, kelas, jurusan ,jk , Semester, catatan) VALUES ('$nim','$nama', '$kelas', '$jurusan', '$jk', '$Semester', '$catatan')";
+//     $sql = "INSERT INTO user( id_user, nama, username, password , id_role) VALUES ('', '$nama','$username', '$password', '$id_role')";
 
 //     mysqli_query($koneksi, $sql);
 

@@ -3,7 +3,9 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$user = query("SELECT * FROM user ORDER BY level");
+$user = query("SELECT  User.id_user, User.username, User.nama, User.password, Role.role 
+FROM User 
+JOIN Role ON User.id_role = Role.id_role");
 ?>
 
 <!DOCTYPE html>
@@ -213,7 +215,7 @@ $user = query("SELECT * FROM user ORDER BY level");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">User</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Akun</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <a href="user-tambah.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
@@ -246,6 +248,7 @@ $user = query("SELECT * FROM user ORDER BY level");
                                         <thead>
                                             <tr>
                                             <th>No</th>
+                                            <th>ID</th>
                                             <th>Nama</th>
                                             <th>Username</th>
                                             <th>Password</th>
@@ -259,15 +262,16 @@ $user = query("SELECT * FROM user ORDER BY level");
                                             <?php foreach ($user as $data) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
+                                                <td><?= $data['id_user'] ?></td>
                                                 <td><?= $data['username'] ?></td>
                                                 <td><?= $data['nama'] ?></td>
                                                 <td><?= $data['password'] ?></td>
-                                                <td><?= $data['level'] ?></td>
+                                                <td><?= $data['role'] ?></td>
                                                
                                                 <td>
                                                 <div class="container text-center">
                                                     <a href="#"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>&nbsp;&nbsp;
-                                                    <a  href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
+                                                    <a  href="hapususer.php?id_user=<?= $data['id_user']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data <?= $data['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>
                                             <?php endforeach ?>
