@@ -22,22 +22,40 @@ function query($query)
 }
 
 // Membuat fungsi tambah
-// function tambahuser($data)
-// {
-//     global $koneksi;
+function tambahuser($data)
+{
+    global $koneksi;
 
-//     $nama = $data['nama'];
-//     $username = $data['username'];
-//     $password = $data['password'];
-//     $id_role = $data['id_role'];
-	
+    $username = $_REQUEST['username'];
+        $nama = $_REQUEST['nama'];
+        $password = $_REQUEST['password'];
+        $id_role = $_REQUEST['id_role'];
+        
 
-//     $sql = "INSERT INTO user( id_user, nama, username, password , id_role) VALUES ('', '$nama','$username', '$password', '$id_role')";
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO user (username, nama, password, id_role) VALUES ('$username',
+            '$nama','$password','$id_role')";
+mysqli_query($koneksi, $sql);
 
-//     mysqli_query($koneksi, $sql);
+return mysqli_affected_rows($koneksi);
+        // Check if the query is successful
+        // if(mysqli_query($koneksi, $sql)){
+        //     $message = "Data Berhasil Ditambah!";
+        // echo "<script type='text/javascript'>alert('$message');
+        // window.location.href= 'user.php';
+        // </script>";
 
-//     return mysqli_affected_rows($koneksi);
-// }
+            
+        
+            
+        // } else{
+        //     echo "ERROR: Hush! Sorry $sql. "
+        //         . mysqli_error($conn);
+        // }
+        
+        // // Close connection
+        // mysqli_close($conn);
+}
 
 // // Membuat fungsi hapus
 // function hapus($nim)
@@ -49,24 +67,26 @@ function query($query)
 // }
 
 // // Membuat fungsi ubah
-// function ubah($data)
-// {
-//     global $koneksi;
+function ubahuser($data)
+{
+    global $koneksi;
 
-//     $nim = htmlspecialchars($data['nim']);
-//     $nama = htmlspecialchars($data['nama']);
-//     $kelas = htmlspecialchars($data['kelas']);
-//     $jurusan = $data['jurusan'];
-// 	$jk = $data['jk'];
-//     $Semester = htmlspecialchars($data['Semester']);
-// 	$catatan = htmlspecialchars($data['catatan']);
+        $id_user = $data['id_user'];
+        $username = $data['username'];
+        $nama = $data['nama'];
+        $password = $data['password'];
+        $id_role = $data['id_role'];
+        
 
-//     $sql = "UPDATE mahasiswa SET nama = '$nama', kelas = '$kelas', jurusan = '$jurusan', jk = '$jk', Semester = '$Semester', catatan = '$catatan' WHERE nim = $nim";
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE user SET username = '$username', nama = '$nama', password = '$password' ,id_role = '$id_role'";
 
-//     mysqli_query($koneksi, $sql);
+        mysqli_query($koneksi, $sql);
 
-//     return mysqli_affected_rows($koneksi);
-// }
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
 
 
 ?>

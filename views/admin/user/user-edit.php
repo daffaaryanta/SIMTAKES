@@ -4,6 +4,21 @@ require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 $user = query("SELECT * FROM user")[0];
+
+
+if (isset($_POST['ubah'])) {
+    if (ubahuser($_POST) > 0) {
+        echo "<script>
+                alert('Data berhasil diubah!');
+                document.location.href = 'user.php';
+            </script>";
+    } else {
+        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
+        echo "<script>
+                alert('Data gagal diubah!');
+            </script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -213,25 +228,7 @@ $user = query("SELECT * FROM user")[0];
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Edit Data User</h1>
-                        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="user-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>
-                                    Download
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
-                                    
-                                </div>
-                            </div>
-                        </div> -->
+                        
                         
                     </div>
 
@@ -241,7 +238,7 @@ $user = query("SELECT * FROM user")[0];
                         <div class="card shadow mb-4">
                             
                                 <div class="card-body">
-                                <form action="edituser.php" method="post" enctype="multipart/form-data">
+                                <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nama"><strong>ID</strong></label>
@@ -287,7 +284,7 @@ $user = query("SELECT * FROM user")[0];
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary" name="tambahuser"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
                                 <button type="reset" class="btn"><a href="user.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
