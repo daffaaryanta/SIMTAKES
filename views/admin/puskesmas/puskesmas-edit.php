@@ -2,15 +2,16 @@
 // Memanggil atau membutuhkan file function.php
 require '../../../koneksi.php';
 
+$idx = $_GET['idx'];
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$user = query("SELECT * FROM data_pkm")[0];
+$pkm = query("SELECT * FROM data_pkm WHERE idx = $idx")[0];
 
 
 if (isset($_POST['ubah'])) {
-    if (ubahuser($_POST) > 0) {
+    if (ubahpuskesmas($_POST) > 0) {
         echo "<script>
                 alert('Data berhasil diubah!');
-                document.location.href = 'user.php';
+                document.location.href = 'puskesmas.php';
             </script>";
     } else {
         // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
@@ -31,7 +32,7 @@ if (isset($_POST['ubah'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - User</title>
+    <title>SIMTAKES - Puskesmas</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -66,7 +67,7 @@ if (isset($_POST['ubah'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
-                <a class="nav-link" href="dashboard.php">
+                <a class="nav-link" href="../dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
             </li>
@@ -76,13 +77,13 @@ if (isset($_POST['ubah'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="rumahsakit.php">
+                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Rumah Sakit</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item ">
+            <li class="nav-item active">
                 <a class="nav-link " href="puskesmas.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Puskesmas</span>
@@ -92,7 +93,7 @@ if (isset($_POST['ubah'])) {
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="klinik.php" >
+                <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -103,7 +104,7 @@ if (isset($_POST['ubah'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="labkes.php" >
+                <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -120,8 +121,8 @@ if (isset($_POST['ubah'])) {
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="pm_doktersp.php">Dokter Spesialis</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
                 </div>
@@ -129,7 +130,7 @@ if (isset($_POST['ubah'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="transfusidarah.php">
+                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
@@ -144,10 +145,10 @@ if (isset($_POST['ubah'])) {
                 <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
             </li>
@@ -200,9 +201,17 @@ if (isset($_POST['ubah'])) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
+                                <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
+                                $row = mysqli_fetch_array($index);
+                                if ($row && $row["nama"] == !'') {
+                                echo $row['nama'];
+                                }else
+                                {
+                                echo "no class";
+                                }
+                                ?>
+                                </span>
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -227,7 +236,7 @@ if (isset($_POST['ubah'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data User</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Puskesmas</h1>
                         
                         
                     </div>
@@ -243,40 +252,70 @@ if (isset($_POST['ubah'])) {
                                         <div class="form-group col-md-6">
                                             <label for="nama"><strong>ID</strong></label>
                                             
-                                            <input type="text" name="id_user" id="id_user" value="<?= $user['id_user']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <input type="text" name="idx" id="idx" value="<?= $pkm['idx']; ?>" autocomplete="off" class="form-control" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="nama"><strong>Nama</strong></label>
-                                            <input type="text" name="nama" id="nama" value="<?= $user['nama']; ?>" autocomplete="off" class="form-control" required>
+                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
+                                            <select name="kabkota" id="kabkota" class="form-control" required>
+                                                
+                                                <?php
+                                                $det = mysqli_query($koneksi, "SELECT * from data_kabkota order by kabkota ASC");
+                                                $no = 1;
+                                                while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                    <option value="<?php echo $p['kabkota'] ?>"><?php echo $p['kabkota'] ?> </option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                         
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="username"><strong>Username</strong></label>
-                                            <input type="text" name="username" id="username" value="<?= $user['username']; ?>" autocomplete="off" class="form-control" required>
+                                            <label for="kodepkm"><strong>Kode Puksesmas</strong></label>
+                                            <input type="text" name="kodepkm" id="kodepkm" value="<?= $pkm['kodepkm']; ?>" autocomplete="off" class="form-control" required>
                                                 
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="password"><strong>Password</strong></label>
+                                            <label for="namapkm"><strong>Nama Puskesmas</strong></label>
                                                 <div class="input-group ">
                                             
-                                                <input type="password" name="password" id="password" value="<?= $user['password']; ?>" autocomplete="off" class="input form-control" aria-describedby="basic-addon1" required>
+                                                <input type="text" name="namapkm" id="namapkm" value="<?= $pkm['namapkm']; ?>" autocomplete="off" class="input form-control"  required>
                                                
                                                 </div>
-                                                <input type="checkbox" onclick="myFunction()"> Show Password
                                         </div>
-                                        
-                                        <div class="form-group col-md-6">
-                                            <label for="level"><strong>Role</strong></label>
-                                            <select name="id_role" id="id_role" class="form-control" required>
+                                    </div>
+                                    <div class="form-row">    
+                                            <div class="form-group col-md-6">
+                                                <label for="statuspkm"><strong>Status Puskesmas</strong></label>
+                                                <select name="statuspkm" id="statuspkm" class="form-control" required>
                                                 <option value="">-- Silahkan Pilih --</option>
-                                                <option value="1" <?php if ($user['id_role'] == '1') { ?> selected='' <?php } ?>>Pimpinan</option>
-                                                <option value="2" <?php if ($user['id_role'] == '2') { ?> selected='' <?php } ?>>Operator Dinkes Provinsi</option>
-                                                <option value="3" <?php if ($user['id_role'] == '3') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota</option>
-                                            </select>
+                                                <option value="Perdesaan" <?php if ($pkm['statuspkm'] == 'Perdesaan') { ?> selected='' <?php } ?>>Perdesaan</option>
+                                                <option value="Perkotaan" <?php if ($pkm['statuspkm'] == 'Perkotaan') { ?> selected='' <?php } ?>>Perkotaan</option>
+                                                <option value="Sangat Terpencil" <?php if ($pkm['statuspkm'] == 'Sangat Terpencil') { ?> selected='' <?php } ?>>Sangat Terpencil</option>
+                                                <option value="Terpencil" <?php if ($pkm['statuspkm'] == 'Terpencil') { ?> selected='' <?php } ?>>Terpencil</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="kategori"><strong>Kategori</strong></label>
+                                                <select name="kategori" id="kategori" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Rawat Inap" <?php if ($pkm['kategori'] == 'Rawat Inap') { ?> selected='' <?php } ?>>Rawat Inap</option>
+                                                <option value="Rawat Jalan" <?php if ($pkm['kategori'] == 'Rawat Jalan') { ?> selected='' <?php } ?>>Rawat Jalan</option>
+                                                
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="alamat"><strong>Alamat</strong></label>
+                                                <div class="input-group ">
+                                            
+                                                <input type="text" name="alamat" id="alamat" value="<?= $pkm['alamat']; ?>" autocomplete="off" class="input form-control"  required>
+                                               
+                                                </div>
                                         </div>
-                                    
                                     </div>
                                     
                                 </div>
@@ -285,7 +324,7 @@ if (isset($_POST['ubah'])) {
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="user.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="reset" class="btn"><a href="puskesmas.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>
@@ -329,7 +368,7 @@ if (isset($_POST['ubah'])) {
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../../index.php">Logout</a>
+                    <a class="btn btn-primary" href="../../../logout.php">Logout</a>
                 </div>
             </div>
         </div>

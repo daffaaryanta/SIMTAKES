@@ -2,10 +2,25 @@
 // Memanggil atau membutuhkan file function.php
 require '../../../koneksi.php';
 
+$idx = $_GET['idx'];
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
-?>
+$labkes = query("SELECT * FROM data_labkes WHERE idx = $idx")[0];
 
+
+if (isset($_POST['ubah'])) {
+    if (ubahlabkes($_POST) > 0) {
+        echo "<script>
+                alert('Data berhasil diubah!');
+                document.location.href = 'labkes.php';
+            </script>";
+    } else {
+        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
+        echo "<script>
+                alert('Data gagal diubah!');
+            </script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +104,7 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link " href="" >
+                <a class="nav-link " href="labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -197,7 +212,6 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
                                 }
                                 ?>
                                 </span>
-                                
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -222,26 +236,8 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Lab Kesehatan</h1>
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="labkes-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>
-                                    Download
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Lab Kesehatan</h1>
+                        
                         
                     </div>
 
@@ -249,43 +245,72 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
                     
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>
-                                            <th>Kabkota</th>
-                                            <th>Kode Labkes</th>
-                                            <th>Nama Labkes</th>
-                                            <th>Jenis Labkes</th>
-                                            <th>Alamat</th>
-                                            <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($labkes as $data_labkes) : ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $data_labkes['kabkota'] ?></td>
-                                                <td><?= $data_labkes['kodelabkes'] ?></td>
-                                                <td><?= $data_labkes['namalabkes'] ?></td>
-                                                <td><?= $data_labkes['jenislabkes'] ?></td>
-                                                <td><?= $data_labkes['alamat'] ?></td>
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="labkes-edit.php?idx=<?= $data_labkes['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapuslabkes.php?idx=<?= $data_labkes['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Labkes <?= $data_labkes['namalabkes']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                            
+                                <div class="card-body">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input type="hidden" name="idx" id="idx" value="<?= $labkes['idx']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
+                                            <select name="kabkota" id="kabkota" class="form-control" required>
+                                                <?php
+                                                $det = mysqli_query($koneksi, "SELECT * from data_kabkota order by kabkota ASC");
+                                                $no = 1;
+                                                while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                    <option value="<?php echo $p['kabkota'] ?>"><?php echo $p['kabkota'] ?> </option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="kodelabkes"><strong>Kode Labkes</strong></label>
+                                            <input type="text" name="kodelabkes" id="kodelabkes" value="<?= $labkes['kodelabkes']; ?>" autocomplete="off" class="form-control" required>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="namalabkes"><strong>Nama Labkes</strong></label>
+                                                <div class="input-group ">
+                                            
+                                                <input type="text" name="namalabkes" id="namalabkes" value="<?= $labkes['namalabkes']; ?>" autocomplete="off" class="input form-control"  required>
+                                               
                                                 </div>
-                                            </tr>
-                                            <?php endforeach ?>
-                                        </tbody>
-                                    </table>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="jenislabkes"><strong>Jenis Labkes</strong></label>
+                                            <select name="jenislabkes" id="jenislabkes" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus" <?php if ($labkes['jenislabkes'] == 'Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus') { ?> selected='' <?php } ?>>Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus</option>
+                                                <option value="Laboratorium Kesehatan Masyarakat dan Lab Medis Umum" <?php if ($labkes['jenislabkes'] == 'Laboratorium Kesehatan Masyarakat dan Lab Medis Umum') { ?> selected='' <?php } ?>>Laboratorium Kesehatan Masyarakat dan Lab Medis Umum</option>
+                                                <option value="Laboratorium Kesehatan Masyarakat Utama" <?php if ($labkes['jenislabkes'] == 'Laboratorium Kesehatan Masyarakat Utama') { ?> selected='' <?php } ?>>Laboratorium Kesehatan Masyarakat Utama</option>
+                                                <option value="Laboratorium Medis Umum Pratama" <?php if ($labkes['jenislabkes'] == 'Laboratorium Medis Umum Pratama') { ?> selected='' <?php } ?>>Laboratorium Medis Umum Pratama</option>
+                                                <option value="Laboratorium Umum Pratama" <?php if ($labkes['jenislabkes'] == 'Laboratorium Umum Pratama') { ?> selected='' <?php } ?>>Laboratorium Umum Pratama</option>
+                                                </select>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="alamat"><strong>Alamat</strong></label>
+                                                <div class="input-group ">
+                                                <input type="text" name="alamat" id="alamat" value="<?= $labkes['alamat']; ?>" autocomplete="off" class="input form-control"  required>
+                                               </div>
+                                        </div>
+                                    </div>
                                 </div>
+                           
+                        </div>
+                        <div class="d-sm-flex align-items-right justify-content-between mb-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="labkes.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                </form>
                             </div>
                         </div>
-                    
+                        
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -349,6 +374,36 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
     <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="../../../js/demo/datatables-demo.js"></script>
+
+    <script>
+        function password_show_hide() {
+  var x = document.getElementById("password");
+  var show_eye = document.getElementById("show_eye");
+  var hide_eye = document.getElementById("hide_eye");
+  hide_eye.classList.remove("d-none");
+  if (x.type === "password") {
+    x.type = "text";
+    show_eye.style.display = "none";
+    hide_eye.style.display = "block";
+  } else {
+    x.type = "password";
+    show_eye.style.display = "block";
+    hide_eye.style.display = "none";
+  }
+}
+    </script>
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+    </script>
 </body>
 
 </html>

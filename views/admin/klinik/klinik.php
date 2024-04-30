@@ -1,10 +1,11 @@
 <?php
 // Memanggil atau membutuhkan file function.php
-require '../../koneksi.php';
+require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,19 +17,19 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Data Puskesmas</title>
+    <title>SIMTAKES - Klinik</title>
 
     <!-- Custom fonts for this template -->
-    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -51,7 +52,7 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
-                <a class="nav-link" href="dashboard.php">
+                <a class="nav-link" href="../dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
             </li>
@@ -61,14 +62,14 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="rumahsakit.php">
+                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Rumah Sakit</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="#" >
+            <li class="nav-item ">
+                <a class="nav-link " href="../puskesmas/puskesmas.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Puskesmas</span>
                 </a>
@@ -76,8 +77,8 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link " href="klinik.php" >
+            <li class="nav-item active">
+                <a class="nav-link " href="" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -88,7 +89,7 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="labkes.php" >
+                <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -105,8 +106,8 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="pm_doktersp.php">Dokter Spesialis</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
                 </div>
@@ -114,7 +115,7 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="transfusidarah.php">
+                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
@@ -129,12 +130,22 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                 <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Nav Item - Akun -->
+            <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
             </li>
 
             <!-- Divider -->
@@ -165,55 +176,35 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                     </form>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                     
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        
-
-                        
-
-                        
-
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
+                                <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
+                                $row = mysqli_fetch_array($index);
+                                if ($row && $row["nama"] == !'') {
+                                echo $row['nama'];
+                                }else
+                                {
+                                echo "no class";
+                                }
+                                ?>
+                                </span>
+                                
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
+                                
+                                
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -232,18 +223,24 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Klinik</h1>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                class="fas fa-download fa-sm text-white-50"></i>
-                                Download
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Cetak (.pdf, .docx)</a>
-                                <a class="dropdown-item" href="#">Excel (.xls)</a>
-                                
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <a href="klinik-tambah.php" class="btn btn-primary btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                            <span class="text">Tambah Data</span>
+                            </a>&nbsp;&nbsp;
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-download fa-sm text-white-50"></i>
+                                    Download
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
+                                    
+                                </div>
                             </div>
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                         </div>
                         
                     </div>
@@ -258,28 +255,29 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                                         <thead>
                                             <tr>
                                             <th>No</th>
-                                            <th>Kabupaten/Kota</th>
+                                            <th>Kabkota</th>
                                             <th>Kode Klinik</th>
                                             <th>Nama Klinik</th>
                                             <th>Jenis Klinik</th>
-                                           
                                             <th>Alamat</th>
                                             <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            <?php foreach ($klinik as $data) : ?>
+                                            <?php foreach ($klinik as $data_klinik) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $data['kabkota'] ?></td>
-                                                <td><?= $data['kodeklinik'] ?></td>
-                                                <td><?= $data['namaklinik'] ?></td>
-                                                <td><?= $data['jenisklinik'] ?></td>
-                                                
-                                                <td><?= $data['alamat'] ?></td>
+                                                <td><?= $data_klinik['kabkota'] ?></td>
+                                                <td><?= $data_klinik['kodeklinik'] ?></td>
+                                                <td><?= $data_klinik['namaklinik'] ?></td>
+                                                <td><?= $data_klinik['jenisklinik'] ?></td>
+                                                <td><?= $data_klinik['alamat'] ?></td>
                                                 <td>
-                                                <a href=""class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a></td>
+                                                <div class="container text-center">
+                                                    <a href="klinik-edit.php?idx=<?= $data_klinik['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                                    <a  href="hapusklinik.php?idx=<?= $data_klinik['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Klinik <?= $data_klinik['namaklinik']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                                                </div>
                                             </tr>
                                             <?php endforeach ?>
                                         </tbody>
@@ -287,12 +285,8 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
                 </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
@@ -300,7 +294,7 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
             </footer>
@@ -331,31 +325,30 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="../../../logout.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../js/sb-admin-2.min.js"></script>
+    <script src="../../../js/sb-admin-2.min.js"></script>
 
    
 
     <!-- Datatables -->
     
-    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../../../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <script src="../../js/demo/datatables-demo.js"></script>
-
+    <script src="../../../js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

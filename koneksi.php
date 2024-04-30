@@ -124,4 +124,215 @@ function tambahpuskesmas($data)
         
 }
 
+// // Membuat fungsi ubah puskesmas
+function ubahpuskesmas($data)
+{
+    global $koneksi;
+
+        $idx = $data['idx'];
+        $kabkota = $data['kabkota'];
+        $kodepkm = $data['kodepkm'];
+        $namapkm = $data['namapkm'];
+        $statuspkm = $data['statuspkm'];
+        $kategori = $data['kategori'];
+        $alamat = $data['alamat'];
+
+        $namac = ucwords($namapkm);
+        $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE data_pkm SET   idx = '$idx', kabkota = '$kabkota', kodepkm = '$kodepkm' ,namapkm = '$namac' , statuspkm = '$statuspkm', kategori = '$kategori', alamat = '$alamatc' WHERE idx = '$idx'";
+        // $sql = "UPDATE data_pkm SET  ( idx, kabkota,kodepkm, namapkm, statuspkm, kategori, alamat) VALUES (
+        //     '$idx','$kabkota','$kodepkm','$namac','$statuspkm', '$kategori' , '$alamatc' )";
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
+
+// Membuat fungsi tambah klinik
+function tambahklinik($data)
+{
+    global $koneksi;
+    $kabkota = $_REQUEST['kabkota'];
+    $kodeklinik = $_REQUEST['kodeklinik'];
+    $namaklinik = $_REQUEST['namaklinik'];
+    $jenisklinik = $_REQUEST['jenisklinik'];
+    $alamat = $_REQUEST['alamat'];
+
+    $namac = ucwords($namaklinik);
+    $alamatc = ucwords($alamat);
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO data_klinik ( kabkota, kodeklinik, namaklinik, jenisklinik, alamat) VALUES (
+            '$kabkota','$kodeklinik','$namac','$jenisklinik', '$alamatc' )";
+    mysqli_query($koneksi, $sql);
+
+    return mysqli_affected_rows($koneksi);
+        
+}
+
+// Membuat fungsi ubah klinik
+function ubahklinik($data)
+{
+    global $koneksi;
+
+        $idx = $data['idx'];
+        $kabkota = $data['kabkota'];
+        $kodeklinik = $data['kodeklinik'];
+        $namaklinik = $data['namaklinik'];
+        $jenisklinik = $data['jenisklinik'];
+        $alamat = $data['alamat'];
+
+        $namac = ucwords($namaklinik);
+        $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE data_klinik SET   idx = '$idx', kabkota = '$kabkota', kodeklinik = '$kodeklinik' ,namaklinik = '$namac' , jenisklinik = '$jenisklinik', alamat = '$alamatc' WHERE idx = '$idx'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
+
+// Membuat fungsi tambah labkes
+function tambahlabkes($data)
+{
+    global $koneksi;
+    $kabkota = $_REQUEST['kabkota'];
+    $kodelabkes = $_REQUEST['kodelabkes'];
+    $namalabkes = $_REQUEST['namalabkes'];
+    $jenislabkes = $_REQUEST['jenislabkes'];
+    $alamat = $_REQUEST['alamat'];
+
+    $namac = ucwords($namalabkes);
+    $alamatc = ucwords($alamat);
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO data_labkes ( kabkota, kodelabkes, namalabkes, jenislabkes, alamat) VALUES (
+            '$kabkota','$kodelabkes','$namac','$jenislabkes', '$alamatc' )";
+    mysqli_query($koneksi, $sql);
+
+    return mysqli_affected_rows($koneksi);
+        
+}
+
+// Membuat fungsi ubah labkes
+function ubahlabkes($data)
+{
+    global $koneksi;
+
+        $idx = $data['idx'];
+        $kabkota = $data['kabkota'];
+        $kodelabkes = $data['kodelabkes'];
+        $namalabkes = $data['namalabkes'];
+        $jenislabkes = $data['jenislabkes'];
+        $alamat = $data['alamat'];
+
+        $namac = ucwords($namalabkes);
+        $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE data_labkes SET   idx = '$idx', kabkota = '$kabkota', kodelabkes = '$kodelabkes' ,namalabkes = '$namac' , jenislabkes = '$jenislabkes', alamat = '$alamatc' WHERE idx = '$idx'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
+
+// Membuat fungsi tambah dokter umum
+function tambahpmdu($data)
+{
+    global $koneksi;
+    $kabkota = $_REQUEST['kabkota'];
+    $kodepmdrumum = $_REQUEST['kodepmdrumum'];
+    $namapmdrumum = $_REQUEST['namapmdrumum'];
+    $alamat = $_REQUEST['alamat'];
+
+    
+    $alamatc = ucwords($alamat);
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO data_pmdrumum ( kabkota, kodepmdrumum, namapmdrumum, alamat) VALUES (
+            '$kabkota','$kodepmdrumum','$namapmdrumum','$alamatc' )";
+    mysqli_query($koneksi, $sql);
+
+    return mysqli_affected_rows($koneksi);
+        
+}
+
+// Membuat fungsi ubah dokter umum
+function ubahpmdu($data)
+{
+    global $koneksi;
+
+        $idx = $data['idx'];
+        $kabkota = $data['kabkota'];
+        $kodepmdrumum = $data['kodepmdrumum'];
+        $namapmdrumum = $data['namapmdrumum'];
+        $alamat = $data['alamat'];
+
+        
+        $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE data_pmdrumum SET   idx = '$idx', kabkota = '$kabkota', kodepmdrumum = '$kodepmdrumum' ,namapmdrumum = '$namapmdrumum' , alamat = '$alamatc' WHERE idx = '$idx'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
+
+// Membuat fungsi tambah dokter umum
+function tambahpmds($data)
+{
+    global $koneksi;
+    $kabkota = $_REQUEST['kabkota'];
+    $kodepmdrsp = $_REQUEST['kodepmdrsp'];
+    $namapmdrsp = $_REQUEST['namapmdrsp'];
+    $alamat = $_REQUEST['alamat'];
+
+    
+    $alamatc = ucwords($alamat);
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO data_pmdrsp ( kabkota, kodepmdrsp, namapmdrsp, alamat) VALUES (
+            '$kabkota','$kodepmdrsp','$namapmdrsp','$alamatc' )";
+    mysqli_query($koneksi, $sql);
+
+    return mysqli_affected_rows($koneksi);
+        
+}
+
+// Membuat fungsi ubah dokter umum
+function ubahpmds($data)
+{
+    global $koneksi;
+
+        $idx = $data['idx'];
+        $kabkota = $data['kabkota'];
+        $kodepmdrsp = $data['kodepmdrsp'];
+        $namapmdrsp = $data['namapmdrsp'];
+        $alamat = $data['alamat'];
+
+        
+        $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE data_pmdrsp SET   idx = '$idx', kabkota = '$kabkota', kodepmdrsp = '$kodepmdrsp' ,namapmdrsp = '$namapmdrsp' , alamat = '$alamatc' WHERE idx = '$idx'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
 ?>

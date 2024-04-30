@@ -3,7 +3,7 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
+$doktersp = query("SELECT * FROM data_pmdrsp ORDER BY kabkota");
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Lab Kesehatan</title>
+    <title>SIMTAKES - PM Dokter Spesialis</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -88,8 +88,8 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
             
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="" >
+            <li class="nav-item">
+                <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -97,7 +97,7 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -106,8 +106,8 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
+                        <a class="collapse-item " href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item active" href="">Dokter Spesialis</a>
                         
                     </div>
                 </div>
@@ -222,9 +222,9 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Lab Kesehatan</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Praktek Mandiri Dokter Spesialis</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="labkes-tambah.php" class="btn btn-primary btn-icon-split">
+                            <a href="pm_doktersp-tambah.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-plus"></i>
                                             </span>
@@ -256,27 +256,25 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
                                             <tr>
                                             <th>No</th>
                                             <th>Kabkota</th>
-                                            <th>Kode Labkes</th>
-                                            <th>Nama Labkes</th>
-                                            <th>Jenis Labkes</th>
+                                            <th>Kode PM Dokter Spesialis</th>
+                                            <th>Nama PM Dokter Spesialis</th>
                                             <th>Alamat</th>
                                             <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            <?php foreach ($labkes as $data_labkes) : ?>
+                                            <?php foreach ($doktersp as $sp) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $data_labkes['kabkota'] ?></td>
-                                                <td><?= $data_labkes['kodelabkes'] ?></td>
-                                                <td><?= $data_labkes['namalabkes'] ?></td>
-                                                <td><?= $data_labkes['jenislabkes'] ?></td>
-                                                <td><?= $data_labkes['alamat'] ?></td>
+                                                <td><?= $sp['kabkota'] ?></td>
+                                                <td><?= $sp['kodepmdrsp'] ?></td>
+                                                <td><?= $sp['namapmdrsp'] ?></td>
+                                                <td><?= $sp['alamat'] ?></td>
                                                 <td>
                                                 <div class="container text-center">
-                                                    <a href="labkes-edit.php?idx=<?= $data_labkes['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapuslabkes.php?idx=<?= $data_labkes['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Labkes <?= $data_labkes['namalabkes']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                                                    <a href="pm_doktersp-edit.php?idx=<?= $sp['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                                    <a  href="hapussp.php?idx=<?= $sp['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data PM Dokter Spesialis <?= $sp['namapmdrsp']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>
                                             <?php endforeach ?>

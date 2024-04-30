@@ -67,7 +67,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
-                <a class="nav-link" href="dashboard.php">
+                <a class="nav-link" href="../dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
             </li>
@@ -77,14 +77,14 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="rumahsakit.php">
+                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Rumah Sakit</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item ">
-                <a class="nav-link " href="puskesmas.php" >
+                <a class="nav-link " href="../puskesmas/puskesmas.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Puskesmas</span>
                 </a>
@@ -93,7 +93,7 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="klinik.php" >
+                <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -104,7 +104,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="labkes.php" >
+                <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -121,8 +121,8 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="pm_doktersp.php">Dokter Spesialis</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
                 </div>
@@ -130,7 +130,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="transfusidarah.php">
+                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
@@ -145,10 +145,10 @@
                 <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
             </li>
@@ -158,7 +158,7 @@
 
             <!-- Nav Item - Akun -->
             <li class="nav-item active">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="user.php">
                 <i class="fas fa-fw fa-user"></i>
                     <span>Akun</span></a>
             </li>
@@ -201,10 +201,17 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                                    <i class="fas fa-caret-down fa-sm"></i>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 ">Selamat Datang, 
+                                <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
+                                $row = mysqli_fetch_array($index);
+                                if ($row && $row["nama"] == !'') {
+                                echo $row['nama'];
+                                }else
+                                {
+                                echo "no class";
+                                }
+                                ?>
+                                </span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
