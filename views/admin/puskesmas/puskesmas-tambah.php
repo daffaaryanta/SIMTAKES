@@ -1,10 +1,25 @@
 <?php
-// Memanggil atau membutuhkan file function.php
-require '../../../koneksi.php';
 
-// Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
-?>
+        // servername => localhost
+        // username => root
+        // password => empty
+        // database name => staff
+
+        require '../../../koneksi.php';
+        if (isset($_POST['simpan'])) {
+            if (tambahpuskesmas($_POST)) {
+                echo "<script>
+                        alert('Data berhasil ditambahkan!');
+                        document.location.href = 'puskesmas.php';
+                    </script>";
+            } else {
+                // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
+                echo "<script>
+                        alert('Data gagal ditambahkan!');
+                    </script>";
+            }
+        }
+        ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +77,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
+                <a class="nav-link" href="rumahsakit.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Rumah Sakit</span></a>
             </li>
@@ -78,7 +93,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="../klinik/klinik.php" >
+                <a class="nav-link " href="klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -89,7 +104,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="../labkes/labkes.php" >
+                <a class="nav-link " href="labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -106,8 +121,8 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
+                        <a class="collapse-item" href="pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item" href="pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
                 </div>
@@ -115,7 +130,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
+                <a class="nav-link" href="transfusidarah.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
@@ -130,10 +145,10 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                 <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="akreditasi_rumahsakit.php">Rumah Sakit</a>
+                        <a class="collapse-item" href="akreditasi_puskesmas.php">Puskesmas</a>
+                        <a class="collapse-item" href="akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item" href="akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
             </li>
@@ -186,7 +201,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 ">Selamat Datang, 
                                 <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
                                 $row = mysqli_fetch_array($index);
                                 if ($row && $row["nama"] == !'') {
@@ -222,26 +237,8 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Puskesmas</h1>
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="puskesmas-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>
-                                    Download
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Data Puskesmas</h1>
+                        
                         
                     </div>
 
@@ -249,45 +246,84 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                     
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>
-                                            <th>Kabkota</th>
-                                            <th>Kode PKM</th>
-                                            <th>Nama PKM</th>
-                                            <th>Status PKM</th>
-                                            <th>Kategori</th>
-                                            <th>Alamat</th>
-                                            <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($puskesmas as $data_pus) : ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $data_pus['kabkota'] ?></td>
-                                                <td><?= $data_pus['kodepkm'] ?></td>
-                                                <td><?= $data_pus['namapkm'] ?></td>
-                                                <td><?= $data_pus['statuspkm'] ?></td>
-                                                <td><?= $data_pus['kategori'] ?></td>
-                                                <td><?= $data_pus['alamat'] ?></td>
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="puskesmas-edit.php?idx=<?= $data_pus['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapuspuskesmas.php?idx=<?= $data_pus['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Puskesmas <?= $data_pus['namapkm']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                            
+                                <div class="card-body">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
+                                            <select name="kabkota" id="kabkota" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Dasar">Dasar</option>
+                                                <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option>
+                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
+                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
+                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
+                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
+                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
+                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
+                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
+                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
+                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="kodepkm"><strong>Kode Puksesmas</strong></label>
+                                            <input type="text" name="kodepkm" id="kodepkm" placeholder="Masukkan Kode PKM" autocomplete="off" class="form-control" required>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="namapkm"><strong>Nama Puskesmas</strong></label>
+                                                <div class="input-group ">
+                                            
+                                                <input type="text" name="namapkm" id="namapkm" placeholder="Masukkan Nama Puskesmas" autocomplete="off" class="input form-control"  required>
+                                               
                                                 </div>
-                                            </tr>
-                                            <?php endforeach ?>
-                                        </tbody>
-                                    </table>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="statuspkm"><strong>Status Puskesmas</strong></label>
+                                            <select name="statuspkm" id="statuspkm" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Perdesaan">Perdesaan</option>
+                                                <option value="Perkotaan">Perkotaan</option>
+                                                <option value="Sangat Terpencil">Sangat Terpencil</option>
+                                                <option value="Terpencil">Terpencil</option>
+                                            </select>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="kategori"><strong>Kategori</strong></label>
+                                            <select name="kategori" id="kategori" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Rawat Inap">Rawat Inap</option>
+                                                <option value="Rawat Jalan">Rawat Jalan</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="alamat"><strong>Alamat</strong></label>
+                                                <div class="input-group ">
+                                            
+                                                <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control"  required>
+                                               
+                                                </div>
+                                        </div>
+                                    </div>
                                 </div>
+                           
+                        </div>
+                        <div class="d-sm-flex align-items-right justify-content-between mb-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="puskesmas.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                </form>
                             </div>
                         </div>
-                    
+                        
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -327,7 +363,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../index.php">Logout</a>
+                    <a class="btn btn-primary" href="../../../index.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -351,6 +387,36 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
     <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="../../../js/demo/datatables-demo.js"></script>
+
+    <script>
+        function password_show_hide() {
+  var x = document.getElementById("password");
+  var show_eye = document.getElementById("show_eye");
+  var hide_eye = document.getElementById("hide_eye");
+  hide_eye.classList.remove("d-none");
+  if (x.type === "password") {
+    x.type = "text";
+    show_eye.style.display = "none";
+    hide_eye.style.display = "block";
+  } else {
+    x.type = "password";
+    show_eye.style.display = "block";
+    hide_eye.style.display = "none";
+  }
+}
+    </script>
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+    </script>
 </body>
 
 </html>

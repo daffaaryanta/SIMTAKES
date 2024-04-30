@@ -2,8 +2,9 @@
 // Memanggil atau membutuhkan file function.php
 require '../../../koneksi.php';
 
+$id_user = $_GET['id_user'];
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$user = query("SELECT * FROM user")[0];
+$user = query("SELECT * FROM user WHERE id_user = $id_user")[0];
 
 
 if (isset($_POST['ubah'])) {
@@ -242,7 +243,6 @@ if (isset($_POST['ubah'])) {
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nama"><strong>ID</strong></label>
-                                            
                                             <input type="text" name="id_user" id="id_user" value="<?= $user['id_user']; ?>" autocomplete="off" class="form-control" readonly>
                                         </div>
                                         <div class="form-group col-md-6">

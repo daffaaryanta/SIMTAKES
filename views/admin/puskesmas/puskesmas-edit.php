@@ -3,9 +3,23 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
-?>
+$user = query("SELECT * FROM data_pkm")[0];
 
+
+if (isset($_POST['ubah'])) {
+    if (ubahuser($_POST) > 0) {
+        echo "<script>
+                alert('Data berhasil diubah!');
+                document.location.href = 'user.php';
+            </script>";
+    } else {
+        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
+        echo "<script>
+                alert('Data gagal diubah!');
+            </script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +31,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Puskesmas</title>
+    <title>SIMTAKES - User</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -62,14 +76,14 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
+                <a class="nav-link" href="rumahsakit.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Rumah Sakit</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="" >
+            <li class="nav-item ">
+                <a class="nav-link " href="puskesmas.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Puskesmas</span>
                 </a>
@@ -78,7 +92,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="../klinik/klinik.php" >
+                <a class="nav-link " href="klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -89,7 +103,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="../labkes/labkes.php" >
+                <a class="nav-link " href="labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -106,8 +120,8 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
+                        <a class="collapse-item" href="pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item" href="pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
                 </div>
@@ -115,7 +129,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
+                <a class="nav-link" href="transfusidarah.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
@@ -130,10 +144,10 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                 <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="akreditasi_rumahsakit.php">Rumah Sakit</a>
+                        <a class="collapse-item" href="akreditasi_puskesmas.php">Puskesmas</a>
+                        <a class="collapse-item" href="akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item" href="akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
             </li>
@@ -142,8 +156,8 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item - Akun -->
-            <li class="nav-item ">
-                <a class="nav-link" href="../user/user.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="">
                 <i class="fas fa-fw fa-user"></i>
                     <span>Akun</span></a>
             </li>
@@ -186,18 +200,9 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
-                                <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
-                                $row = mysqli_fetch_array($index);
-                                if ($row && $row["nama"] == !'') {
-                                echo $row['nama'];
-                                }else
-                                {
-                                echo "no class";
-                                }
-                                ?>
-                                </span>
-                                
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -222,26 +227,8 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Puskesmas</h1>
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="puskesmas-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>
-                                    Download
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data User</h1>
+                        
                         
                     </div>
 
@@ -249,45 +236,60 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                     
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>
-                                            <th>Kabkota</th>
-                                            <th>Kode PKM</th>
-                                            <th>Nama PKM</th>
-                                            <th>Status PKM</th>
-                                            <th>Kategori</th>
-                                            <th>Alamat</th>
-                                            <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($puskesmas as $data_pus) : ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $data_pus['kabkota'] ?></td>
-                                                <td><?= $data_pus['kodepkm'] ?></td>
-                                                <td><?= $data_pus['namapkm'] ?></td>
-                                                <td><?= $data_pus['statuspkm'] ?></td>
-                                                <td><?= $data_pus['kategori'] ?></td>
-                                                <td><?= $data_pus['alamat'] ?></td>
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="puskesmas-edit.php?idx=<?= $data_pus['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapuspuskesmas.php?idx=<?= $data_pus['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Puskesmas <?= $data_pus['namapkm']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                            
+                                <div class="card-body">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="nama"><strong>ID</strong></label>
+                                            
+                                            <input type="text" name="id_user" id="id_user" value="<?= $user['id_user']; ?>" autocomplete="off" class="form-control" readonly>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="nama"><strong>Nama</strong></label>
+                                            <input type="text" name="nama" id="nama" value="<?= $user['nama']; ?>" autocomplete="off" class="form-control" required>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="username"><strong>Username</strong></label>
+                                            <input type="text" name="username" id="username" value="<?= $user['username']; ?>" autocomplete="off" class="form-control" required>
+                                                
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="password"><strong>Password</strong></label>
+                                                <div class="input-group ">
+                                            
+                                                <input type="password" name="password" id="password" value="<?= $user['password']; ?>" autocomplete="off" class="input form-control" aria-describedby="basic-addon1" required>
+                                               
                                                 </div>
-                                            </tr>
-                                            <?php endforeach ?>
-                                        </tbody>
-                                    </table>
+                                                <input type="checkbox" onclick="myFunction()"> Show Password
+                                        </div>
+                                        
+                                        <div class="form-group col-md-6">
+                                            <label for="level"><strong>Role</strong></label>
+                                            <select name="id_role" id="id_role" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="1" <?php if ($user['id_role'] == '1') { ?> selected='' <?php } ?>>Pimpinan</option>
+                                                <option value="2" <?php if ($user['id_role'] == '2') { ?> selected='' <?php } ?>>Operator Dinkes Provinsi</option>
+                                                <option value="3" <?php if ($user['id_role'] == '3') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota</option>
+                                            </select>
+                                        </div>
+                                    
+                                    </div>
+                                    
                                 </div>
+                           
+                        </div>
+                        <div class="d-sm-flex align-items-right justify-content-between mb-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="user.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                </form>
                             </div>
                         </div>
-                    
+                        
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -327,7 +329,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../index.php">Logout</a>
+                    <a class="btn btn-primary" href="../../../index.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -351,6 +353,36 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
     <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="../../../js/demo/datatables-demo.js"></script>
+
+    <script>
+        function password_show_hide() {
+  var x = document.getElementById("password");
+  var show_eye = document.getElementById("show_eye");
+  var hide_eye = document.getElementById("hide_eye");
+  hide_eye.classList.remove("d-none");
+  if (x.type === "password") {
+    x.type = "text";
+    show_eye.style.display = "none";
+    hide_eye.style.display = "block";
+  } else {
+    x.type = "password";
+    show_eye.style.display = "block";
+    hide_eye.style.display = "none";
+  }
+}
+    </script>
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+    </script>
 </body>
 
 </html>

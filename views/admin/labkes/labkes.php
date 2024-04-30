@@ -1,6 +1,6 @@
 <?php
 // Memanggil atau membutuhkan file function.php
-require '../../koneksi.php';
+require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");

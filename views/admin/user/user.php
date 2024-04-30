@@ -5,7 +5,20 @@ require '../../../koneksi.php';
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 $user = query("SELECT  User.id_user, User.username, User.nama, User.password, Role.role 
 FROM User 
-JOIN Role ON User.id_role = Role.id_role");
+JOIN Role ON User.id_role = Role.id_role ORDER BY Role.id_role ASC");
+
+if (!isset($_SESSION['username'])) {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
+    if (!isset($_SESSION['id_role'])) {
+        echo "<script>alert('Anda bukan sebagai Operator Dinkes Provinsi!');
+		document.location = '../../../index.php';
+		</script>";
+        exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,14 +77,14 @@ JOIN Role ON User.id_role = Role.id_role");
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="rumahsakit.php">
+                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Rumah Sakit</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item ">
-                <a class="nav-link " href="puskesmas.php" >
+                <a class="nav-link " href="../puskesmas/puskesmas.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Puskesmas</span>
                 </a>
@@ -80,7 +93,7 @@ JOIN Role ON User.id_role = Role.id_role");
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="klinik.php" >
+                <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -91,7 +104,7 @@ JOIN Role ON User.id_role = Role.id_role");
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="labkes.php" >
+                <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -108,8 +121,8 @@ JOIN Role ON User.id_role = Role.id_role");
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="pm_doktersp.php">Dokter Spesialis</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
                 </div>
@@ -117,7 +130,7 @@ JOIN Role ON User.id_role = Role.id_role");
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="transfusidarah.php">
+                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
@@ -132,10 +145,10 @@ JOIN Role ON User.id_role = Role.id_role");
                 <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
             </li>
@@ -188,9 +201,17 @@ JOIN Role ON User.id_role = Role.id_role");
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
+                                <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
+                                $row = mysqli_fetch_array($index);
+                                if ($row && $row["nama"] == !'') {
+                                echo $row['nama'];
+                                }else
+                                {
+                                echo "no class";
+                                }
+                                ?>
+                                </span>
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -216,6 +237,7 @@ JOIN Role ON User.id_role = Role.id_role");
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Akun</h1>
+                        <h1 class="h3 mb-0 text-gray-800"></h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <a href="user-tambah.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
@@ -249,6 +271,7 @@ JOIN Role ON User.id_role = Role.id_role");
                                             <tr>
                                             <th>No</th>
                                             <th>ID</th>
+                                            
                                             <th>Nama</th>
                                             <th>Username</th>
                                             <th>Password</th>
@@ -263,8 +286,9 @@ JOIN Role ON User.id_role = Role.id_role");
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $data['id_user'] ?></td>
-                                                <td><?= $data['username'] ?></td>
+                                                
                                                 <td><?= $data['nama'] ?></td>
+                                                <td><?= $data['username'] ?></td>
                                                 <td><?= $data['password'] ?></td>
                                                 <td><?= $data['role'] ?></td>
                                                
@@ -320,7 +344,7 @@ JOIN Role ON User.id_role = Role.id_role");
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../index.php">Logout</a>
+                    <a class="btn btn-primary" href="../../../logout.php">Logout</a>
                 </div>
             </div>
         </div>
