@@ -335,4 +335,51 @@ function ubahpmds($data)
 
         mysqli_close($koneksi);
 }
+
+function tambahtransfusi($data)
+{
+    global $koneksi;
+    $kabkota = $_REQUEST['kabkota'];
+    $kodeutd = $_REQUEST['kodeutd'];
+    $namautd = $_REQUEST['namautd'];
+    $jenisutd = $_REQUEST['jenisutd'];
+    $alamat = $_REQUEST['alamat'];
+
+    $namac = ucwords($namautd);
+    $alamatc = ucwords($alamat);
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO data_utd ( kabkota, kodeutd, namautd, jenisutd, alamat) VALUES (
+            '$kabkota','$kodeutd','$namac', '$jenisutd', '$alamatc' )";
+    mysqli_query($koneksi, $sql);
+
+    return mysqli_affected_rows($koneksi);
+        
+}
+
+// Membuat fungsi ubah dokter umum
+function ubahtransfusi($data)
+{
+    global $koneksi;
+
+        $idx = $data['idx'];
+        $kabkota = $data['kabkota'];
+        $kodeutd = $data['kodeutd'];
+        $namautd = $data['namautd'];
+        $jenisutd = $data['jenisutd'];
+        $alamat = $data['alamat'];
+
+        
+        $namac = ucwords($namautd);
+        $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE data_utd SET   idx = '$idx', kabkota = '$kabkota', kodeutd = '$kodeutd' ,namautd = '$namac' , jenisutd = '$jenisutd', alamat = '$alamatc' WHERE idx = '$idx'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
 ?>

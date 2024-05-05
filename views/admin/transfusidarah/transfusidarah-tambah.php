@@ -1,12 +1,25 @@
 <?php
-// Memanggil atau membutuhkan file function.php
-require '../../../koneksi.php';
 
-// Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$ak = query("SELECT a.id_ak, a.idx, k.kabkota, k.kodeklinik, k.namaklinik, a.2016, a.2017, a.2018, a.2019, a.2020, a.2021, a.2022, a.2023, a.2024
-FROM akreditasi_klinik a
-JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
-?>
+        // servername => localhost
+        // username => root
+        // password => empty
+        // database name => staff
+
+        require '../../../koneksi.php';
+        if (isset($_POST['simpan'])) {
+            if (tambahtransfusi($_POST)) {
+                echo "<script>
+                        alert('Data berhasil ditambahkan!');
+                        document.location.href = 'transfusidarah.php';
+                    </script>";
+            } else {
+                // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
+                echo "<script>
+                        alert('Data gagal ditambahkan!');
+                    </script>";
+            }
+        }
+        ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +32,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Akreditasi Klinik</title>
+    <title>SIMTAKES - Unit Transfusi Darah</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -79,8 +92,8 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="" >
+            <li class="nav-item">
+                <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -90,7 +103,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
@@ -99,7 +112,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -107,8 +120,8 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
+                    <h6 class="collapse-header ">Data Praktek Mandiri:</h6>
+                        <a class="collapse-item " href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
                         <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
@@ -116,8 +129,8 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="transfusidarah.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
@@ -188,7 +201,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 ">Selamat Datang, 
                                 <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
                                 $row = mysqli_fetch_array($index);
                                 if ($row && $row["nama"] == !'') {
@@ -224,26 +237,8 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Klinik</h1>
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="klinik-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>
-                                    Download
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Data Unit Transfusi Darah</h1>
+                        
                         
                     </div>
 
@@ -251,57 +246,69 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                     
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="5">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>
-                                            <th>Kabkota</th>
-                                            <th>Kode Klinik</th>
-                                            <th>Nama Klinik</th>
-                                            <th>2016</th>
-                                            <th>2017</th>
-                                            <th>2018</th>
-                                            <th>2019</th>
-                                            <th>2020</th>
-                                            <th>2021</th>
-                                            <th>2022</th>
-                                            <th>2023</th>
-                                            <th>2024</th>
-                                            <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($ak as $ak) : ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $ak['kabkota'] ?></td>
-                                                <td><?= $ak['kodeklinik'] ?></td>
-                                                <td><?= $ak['namaklinik'] ?></td>
-                                                <td><?= $ak['2016'] ?></td>
-                                                <td><?= $ak['2017'] ?></td>
-                                                <td><?= $ak['2018'] ?></td>
-                                                <td><?= $ak['2019'] ?></td>
-                                                <td><?= $ak['2020'] ?></td>
-                                                <td><?= $ak['2021'] ?></td>
-                                                <td><?= $ak['2022'] ?></td>
-                                                <td><?= $ak['2023'] ?></td>
-                                                <td><?= $ak['2024'] ?></td>
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="klinik-edit.php?idx=<?= $ak['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusklinik.php?idx=<?= $ak['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Klinik <?= $ak['namaklinik']; ?> ?');"><i class="fa fa-trash"></i></a></td>
-                                                </div>
-                                            </tr>
-                                            <?php endforeach ?>
-                                        </tbody>
-                                    </table>
+                            
+                                <div class="card-body">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
+                                            <select name="kabkota" id="kabkota" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Dasar">Dasar</option>
+                                                <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option>
+                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
+                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
+                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
+                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
+                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
+                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
+                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
+                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
+                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="kodeutd"><strong>Kode Unit Transfusi Darah</strong></label>
+                                            <input type="text" name="kodeutd" id="kodeutd" placeholder="Masukkan Kode Unit Transfusi Darah" autocomplete="off" class="form-control" required>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="namautd"><strong>Nama Unit Transfusi Darah</strong></label>
+                                                <div class="input-group ">
+                                                <input type="text" name="namautd" id="namautd" placeholder="Masukkan Nama Unit Transfusi Darah" autocomplete="off" class="input form-control"  required>
+                                               </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="jenisutd"><strong>Jenis Unit Transfusi Darah</strong></label>
+                                            <select name="jenisutd" id="jenisutd" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="UTD Kelas Madya">UTD Kelas Madya</option>
+                                                <option value="UTD Kelas Pratama">UTD Kelas Pratama</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="alamat"><strong>Alamat</strong></label>
+                                                <div class="input-group ">
+                                                <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control"  required>
+                                               </div>
+                                        </div>
+                                    </div>
                                 </div>
+                           
+                        </div>
+                        <div class="d-sm-flex align-items-right justify-content-between mb-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="transfusidarah.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                </form>
                             </div>
                         </div>
-                    
+                        
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -365,6 +372,36 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
     <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="../../../js/demo/datatables-demo.js"></script>
+
+    <script>
+        function password_show_hide() {
+  var x = document.getElementById("password");
+  var show_eye = document.getElementById("show_eye");
+  var hide_eye = document.getElementById("hide_eye");
+  hide_eye.classList.remove("d-none");
+  if (x.type === "password") {
+    x.type = "text";
+    show_eye.style.display = "none";
+    hide_eye.style.display = "block";
+  } else {
+    x.type = "password";
+    show_eye.style.display = "block";
+    hide_eye.style.display = "none";
+  }
+}
+    </script>
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+    </script>
 </body>
 
 </html>

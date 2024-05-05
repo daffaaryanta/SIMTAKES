@@ -3,9 +3,7 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$ak = query("SELECT a.id_ak, a.idx, k.kabkota, k.kodeklinik, k.namaklinik, a.2016, a.2017, a.2018, a.2019, a.2020, a.2021, a.2022, a.2023, a.2024
-FROM akreditasi_klinik a
-JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
+$transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +17,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Akreditasi Klinik</title>
+    <title>SIMTAKES - Unit Transfusi Darah</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -79,8 +77,8 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="" >
+            <li class="nav-item ">
+                <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -99,7 +97,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -108,7 +106,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item " href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
                         <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
@@ -116,8 +114,8 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
@@ -224,9 +222,9 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Klinik</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Unit Tranfusi Darah</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="klinik-tambah.php" class="btn btn-primary btn-icon-split">
+                            <a href="transfusidarah-tambah.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-plus"></i>
                                             </span>
@@ -253,46 +251,32 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                         <div class="card shadow mb-4">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="5">
+                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                             <th>No</th>
                                             <th>Kabkota</th>
-                                            <th>Kode Klinik</th>
-                                            <th>Nama Klinik</th>
-                                            <th>2016</th>
-                                            <th>2017</th>
-                                            <th>2018</th>
-                                            <th>2019</th>
-                                            <th>2020</th>
-                                            <th>2021</th>
-                                            <th>2022</th>
-                                            <th>2023</th>
-                                            <th>2024</th>
+                                            <th>Kode UTD</th>
+                                            <th>Nama UTD</th>
+                                            <th>Jenis UTD</th>
+                                            <th>Alamat</th>
                                             <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            <?php foreach ($ak as $ak) : ?>
+                                            <?php foreach ($transfusi as $tr) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $ak['kabkota'] ?></td>
-                                                <td><?= $ak['kodeklinik'] ?></td>
-                                                <td><?= $ak['namaklinik'] ?></td>
-                                                <td><?= $ak['2016'] ?></td>
-                                                <td><?= $ak['2017'] ?></td>
-                                                <td><?= $ak['2018'] ?></td>
-                                                <td><?= $ak['2019'] ?></td>
-                                                <td><?= $ak['2020'] ?></td>
-                                                <td><?= $ak['2021'] ?></td>
-                                                <td><?= $ak['2022'] ?></td>
-                                                <td><?= $ak['2023'] ?></td>
-                                                <td><?= $ak['2024'] ?></td>
+                                                <td><?= $tr['kabkota'] ?></td>
+                                                <td><?= $tr['kodeutd'] ?></td>
+                                                <td><?= $tr['namautd'] ?></td>
+                                                <td><?= $tr['jenisutd'] ?></td>
+                                                <td><?= $tr['alamat'] ?></td>
                                                 <td>
                                                 <div class="container text-center">
-                                                    <a href="klinik-edit.php?idx=<?= $ak['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusklinik.php?idx=<?= $ak['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Klinik <?= $ak['namaklinik']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                                                    <a href="transfusidarah-edit.php?idx=<?= $tr['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                                    <a  href="hapustransfusidarah.php?idx=<?= $tr['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Unit Transfi Darah <?= $tr['namautd']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>
                                             <?php endforeach ?>
