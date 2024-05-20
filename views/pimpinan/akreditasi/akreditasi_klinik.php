@@ -79,7 +79,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link " href="" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
@@ -123,8 +123,8 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
+            <li class="nav-item active">
+                <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
                     aria-expanded="true" aria-controls="collapseAkreditasi">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Akreditasi</span>
@@ -134,7 +134,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item active" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
@@ -143,15 +143,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Nav Item - Akun -->
-            <li class="nav-item ">
-                <a class="nav-link" href="../user/user.php">
-                <i class="fas fa-fw fa-user"></i>
-                    <span>Akun</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -224,14 +216,9 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Klinik</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Akreditasi Klinik</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="klinik-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
+                            
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-download fa-sm text-white-50"></i>

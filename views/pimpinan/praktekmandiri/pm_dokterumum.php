@@ -141,15 +141,7 @@ $dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Nav Item - Akun -->
-            <li class="nav-item ">
-                <a class="nav-link" href="../user/user.php">
-                <i class="fas fa-fw fa-user"></i>
-                    <span>Akun</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -224,12 +216,7 @@ $dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Praktek Mandiri Dokter Umum</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="pm_dokterumum-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
+                            
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-download fa-sm text-white-50"></i>
@@ -259,7 +246,7 @@ $dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
                                             <th>Kode PM Dokter Umum</th>
                                             <th>Nama PM Dokter Umum</th>
                                             <th>Alamat</th>
-                                            <th>Opsi</th>
+                                            
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -271,11 +258,7 @@ $dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
                                                 <td><?= $du['kodepmdrumum'] ?></td>
                                                 <td><?= $du['namapmdrumum'] ?></td>
                                                 <td><?= $du['alamat'] ?></td>
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="pm_dokterumum-edit.php?idx=<?= $du['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusdu.php?idx=<?= $du['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data PM Dokter Umum <?= $du['namapmdrumum']; ?> ?');"><i class="fa fa-trash"></i></a></td>
-                                                </div>
+                                                
                                             </tr>
                                             <?php endforeach ?>
                                         </tbody>

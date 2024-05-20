@@ -141,15 +141,7 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Nav Item - Akun -->
-            <li class="nav-item ">
-                <a class="nav-link" href="../user/user.php">
-                <i class="fas fa-fw fa-user"></i>
-                    <span>Akun</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -224,12 +216,7 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Lab Kesehatan</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="labkes-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
+                            
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-download fa-sm text-white-50"></i>
@@ -260,7 +247,7 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
                                             <th>Nama Labkes</th>
                                             <th>Jenis Labkes</th>
                                             <th>Alamat</th>
-                                            <th>Opsi</th>
+                                            
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -273,11 +260,7 @@ $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
                                                 <td><?= $data_labkes['namalabkes'] ?></td>
                                                 <td><?= $data_labkes['jenislabkes'] ?></td>
                                                 <td><?= $data_labkes['alamat'] ?></td>
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="labkes-edit.php?idx=<?= $data_labkes['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapuslabkes.php?idx=<?= $data_labkes['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Labkes <?= $data_labkes['namalabkes']; ?> ?');"><i class="fa fa-trash"></i></a></td>
-                                                </div>
+                                                
                                             </tr>
                                             <?php endforeach ?>
                                         </tbody>
