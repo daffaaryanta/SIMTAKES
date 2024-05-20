@@ -58,9 +58,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck" onclick="myFunction()">
+                                                <label class="custom-control-label" for="customCheck">Show Password</label>
                                                 </div>
                                             </div>
                                             <button class="btn btn-success btn-user btn-block">Login</button>
@@ -93,6 +92,18 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+    </script>
+
 
 </body>
 

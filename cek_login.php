@@ -36,7 +36,7 @@ if($cek > 0){
 		
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Operator Dinkes Provinsi!');
-		document.location = 'views/admin/user/user.php';
+		document.location = 'views/dinkes_provinsi/dashboard.php';
 		</script>";
 		
 		// header("location:views/admin/user/user.php");
@@ -47,10 +47,11 @@ if($cek > 0){
 
 		// buat session index dan username
 		$_SESSION['username'] = $username;
+		$_SESSION['password'] = $password;
 		$_SESSION['id_role'] = "1";
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Pimpinan!');
-		document.location = 'views/admin/user/user.php';
+		document.location = 'views/pimpinan/dashboard.php';
 		</script>";
 
 	}
@@ -58,49 +59,22 @@ if($cek > 0){
 
 		// buat session index dan username
 		$_SESSION['username'] = $username;
+		$_SESSION['password'] = $password;
 		$_SESSION['id_role'] = "3";
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Operator Dinkes Kabkota!');
-		document.location = 'views/admin/user/user.php';
+		document.location = 'views/dinkes_kabkota/dashboard.php';
 		</script>";
 
 	}
 	else{
 
 		// alihkan ke halaman index kembali
-		header("location:salah.php");
+		header("location:index.php");
 	}
 
 	
 }else{
-	header("location:dashboaasdard.php");
+	header("location:index.php");
 }
-
-
-
-// menghitung jumlah data yang ditemukan
-// $cek1 = mysqli_num_rows($index1);
-// if($cek1 > 0){
-
-// 	$data1 = mysqli_fetch_assoc($index1);
-// 	$_SESSION['nama'] = $nama_view;
-
-// }
-
-
-// if($data) {
-// 	$_SESSION['id_user'] = $data['id_user'];
-// 	$_SESSION['username'] = $data['username'];
-// 	$_SESSION['nama'] = $data['nama'];
-// 	$_SESSION['password'] = $data['password'];
-// 	$_SESSION['id_role'] == 2;
-
-// 	header('location:views/admin/user/user.php');
-// }else{
-// 	echo "<script>alert('Username atau Password yang anda masukkan salah!');
-// 	document.location = 'index.php';
-// 	</script>";
-// }
-
-
 ?>
