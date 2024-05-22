@@ -382,4 +382,24 @@ function ubahtransfusi($data)
 
         mysqli_close($koneksi);
 }
+
+function tambahrumah($data)
+{
+    global $koneksi;
+    $kabkota = $_REQUEST['kabkota'];
+    $kodeklinik = $_REQUEST['kodeklinik'];
+    $namaklinik = $_REQUEST['namaklinik'];
+    $jenisklinik = $_REQUEST['jenisklinik'];
+    $alamat = $_REQUEST['alamat'];
+
+    $namac = ucwords($namaklinik);
+    $alamatc = ucwords($alamat);
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO data_klinik ( kabkota, kodeklinik, namaklinik, jenisklinik, alamat) VALUES (
+            '$kabkota','$kodeklinik','$namac','$jenisklinik', '$alamatc' )";
+    mysqli_query($koneksi, $sql);
+
+    return mysqli_affected_rows($koneksi);
+        
+}
 ?>
