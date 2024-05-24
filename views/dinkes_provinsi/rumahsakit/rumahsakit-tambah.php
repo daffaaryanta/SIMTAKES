@@ -283,8 +283,8 @@
                                                 </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="kategori"><strong>Kategori</strong></label>
-                                            <select name="kategori" id="kategori" class="form-control" required>
+                                            <label for="kategorirumah"><strong>Kategori</strong></label>
+                                            <select name="kategorirumah" id="kategorirumah" class="form-control" required>
                                                 <option value="">-- Silahkan Pilih --</option>
                                                 <option value="Rumah Sakit Umum">Rumah Sakit Umum</option>
                                                 <option value="Rumah Sakit Ibu dan Anak">Rumah Sakit Ibu dan Anak</option>

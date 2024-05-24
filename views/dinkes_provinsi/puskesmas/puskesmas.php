@@ -236,7 +236,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                                     Download
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="../../cetak/cetak_puskesmas.php">Cetak (.pdf)</a>
                                     <a class="dropdown-item" href="#">Excel (.xls)</a>
                                     
                                 </div>

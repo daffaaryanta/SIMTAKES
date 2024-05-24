@@ -387,16 +387,16 @@ function tambahrumah($data)
 {
     global $koneksi;
     $kabkota = $_REQUEST['kabkota'];
-    $kodeklinik = $_REQUEST['kodeklinik'];
-    $namaklinik = $_REQUEST['namaklinik'];
-    $jenisklinik = $_REQUEST['jenisklinik'];
+    $koderumah = $_REQUEST['koderumah'];
+    $namarumah = $_REQUEST['namarumah'];
+    $kategorirumah = $_REQUEST['kategorirumah'];
     $alamat = $_REQUEST['alamat'];
 
-    $namac = ucwords($namaklinik);
+    $namac = ucwords($namarumah);
     $alamatc = ucwords($alamat);
         // We are going to insert the data into our sampleDB table
-        $sql = "INSERT INTO data_klinik ( kabkota, kodeklinik, namaklinik, jenisklinik, alamat) VALUES (
-            '$kabkota','$kodeklinik','$namac','$jenisklinik', '$alamatc' )";
+        $sql = "INSERT INTO data_rumahsakit ( kabkota, koderumah, namarumah, kategorirumah, alamat) VALUES (
+            '$kabkota','$koderumah','$namac','$kategorirumah', '$alamatc' )";
     mysqli_query($koneksi, $sql);
 
     return mysqli_affected_rows($koneksi);

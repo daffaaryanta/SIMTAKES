@@ -271,7 +271,7 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
                                                 <td><?= $data_klinik['kabkota'] ?></td>
                                                 <td><?= $data_klinik['koderumah'] ?></td>
                                                 <td><?= $data_klinik['namarumah'] ?></td>
-                                                <td><?= $data_klinik['jenisrumah'] ?></td>
+                                                <td><?= $data_klinik['kategorirumah'] ?></td>
                                                 <td><?= $data_klinik['alamat'] ?></td>
                                                 <td>
                                                 <div class="container text-center">
