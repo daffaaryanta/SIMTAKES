@@ -1,26 +1,11 @@
 <?php
 // Memanggil atau membutuhkan file function.php
-require '../../../koneksi.php';
+require '../../koneksi.php';
 
-$idx = $_GET['idx'];
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$dokterumum = query("SELECT * FROM data_pmdrumum WHERE idx = $idx")[0];
-
-
-if (isset($_POST['ubah'])) {
-    if (ubahpmdu($_POST) > 0) {
-        echo "<script>
-                alert('Data berhasil diubah!');
-                document.location.href = 'pm_dokterumum.php';
-            </script>";
-    } else {
-        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
-        echo "<script>
-                alert('Data gagal diubah!');
-            </script>";
-    }
-}
+$rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,19 +17,19 @@ if (isset($_POST['ubah'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - PM Dokter Umum</title>
+    <title>SIMTAKES - Rumah Sakit</title>
 
     <!-- Custom fonts for this template -->
-    <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -76,8 +61,8 @@ if (isset($_POST['ubah'])) {
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Rumah Sakit</span></a>
             </li>
@@ -103,7 +88,7 @@ if (isset($_POST['ubah'])) {
             
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
@@ -112,7 +97,7 @@ if (isset($_POST['ubah'])) {
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -121,7 +106,7 @@ if (isset($_POST['ubah'])) {
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item active" href="pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
                         <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
@@ -156,7 +141,23 @@ if (isset($_POST['ubah'])) {
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            
+            <!-- Nav Item - Akun -->
+            <?php
+            if ($id_role == 2 ){
+              echo $user = '
+                <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+                ';
+
+            }
+
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -204,6 +205,7 @@ if (isset($_POST['ubah'])) {
                                 }
                                 ?>
                                 </span>
+                                
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -228,8 +230,35 @@ if (isset($_POST['ubah'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data PM Dokter Umum</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Rumah Sakit</h1>
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <?php
+            if ($id_role != 1 ){
+              echo $user = '
+              <a href="rumahsakit-tambah.php" class="btn btn-primary btn-icon-split">
+              <span class="icon text-white-50">
+                  <i class="fas fa-plus"></i>
+              </span>
+              <span class="text">Tambah Data</span>
+                </a>&nbsp;&nbsp;
+                ';
+
+            }
+
+            ?>    
                         
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-download fa-sm text-white-50"></i>
+                                    Download
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="../../cetak/cetak_rumahsakit.php">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
                         
                     </div>
 
@@ -237,58 +266,52 @@ if (isset($_POST['ubah'])) {
                     
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="card shadow mb-4">
-                            
-                                <div class="card-body">
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <input type="hidden" name="idx" id="idx" value="<?= $dokterumum['idx']; ?>" autocomplete="off" class="form-control" readonly>
-                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
-                                            <select name="kabkota" id="kabkota" class="form-control" required>
-                                                <?php
-                                                $det = mysqli_query($koneksi, "SELECT * from data_kabkota order by kabkota ASC");
-                                                $no = 1;
-                                                while ($p = mysqli_fetch_array($det)) {
-                                                ?>
-                                                    <option value="<?php echo $p['kabkota'] ?>"><?php echo $p['kabkota'] ?> </option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="kodepmdrumum"><strong>Kode PM Dokter Umum</strong></label>
-                                            <input type="text" name="kodepmdrumum" id="kodepmdrumum" value="<?= $dokterumum['kodepmdrumum']; ?>" autocomplete="off" class="form-control" required>
-                                                
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="namapmdrumum"><strong>Nama PM Dokter Umum</strong></label>
-                                                <div class="input-group ">
-                                            
-                                                <input type="text" name="namapmdrumum" id="namapmdrumum" value="<?= $dokterumum['namapmdrumum']; ?>" autocomplete="off" class="input form-control"  required>
-                                               
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                            <th>No</th>
+                                            <th>Kab kota</th>
+                                            <th>Kode Rumah Sakit</th>
+                                            <th>Nama Rumah Sakit</th>
+                                            <th>Jenis Rumah Sakit</th>
+                                            <th>Alamat</th>
+                                            <?php
+            if ($id_role != 1 ){
+              echo $user = '
+              <th>Opsi</th>
+                ';
+
+            }
+
+            ?>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $no = 1; ?>
+                                            <?php foreach ($rumah as $data_klinik) : ?>
+                                            <tr>
+                                                <td><?= $no++ ?></td>
+                                                <td><?= $data_klinik['kabkota'] ?></td>
+                                                <td><?= $data_klinik['koderumah'] ?></td>
+                                                <td><?= $data_klinik['namarumah'] ?></td>
+                                                <td><?= $data_klinik['kategorirumah'] ?></td>
+                                                <td><?= $data_klinik['alamat'] ?></td>
+                                                <td id="hilang">
+                                                <div class="container text-center">
+                                                    <a href="rumahsakit-edit.php?idx=<?= $data_klinik['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                                    <a  href="hapusrumahsakit.php?idx=<?= $data_klinik['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Rumah Sakit <?= $data_klinik['namarumah']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="alamat"><strong>Alamat</strong></label>
-                                                <div class="input-group ">
-                                                <input type="text" name="alamat" id="alamat" value="<?= $dokterumum['alamat']; ?>" autocomplete="off" class="input form-control"  required>
-                                               </div>
-                                        </div>
-                                    </div>
+                                            </tr>
+                                                
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-                           
-                        </div>
-                        <div class="d-sm-flex align-items-right justify-content-between mb-4">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="pm_dokterumum.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
-                                </form>
                             </div>
                         </div>
-                        
+                    
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -328,60 +351,46 @@ if (isset($_POST['ubah'])) {
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../../logout.php">Logout</a>
+                    <a class="btn btn-primary" href="../../logout.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../../js/sb-admin-2.min.js"></script>
+    <script src="../../js/sb-admin-2.min.js"></script>
 
    
 
     <!-- Datatables -->
     
-    <script src="../../../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <script src="../../../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
 
-    <script>
-        function password_show_hide() {
-  var x = document.getElementById("password");
-  var show_eye = document.getElementById("show_eye");
-  var hide_eye = document.getElementById("hide_eye");
-  hide_eye.classList.remove("d-none");
-  if (x.type === "password") {
-    x.type = "text";
-    show_eye.style.display = "none";
-    hide_eye.style.display = "block";
-  } else {
-    x.type = "password";
-    show_eye.style.display = "block";
-    hide_eye.style.display = "none";
-  }
-}
-    </script>
+<script>
+var el = document.getElementById('content');
+    var content;
 
-    <script>
-function myFunction() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
+    if  (!user) {
+        content = '<h1>there is no user</h1>';
+    }
+    if  (user) {
+        content = '<button type="button">Click Me!</button>';
+    }
 
-    </script>
+    el.insertAdjacentHTML('afterbegin', content);
+
+</script>
+
 </body>
 
 </html>

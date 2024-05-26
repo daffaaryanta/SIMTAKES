@@ -2,10 +2,25 @@
 // Memanggil atau membutuhkan file function.php
 require '../../../koneksi.php';
 
+$id_ak = $_GET['id_ak'];
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
-?>
+$klinik = query("SELECT * FROM akreditasi WHERE id_ak = $id_ak")[0];
 
+
+if (isset($_POST['ubah'])) {
+    if (ubahakreditasi($_POST) > 0) {
+        echo "<script>
+                alert('Data berhasil diubah!');
+                document.location.href = 'akreditasi_puskesmas.php';
+            </script>";
+    } else {
+        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
+        echo "<script>
+                alert('Data gagal diubah!');
+            </script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +32,7 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Unit Transfusi Darah</title>
+    <title>SIMTAKES - Akreditasi Puskesmas</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,7 +93,7 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item ">
-                <a class="nav-link " href="../klinik/klinik.php" >
+                <a class="nav-link " href="klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -97,7 +112,7 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -106,7 +121,7 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item " href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
+                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
                         <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
@@ -114,14 +129,14 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
-                <a class="nav-link" href="">
+            <li class="nav-item">
+                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Unit Tranfusi Darah</span></a>
             </li>
 
            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
                     aria-expanded="true" aria-controls="collapseAkreditasi">
                     <i class="fas fa-fw fa-folder"></i>
@@ -131,8 +146,8 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item active" href="akreditasi_puskesmas.php">Puskesmas</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
@@ -141,7 +156,21 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Nav Item - Akun -->
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
             
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -189,7 +218,6 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
                                 }
                                 ?>
                                 </span>
-                                
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -214,26 +242,8 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Unit Tranfusi Darah</h1>
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="transfusidarah-tambah.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Tambah Data</span>
-                            </a>&nbsp;&nbsp;
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>
-                                    Download
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Akreditasi Klinik</h1>
+                        
                         
                     </div>
 
@@ -241,43 +251,67 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
                     
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                            <th>No</th>
-                                            <th>Kabkota</th>
-                                            <th>Kode UTD</th>
-                                            <th>Nama UTD</th>
-                                            <th>Jenis UTD</th>
-                                            <th>Alamat</th>
-                                            <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($transfusi as $tr) : ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $tr['kabkota'] ?></td>
-                                                <td><?= $tr['kodeutd'] ?></td>
-                                                <td><?= $tr['namautd'] ?></td>
-                                                <td><?= $tr['jenisutd'] ?></td>
-                                                <td><?= $tr['alamat'] ?></td>
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="transfusidarah-edit.php?idx=<?= $tr['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapustransfusidarah.php?idx=<?= $tr['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Unit Transfi Darah <?= $tr['namautd']; ?> ?');"><i class="fa fa-trash"></i></a></td>
-                                                </div>
-                                            </tr>
-                                            <?php endforeach ?>
-                                        </tbody>
-                                    </table>
+                            
+                                <div class="card-body">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input type="hidden" name="id_ak" id="id_ak" value="<?= $klinik['id_ak']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <input type="hidden" name="id_kategori" id="id_kategori" value="<?= $klinik['id_kategori']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <label for="kode"><strong>Kode Puskesmas </strong></label>
+                                            <input type="text" name="kode" id="kode" value="<?= $klinik['kode']; ?>" autocomplete="off" class="input form-control"  readonly>
+                                            
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="nama"><strong>Nama Puskesmas</strong></label>
+                                            <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" readonly>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="tahun"><strong>Tahun Akreditasi</strong></label>
+                                            <select name="tahun" id="tahun" class="form-control" required>
+                                            <option value="<?= $klinik['tahun']; ?>"><?= $klinik['tahun']; ?></option>
+                                            <?php
+                                                $sum = 0;
+                                                for($i = 2016; $i<=2024; $i++) {
+                                                    $sum = $i;
+                                                
+                                                    
+                                                ?> 
+                                                   <option value="<?php echo $sum ?> "><?php echo $sum?></option>
+                                                <?php
+                                                }
+                                                ?>  
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="jenis_akreditasi"><strong>Jenis Akreditasi</strong></label>
+                                            <select name="jenis_akreditasi" id="jenis_akreditasi" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Dasar" <?php if ($klinik['jenis_akreditasi'] == 'Dasar') { ?> selected='' <?php } ?>>Dasar</option>
+                                                <option value="Madya" <?php if ($klinik['jenis_akreditasi'] == 'Madya') { ?> selected='' <?php } ?>>Madya</option>
+                                                
+                                                <option value="Utama" <?php if ($klinik['jenis_akreditasi'] == 'Utama') { ?> selected='' <?php } ?>>Utama</option>
+                                                <option value="Paripurna" <?php if ($klinik['jenis_akreditasi'] == 'Paripurna') { ?> selected='' <?php } ?>>Paripurna</option>
+                                                </select>
+                                                
+                                        </div>
+                                    
+                                    </div>
+                                    
                                 </div>
+                           
+                        </div>
+                        <div class="d-sm-flex align-items-right justify-content-between mb-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="akreditasi_puskesmas.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                </form>
                             </div>
                         </div>
-                    
+                        
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -341,6 +375,36 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
     <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="../../../js/demo/datatables-demo.js"></script>
+
+    <script>
+        function password_show_hide() {
+  var x = document.getElementById("password");
+  var show_eye = document.getElementById("show_eye");
+  var hide_eye = document.getElementById("hide_eye");
+  hide_eye.classList.remove("d-none");
+  if (x.type === "password") {
+    x.type = "text";
+    show_eye.style.display = "none";
+    hide_eye.style.display = "block";
+  } else {
+    x.type = "password";
+    show_eye.style.display = "block";
+    hide_eye.style.display = "none";
+  }
+}
+    </script>
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+    </script>
 </body>
 
 </html>

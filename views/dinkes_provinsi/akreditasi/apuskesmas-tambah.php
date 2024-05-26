@@ -1,26 +1,26 @@
 <?php
-// Memanggil atau membutuhkan file function.php
-require '../../../koneksi.php';
 
-$idx = $_GET['idx'];
-// Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$pkm = query("SELECT * FROM data_pkm WHERE idx = $idx")[0];
+        // servername => localhost
+        // username => root
+        // password => empty
+        // database name => staff
 
+        require '../../../koneksi.php';
+        if (isset($_POST['simpan'])) {
+            if (tambahakreditasi($_POST)) {
+                echo "<script>
+                        alert('Data berhasil ditambahkan!');
+                        document.location.href = 'akreditasi_puskesmas.php';
+                    </script>";
+            } else {
+                // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
+                echo "<script>
+                        alert('Data gagal ditambahkan!');
+                    </script>";
+            }
+        }
+        ?>
 
-if (isset($_POST['ubah'])) {
-    if (ubahpuskesmas($_POST) > 0) {
-        echo "<script>
-                alert('Data berhasil diubah!');
-                document.location.href = 'puskesmas.php';
-            </script>";
-    } else {
-        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
-        echo "<script>
-                alert('Data gagal diubah!');
-            </script>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +32,7 @@ if (isset($_POST['ubah'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Puskesmas</title>
+    <title>SIMTAKES - Akreditasi Puskesmas</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -83,8 +83,8 @@ if (isset($_POST['ubah'])) {
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="puskesmas.php" >
+            <li class="nav-item ">
+                <a class="nav-link " href="../puskesmas/puskesmas.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Puskesmas</span>
                 </a>
@@ -92,7 +92,7 @@ if (isset($_POST['ubah'])) {
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
@@ -136,7 +136,7 @@ if (isset($_POST['ubah'])) {
             </li>
 
            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
                     aria-expanded="true" aria-controls="collapseAkreditasi">
                     <i class="fas fa-fw fa-folder"></i>
@@ -146,8 +146,8 @@ if (isset($_POST['ubah'])) {
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item active" href="akreditasi_puskesmas.php">Puskesmas</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
@@ -156,7 +156,21 @@ if (isset($_POST['ubah'])) {
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Nav Item - Akun -->
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
             
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -193,7 +207,7 @@ if (isset($_POST['ubah'])) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 ">Selamat Datang, 
                                 <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
                                 $row = mysqli_fetch_array($index);
                                 if ($row && $row["nama"] == !'') {
@@ -204,6 +218,7 @@ if (isset($_POST['ubah'])) {
                                 }
                                 ?>
                                 </span>
+                                
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -228,7 +243,7 @@ if (isset($_POST['ubah'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data Puskesmas</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Data Akreditasi Puskesmas</h1>
                         
                         
                     </div>
@@ -241,73 +256,73 @@ if (isset($_POST['ubah'])) {
                                 <div class="card-body">
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="nama"><strong>ID</strong></label>
-                                            
-                                            <input type="text" name="idx" id="idx" value="<?= $pkm['idx']; ?>" autocomplete="off" class="form-control" readonly>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
-                                            <select name="kabkota" id="kabkota" class="form-control" required>
+                                    <div class="form-group col-md-6">
+                                            <label for="kode"><strong>Kode Puskesmas </strong></label>
+                                            <input type="hidden" name="id_kategori" id="id_kategori" value="2" autocomplete="off" class="form-control" readonly>
+                                            <select name="kode" id="kode" class="form-control" required>
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <?php
+                                                $det = mysqli_query($koneksi, "SELECT * from data_pkm order by kabkota ASC");
                                                 
-                                                <?php
-                                                $det = mysqli_query($koneksi, "SELECT * from data_kabkota order by kabkota ASC");
                                                 $no = 1;
                                                 while ($p = mysqli_fetch_array($det)) {
                                                 ?>
-                                                    <option value="<?php echo $p['kabkota'] ?>"><?php echo $p['kabkota'] ?> </option>
+                                                    <option value="<?php echo $p['kodepkm'] ?> "><?php echo $p['kodepkm'] ?> - <?php echo $p['namapkm'] ?></option>
                                                 <?php
                                                 }
+                                                ?>    
+                                            
+                                            </select>
+                                                
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="nama"><strong>Nama Puskesmas</strong></label>
+                                            <select name="nama" id="nama" class="form-control" required>
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <?php
+                                                $det = mysqli_query($koneksi, "SELECT * from data_pkm order by kabkota ASC");
+                                                
+                                                $no = 1;
+                                                while ($p = mysqli_fetch_array($det)) {
                                                 ?>
+                                                    <option value="<?php echo $p['namapkm'] ?> "><?php echo $p['namapkm']?> - <?php echo $p['kodepkm'] ?>  </option>
+                                                <?php
+                                                }
+                                                ?>    
+                                            
+                                            </select>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="tahun"><strong>Tahun Akreditasi</strong></label>
+                                            <select name="tahun" id="tahun" class="form-control" required>
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <?php
+                                                $sum = 0;
+                                                for($i = 2016; $i<=2024; $i++) {
+                                                    $sum = $i;
+                                                
+                                                    
+                                                ?> 
+                                                   <option value="<?php echo $sum ?> "><?php echo $sum?></option>
+                                                <?php
+                                                }
+                                                ?>  
                                             </select>
                                         </div>
-                                        
-                                    </div>
-                                    <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="kodepkm"><strong>Kode Puksesmas</strong></label>
-                                            <input type="text" name="kodepkm" id="kodepkm" value="<?= $pkm['kodepkm']; ?>" autocomplete="off" class="form-control" required>
-                                                
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="namapkm"><strong>Nama Puskesmas</strong></label>
-                                                <div class="input-group ">
-                                            
-                                                <input type="text" name="namapkm" id="namapkm" value="<?= $pkm['namapkm']; ?>" autocomplete="off" class="input form-control"  required>
-                                               
-                                                </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">    
-                                            <div class="form-group col-md-6">
-                                                <label for="statuspkm"><strong>Status Puskesmas</strong></label>
-                                                <select name="statuspkm" id="statuspkm" class="form-control" required>
+                                            <label for="jenis_akreditasi"><strong>Jenis Akreditasi</strong></label>
+                                            <select name="jenis_akreditasi" id="jenis_akreditasi" class="form-control" required>
                                                 <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Perdesaan" <?php if ($pkm['statuspkm'] == 'Perdesaan') { ?> selected='' <?php } ?>>Perdesaan</option>
-                                                <option value="Perkotaan" <?php if ($pkm['statuspkm'] == 'Perkotaan') { ?> selected='' <?php } ?>>Perkotaan</option>
-                                                <option value="Sangat Terpencil" <?php if ($pkm['statuspkm'] == 'Sangat Terpencil') { ?> selected='' <?php } ?>>Sangat Terpencil</option>
-                                                <option value="Terpencil" <?php if ($pkm['statuspkm'] == 'Terpencil') { ?> selected='' <?php } ?>>Terpencil</option>
+                                                <option value="Dasar">Dasar</option>
+                                                <option value="Madya">Madya</option>
+                                                <option value="Utama">Utama</option>
+                                                <option value="Paripurna">Paripurna</option>
                                                 </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="kategori"><strong>Kategori</strong></label>
-                                                <select name="kategori" id="kategori" class="form-control" required>
-                                                <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Rawat Inap" <?php if ($pkm['kategori'] == 'Rawat Inap') { ?> selected='' <?php } ?>>Rawat Inap</option>
-                                                <option value="Rawat Jalan" <?php if ($pkm['kategori'] == 'Rawat Jalan') { ?> selected='' <?php } ?>>Rawat Jalan</option>
-                                                
-                                                </select>
-                                            </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="alamat"><strong>Alamat</strong></label>
-                                                <div class="input-group ">
-                                            
-                                                <input type="text" name="alamat" id="alamat" value="<?= $pkm['alamat']; ?>" autocomplete="off" class="input form-control"  required>
-                                               
-                                                </div>
                                         </div>
+                                    
                                     </div>
                                     
                                 </div>
@@ -315,8 +330,8 @@ if (isset($_POST['ubah'])) {
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="puskesmas.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="akreditasi_puskesmas.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>

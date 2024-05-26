@@ -142,14 +142,20 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item - Akun -->
-            <li class="nav-item ">
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
                 <a class="nav-link" href="../user/user.php">
                 <i class="fas fa-fw fa-user"></i>
                     <span>Akun</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
+            
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

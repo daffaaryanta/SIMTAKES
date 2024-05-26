@@ -1,26 +1,26 @@
 <?php
+// Memanggil atau membutuhkan file function.php
+require '../../../koneksi.php';
 
-        // servername => localhost
-        // username => root
-        // password => empty
-        // database name => staff
+$idx = $_GET['idx'];
+// Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
+$klinik = query("SELECT * FROM data_rumahsakit WHERE idx = $idx")[0];
 
-        require '../../../koneksi.php';
-        if (isset($_POST['simpan'])) {
-            if (tambahlabkes($_POST)) {
-                echo "<script>
-                        alert('Data berhasil ditambahkan!');
-                        document.location.href = 'labkes.php';
-                    </script>";
-            } else {
-                // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
-                echo "<script>
-                        alert('Data gagal ditambahkan!');
-                    </script>";
-            }
-        }
-        ?>
 
+if (isset($_POST['ubah'])) {
+    if (ubahrumah($_POST) > 0) {
+        echo "<script>
+                alert('Data berhasil diubah!');
+                document.location.href = 'rumahsakit.php';
+            </script>";
+    } else {
+        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
+        echo "<script>
+                alert('Data gagal diubah!');
+            </script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +32,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Lab Kesehatan</title>
+    <title>SIMTAKES - Rumah Sakit</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -76,8 +76,8 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="rumahsakit.php">
                 <i class="fas fa-fw fa-folder"></i>
                     <span>Data Rumah Sakit</span></a>
             </li>
@@ -92,7 +92,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
@@ -103,8 +103,8 @@
             
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="labkes.php" >
+            <li class="nav-item">
+                <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -156,7 +156,21 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-           
+            <!-- Nav Item - Akun -->
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
+            
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -193,7 +207,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 ">Selamat Datang, 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
                                 <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
                                 $row = mysqli_fetch_array($index);
                                 if ($row && $row["nama"] == !'') {
@@ -204,7 +218,6 @@
                                 }
                                 ?>
                                 </span>
-                                
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -229,7 +242,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Tambah Data Lab Kesehatan</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Rumah Sakit</h1>
                         
                         
                     </div>
@@ -243,46 +256,43 @@
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
+                                            <input type="hidden" name="idx" id="idx" value="<?= $klinik['idx']; ?>" autocomplete="off" class="form-control" readonly>
                                             <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
                                             <select name="kabkota" id="kabkota" class="form-control" required>
-                                                <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Dasar">Dasar</option>
-                                                <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option>
-                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
-                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
-                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
-                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
-                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
-                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
-                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
-                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
-                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
+                                                <?php
+                                                $det = mysqli_query($koneksi, "SELECT * from data_kabkota order by kabkota ASC");
+                                                $no = 1;
+                                                while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                    <option value="<?php echo $p['kabkota'] ?>"><?php echo $p['kabkota'] ?> </option>
+                                                <?php
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="kodelabkes"><strong>Kode Labkes</strong></label>
-                                            <input type="text" name="kodelabkes" id="kodelabkes" placeholder="Masukkan Kode Labkes" autocomplete="off" class="form-control" required>
+                                            <label for="koderumah"><strong>Kode Rumah Sakit</strong></label>
+                                            <input type="text" name="koderumah" id="koderumah" value="<?= $klinik['koderumah']; ?>" autocomplete="off" class="form-control" required>
                                                 
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="namalabkes"><strong>Nama Labkes</strong></label>
+                                            <label for="namarumah"><strong>Nama Rumah Sakit</strong></label>
                                                 <div class="input-group ">
                                             
-                                                <input type="text" name="namalabkes" id="namalabkes" placeholder="Masukkan Nama Labkes" autocomplete="off" class="input form-control"  required>
+                                                <input type="text" name="namarumah" id="namarumah" value="<?= $klinik['namarumah']; ?>" autocomplete="off" class="input form-control"  required>
                                                
                                                 </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="jenislabkes"><strong>Jenis Labkes</strong></label>
-                                            <select name="jenislabkes" id="jenislabkes" class="form-control" required>
+                                            <label for="kategorirumah"><strong>Kategori Rumah Sakit</strong></label>
+                                            <select name="kategorirumah" id="kategorirumah" class="form-control" required>
                                                 <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus">Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus</option>
-                                                <option value="Laboratorium Kesehatan Masyarakat dan Lab Medis Umum">Laboratorium Kesehatan Masyarakat dan Lab Medis Umum</option>
-                                                <option value="Laboratorium Kesehatan Masyarakat Utama">Laboratorium Kesehatan Masyarakat Utama</option>
-                                                <option value="Laboratorium Medis Umum Pratama">Laboratorium Medis Umum Pratama</option>
-                                                <option value="Laboratorium Umum Pratama">Laboratorium Umum Pratama</option>
+                                                <option value="Rumah Sakit Umum" <?php if ($klinik['kategorirumah'] == 'Rumah Sakit Umum') { ?> selected='' <?php } ?>>Rumah Sakit Umum</option>
+                                                <option value="Rumah Sakit Ibu dan Anak" <?php if ($klinik['kategorirumah'] == 'Rumah Sakit Ibu dan Anak') { ?> selected='' <?php } ?>>Rumah Sakit Ibu dan Anak</option>
+                                                <option value="Rumah Sakit Khusus"<?php if ($klinik['kategorirumah'] == 'Rumah Sakit Khusus') { ?> selected='' <?php } ?> >Rumah Sakit Khusus</option>
+                                                
                                                 </select>
                                         </div>
                                     
@@ -291,7 +301,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="alamat"><strong>Alamat</strong></label>
                                                 <div class="input-group ">
-                                                <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control"  required>
+                                                <input type="text" name="alamat" id="alamat" value="<?= $klinik['alamat']; ?>" autocomplete="off" class="input form-control"  required>
                                                </div>
                                         </div>
                                     </div>
@@ -300,8 +310,8 @@
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="labkes.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="rumahsakit.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>

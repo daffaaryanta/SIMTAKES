@@ -4,9 +4,36 @@ require_once '../../vendor/autoload.php';
 include '../../koneksi.php';
 
 $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm ORDER BY kabkota");
-$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
+$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
+$mpdf->SetTitle('Laporan Data Puskesmas');
 $stylesheet = file_get_contents('cetak.css');
-$mpdf->WriteHTML('<center><h1>LAPORAN DATA PUSKESMAS</h1></center>');
+$header = '
+<table style="width: 90%;">
+		<tr>
+			
+				<td align="center">
+				<img src="../../img/logo.png" style="position: absolute; width: 200px; height: auto;">
+                </td>
+                <td align="center">
+				<span style="line-height: 1.6; font-weight: bold; font-size: 24px; align-content: center;">
+				DINAS KESEHATAN KOTA BANJARMASIN
+				</span>
+				<br>
+				<span style="line-height: 1.6; font-weight: normal; font-size: 18px">
+					Jl. Mayjend D.I Panjaitan No. 27 Banjarmasin Kalimantan Selatan
+ 					<br>Telp.0511-3352859  Fax. 0511-3353263
+ 					<br>Email: www.pn-banjarmasin.go.id
+				</span>
+			<br><br>
+			</td>
+		</tr>
+	</table>
+    <hr class="line-title">
+	<p align="center" style="font-size: 18px;">
+		Laporan Data Puskesmas
+	</p>
+';
+$mpdf->WriteHTML($header, 2);
 $content = '
                                     <table class="table table-bordered text-dark">
                                         <thead>

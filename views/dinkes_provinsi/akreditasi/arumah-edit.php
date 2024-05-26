@@ -2,16 +2,16 @@
 // Memanggil atau membutuhkan file function.php
 require '../../../koneksi.php';
 
-$idx = $_GET['idx'];
+$id_ak = $_GET['id_ak'];
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$labkes = query("SELECT * FROM data_labkes WHERE idx = $idx")[0];
+$klinik = query("SELECT * FROM akreditasi WHERE id_ak = $id_ak")[0];
 
 
 if (isset($_POST['ubah'])) {
-    if (ubahlabkes($_POST) > 0) {
+    if (ubahakreditasi($_POST) > 0) {
         echo "<script>
                 alert('Data berhasil diubah!');
-                document.location.href = 'labkes.php';
+                document.location.href = 'akreditasi_rumahsakit.php';
             </script>";
     } else {
         // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
@@ -32,7 +32,7 @@ if (isset($_POST['ubah'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Lab Kesehatan</title>
+    <title>SIMTAKES - Akreditasi Rumah Sakit</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -93,7 +93,7 @@ if (isset($_POST['ubah'])) {
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item ">
-                <a class="nav-link " href="../klinik/klinik.php" >
+                <a class="nav-link " href="klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -103,8 +103,8 @@ if (isset($_POST['ubah'])) {
             
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="labkes.php" >
+            <li class="nav-item">
+                <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
                 </a>
@@ -136,7 +136,7 @@ if (isset($_POST['ubah'])) {
             </li>
 
            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
                     aria-expanded="true" aria-controls="collapseAkreditasi">
                     <i class="fas fa-fw fa-folder"></i>
@@ -145,9 +145,9 @@ if (isset($_POST['ubah'])) {
                 <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
+                        <a class="collapse-item active" href="akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
@@ -156,7 +156,21 @@ if (isset($_POST['ubah'])) {
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+           <!-- Nav Item - Akun -->
+           <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
             
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -228,7 +242,7 @@ if (isset($_POST['ubah'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data Lab Kesehatan</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Akreditasi Rumah Sakit</h1>
                         
                         
                     </div>
@@ -242,63 +256,58 @@ if (isset($_POST['ubah'])) {
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <input type="hidden" name="idx" id="idx" value="<?= $labkes['idx']; ?>" autocomplete="off" class="form-control" readonly>
-                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
-                                            <select name="kabkota" id="kabkota" class="form-control" required>
-                                                <?php
-                                                $det = mysqli_query($koneksi, "SELECT * from data_kabkota order by kabkota ASC");
-                                                $no = 1;
-                                                while ($p = mysqli_fetch_array($det)) {
-                                                ?>
-                                                    <option value="<?php echo $p['kabkota'] ?>"><?php echo $p['kabkota'] ?> </option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
+                                            <input type="hidden" name="id_ak" id="id_ak" value="<?= $klinik['id_ak']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <input type="hidden" name="id_kategori" id="id_kategori" value="<?= $klinik['id_kategori']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <label for="kode"><strong>Kode Rumah Sakit </strong></label>
+                                            <input type="text" name="kode" id="kode" value="<?= $klinik['kode']; ?>" autocomplete="off" class="input form-control"  readonly>
+                                            
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="kodelabkes"><strong>Kode Labkes</strong></label>
-                                            <input type="text" name="kodelabkes" id="kodelabkes" value="<?= $labkes['kodelabkes']; ?>" autocomplete="off" class="form-control" required>
+                                            <label for="nama"><strong>Nama Rumah Sakit</strong></label>
+                                            <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" readonly>
                                                 
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="namalabkes"><strong>Nama Labkes</strong></label>
-                                                <div class="input-group ">
-                                            
-                                                <input type="text" name="namalabkes" id="namalabkes" value="<?= $labkes['namalabkes']; ?>" autocomplete="off" class="input form-control"  required>
-                                               
-                                                </div>
+                                            <label for="tahun"><strong>Tahun Akreditasi</strong></label>
+                                            <select name="tahun" id="tahun" class="form-control" required>
+                                            <option value="<?= $klinik['tahun']; ?>"><?= $klinik['tahun']; ?></option>
+                                            <?php
+                                                $sum = 0;
+                                                for($i = 2016; $i<=2024; $i++) {
+                                                    $sum = $i;
+                                                
+                                                    
+                                                ?> 
+                                                   <option value="<?php echo $sum ?> "><?php echo $sum?></option>
+                                                <?php
+                                                }
+                                                ?>  
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="jenislabkes"><strong>Jenis Labkes</strong></label>
-                                            <select name="jenislabkes" id="jenislabkes" class="form-control" required>
+                                            <label for="jenis_akreditasi"><strong>Jenis Akreditasi</strong></label>
+                                            <select name="jenis_akreditasi" id="jenis_akreditasi" class="form-control" required>
                                                 <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus" <?php if ($labkes['jenislabkes'] == 'Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus') { ?> selected='' <?php } ?>>Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus</option>
-                                                <option value="Laboratorium Kesehatan Masyarakat dan Lab Medis Umum" <?php if ($labkes['jenislabkes'] == 'Laboratorium Kesehatan Masyarakat dan Lab Medis Umum') { ?> selected='' <?php } ?>>Laboratorium Kesehatan Masyarakat dan Lab Medis Umum</option>
-                                                <option value="Laboratorium Kesehatan Masyarakat Utama" <?php if ($labkes['jenislabkes'] == 'Laboratorium Kesehatan Masyarakat Utama') { ?> selected='' <?php } ?>>Laboratorium Kesehatan Masyarakat Utama</option>
-                                                <option value="Laboratorium Medis Umum Pratama" <?php if ($labkes['jenislabkes'] == 'Laboratorium Medis Umum Pratama') { ?> selected='' <?php } ?>>Laboratorium Medis Umum Pratama</option>
-                                                <option value="Laboratorium Umum Pratama" <?php if ($labkes['jenislabkes'] == 'Laboratorium Umum Pratama') { ?> selected='' <?php } ?>>Laboratorium Umum Pratama</option>
+                                                <option value="Dasar" <?php if ($klinik['jenis_akreditasi'] == 'Dasar') { ?> selected='' <?php } ?>>Dasar</option>
+                                                <option value="Madya" <?php if ($klinik['jenis_akreditasi'] == 'Madya') { ?> selected='' <?php } ?>>Madya</option>
+                                                
+                                                <option value="Utama" <?php if ($klinik['jenis_akreditasi'] == 'Utama') { ?> selected='' <?php } ?>>Utama</option>
+                                                <option value="Paripurna" <?php if ($klinik['jenis_akreditasi'] == 'Paripurna') { ?> selected='' <?php } ?>>Paripurna</option>
                                                 </select>
+                                                
                                         </div>
                                     
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="alamat"><strong>Alamat</strong></label>
-                                                <div class="input-group ">
-                                                <input type="text" name="alamat" id="alamat" value="<?= $labkes['alamat']; ?>" autocomplete="off" class="input form-control"  required>
-                                               </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                            
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="labkes.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="reset" class="btn"><a href="akreditasi_rumahsakit.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>

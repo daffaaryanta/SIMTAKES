@@ -3,9 +3,7 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$ak = query("SELECT a.id_ak, a.idx, k.kabkota, k.kodeklinik, k.namaklinik, a.2016, a.2017, a.2018, a.2019, a.2020, a.2021, a.2022, a.2023, a.2024
-FROM akreditasi_klinik a
-JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
+$ak = query("SELECT * FROM view_aklinik ORDER BY kabkota");
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +77,8 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="" >
+            <li class="nav-item ">
+                <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -123,7 +121,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             </li>
 
            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
                     aria-expanded="true" aria-controls="collapseAkreditasi">
                     <i class="fas fa-fw fa-folder"></i>
@@ -134,7 +132,7 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item active" href="">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
@@ -144,14 +142,20 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item - Akun -->
-            <li class="nav-item ">
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
                 <a class="nav-link" href="../user/user.php">
                 <i class="fas fa-fw fa-user"></i>
                     <span>Akun</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
+            
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -224,9 +228,9 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Klinik</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Akreditasi Klinik</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="klinik-tambah.php" class="btn btn-primary btn-icon-split">
+                            <a href="aklinik-tambah.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-plus"></i>
                                             </span>
@@ -260,15 +264,9 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                                             <th>Kabkota</th>
                                             <th>Kode Klinik</th>
                                             <th>Nama Klinik</th>
-                                            <th>2016</th>
-                                            <th>2017</th>
-                                            <th>2018</th>
-                                            <th>2019</th>
-                                            <th>2020</th>
-                                            <th>2021</th>
-                                            <th>2022</th>
-                                            <th>2023</th>
-                                            <th>2024</th>
+                                            <th>Alamat</th>
+                                            <th>Tahun Akreditasi</th>
+                                            <th>Jenis Akreditasi</th>
                                             <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -278,21 +276,16 @@ JOIN data_klinik k ON a.idx = k.idx ORDER BY k.idx");
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $ak['kabkota'] ?></td>
-                                                <td><?= $ak['kodeklinik'] ?></td>
-                                                <td><?= $ak['namaklinik'] ?></td>
-                                                <td><?= $ak['2016'] ?></td>
-                                                <td><?= $ak['2017'] ?></td>
-                                                <td><?= $ak['2018'] ?></td>
-                                                <td><?= $ak['2019'] ?></td>
-                                                <td><?= $ak['2020'] ?></td>
-                                                <td><?= $ak['2021'] ?></td>
-                                                <td><?= $ak['2022'] ?></td>
-                                                <td><?= $ak['2023'] ?></td>
-                                                <td><?= $ak['2024'] ?></td>
+                                                <td><?= $ak['kode'] ?></td>
+                                                <td><?= $ak['nama'] ?></td>
+                                                <td><?= $ak['alamat'] ?></td>
+                                                <td><?= $ak['tahun'] ?></td>
+                                                <td><?= $ak['jenis_akreditasi'] ?></td>
+                                                
                                                 <td>
                                                 <div class="container text-center">
-                                                    <a href="klinik-edit.php?idx=<?= $ak['id_ak']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusklinik.php?idx=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi Klinik <?= $ak['namaklinik']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                                                    <a href="aklinik-edit.php?id_ak=<?= $ak['id_ak']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                                    <a  href="hapusaklinik.php?id_ak=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi Klinik <?= $ak['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>
                                             <?php endforeach ?>

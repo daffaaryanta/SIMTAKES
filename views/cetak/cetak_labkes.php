@@ -3,9 +3,9 @@
 require_once '../../vendor/autoload.php';
 include '../../koneksi.php';
 
-$sql = mysqli_query($koneksi, "SELECT kabkota, kodeklinik, namaklinik, jenisklinik, alamat FROM data_klinik ORDER BY kabkota");
+$sql = mysqli_query($koneksi, "SELECT * FROM data_labkes ORDER BY kabkota");
 $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-$mpdf->SetTitle('Laporan Data Klinik');
+$mpdf->SetTitle('Laporan Data Labkes');
 $stylesheet = file_get_contents('cetak.css');
 $header = '
 <table style="width: 90%;">
@@ -30,7 +30,7 @@ $header = '
 	</table>
     <hr class="line-title">
 	<p align="center" style="font-size: 18px;">
-		Laporan Data Klinik
+		Laporan Data Labkes
 	</p>
 ';
 $mpdf->WriteHTML($header, 2);
@@ -39,10 +39,11 @@ $content = '
                                         <thead>
                                             <tr>
                                             <th>No</th>
-                                            <th>Kabkota</th>
-                                            <th>Kode Klinik</th>
-                                            <th>Nama Klinik</th>
-                                            <th>Jenis Klinik</th>
+                                            <th>Kab/kota</th>
+                                            <th>Kode Labkes</th>
+                                            <th>Nama Labkes</th>
+                                            
+                                            <th>Jenis Labkes</th>
                                             <th>Alamat</th>
                                             </tr>
                                         </thead>
@@ -52,9 +53,9 @@ while ($data_klinik = mysqli_fetch_array($sql)) {
     $content .= '<tbody>
     <tr><td>'.$no++.'</td>'.
                 '<td>'.$data_klinik['kabkota'].'</td>'.
-                '<td>'.$data_klinik['kodeklinik'].'</td>'.
-                '<td>'.$data_klinik['namaklinik'].'</td>'.
-                '<td>'.$data_klinik['jenisklinik'].'</td>'.
+                '<td>'.$data_klinik['kodelabkes'].'</td>'.
+                '<td>'.$data_klinik['namalabkes'].'</td>'.
+                '<td>'.$data_klinik['jenislabkes'].'</td>'.
                 '<td>'.$data_klinik['alamat'].'</td>'
                 ;
 }

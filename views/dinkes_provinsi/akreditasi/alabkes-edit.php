@@ -1,26 +1,26 @@
 <?php
+// Memanggil atau membutuhkan file function.php
+require '../../../koneksi.php';
 
-        // servername => localhost
-        // username => root
-        // password => empty
-        // database name => staff
+$id_ak = $_GET['id_ak'];
+// Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
+$klinik = query("SELECT * FROM akreditasi WHERE id_ak = $id_ak")[0];
 
-        require '../../../koneksi.php';
-        if (isset($_POST['simpan'])) {
-            if (tambahklinik($_POST)) {
-                echo "<script>
-                        alert('Data berhasil ditambahkan!');
-                        document.location.href = 'klinik.php';
-                    </script>";
-            } else {
-                // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
-                echo "<script>
-                        alert('Data gagal ditambahkan!');
-                    </script>";
-            }
-        }
-        ?>
 
+if (isset($_POST['ubah'])) {
+    if (ubahakreditasi($_POST) > 0) {
+        echo "<script>
+                alert('Data berhasil diubah!');
+                document.location.href = 'akreditasi_labkes.php';
+            </script>";
+    } else {
+        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
+        echo "<script>
+                alert('Data gagal diubah!');
+            </script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +32,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Klinik</title>
+    <title>SIMTAKES - Akreditasi Labkes</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -92,7 +92,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link " href="klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
@@ -136,7 +136,7 @@
             </li>
 
            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
                     aria-expanded="true" aria-controls="collapseAkreditasi">
                     <i class="fas fa-fw fa-folder"></i>
@@ -147,8 +147,8 @@
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item active" href="akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
             </li>
@@ -156,7 +156,21 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Nav Item - Akun -->
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
             
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -193,7 +207,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 ">Selamat Datang, 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
                                 <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
                                 $row = mysqli_fetch_array($index);
                                 if ($row && $row["nama"] == !'') {
@@ -204,7 +218,6 @@
                                 }
                                 ?>
                                 </span>
-                                
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -229,7 +242,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Tambah Data Klinik</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Akreditasi Labkes</h1>
                         
                         
                     </div>
@@ -243,62 +256,58 @@
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
-                                            <select name="kabkota" id="kabkota" class="form-control" required>
-                                                <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Dasar">Dasar</option>
-                                                <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option>
-                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
-                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
-                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
-                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
-                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
-                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
-                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
-                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
-                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
-                                            </select>
+                                            <input type="hidden" name="id_ak" id="id_ak" value="<?= $klinik['id_ak']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <input type="hidden" name="id_kategori" id="id_kategori" value="<?= $klinik['id_kategori']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <label for="kode"><strong>Kode Labkes </strong></label>
+                                            <input type="text" name="kode" id="kode" value="<?= $klinik['kode']; ?>" autocomplete="off" class="input form-control"  readonly>
+                                            
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="kodepkm"><strong>Kode Klinik</strong></label>
-                                            <input type="text" name="kodeklinik" id="kodeklinik" placeholder="Masukkan Kode Klinik" autocomplete="off" class="form-control" required>
+                                            <label for="nama"><strong>Nama Labkes</strong></label>
+                                            <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" readonly>
                                                 
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="namapkm"><strong>Nama Klinik</strong></label>
-                                                <div class="input-group ">
-                                            
-                                                <input type="text" name="namaklinik" id="namaklinik" placeholder="Masukkan Nama Klinik" autocomplete="off" class="input form-control"  required>
-                                               
-                                                </div>
+                                            <label for="tahun"><strong>Tahun Akreditasi</strong></label>
+                                            <select name="tahun" id="tahun" class="form-control" required>
+                                            <option value="<?= $klinik['tahun']; ?>"><?= $klinik['tahun']; ?></option>
+                                            <?php
+                                                $sum = 0;
+                                                for($i = 2016; $i<=2024; $i++) {
+                                                    $sum = $i;
+                                                
+                                                    
+                                                ?> 
+                                                   <option value="<?php echo $sum ?> "><?php echo $sum?></option>
+                                                <?php
+                                                }
+                                                ?>  
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="statuspkm"><strong>Jenis Klinik</strong></label>
-                                            <select name="jenisklinik" id="jenisklinik" class="form-control" required>
+                                            <label for="jenis_akreditasi"><strong>Jenis Akreditasi</strong></label>
+                                            <select name="jenis_akreditasi" id="jenis_akreditasi" class="form-control" required>
                                                 <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Utama">Utama</option>
-                                                <option value="Pratama">Pratama</option>
+                                                <option value="Dasar" <?php if ($klinik['jenis_akreditasi'] == 'Dasar') { ?> selected='' <?php } ?>>Dasar</option>
+                                                <option value="Madya" <?php if ($klinik['jenis_akreditasi'] == 'Madya') { ?> selected='' <?php } ?>>Madya</option>
+                                                
+                                                <option value="Utama" <?php if ($klinik['jenis_akreditasi'] == 'Utama') { ?> selected='' <?php } ?>>Utama</option>
+                                                <option value="Paripurna" <?php if ($klinik['jenis_akreditasi'] == 'Paripurna') { ?> selected='' <?php } ?>>Paripurna</option>
                                                 </select>
+                                                
                                         </div>
                                     
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="alamat"><strong>Alamat</strong></label>
-                                                <div class="input-group ">
-                                                <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control"  required>
-                                               </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                            
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="klinik.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="akreditasi_labkes.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>

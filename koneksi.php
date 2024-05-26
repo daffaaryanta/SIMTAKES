@@ -402,4 +402,77 @@ function tambahrumah($data)
     return mysqli_affected_rows($koneksi);
         
 }
+
+function ubahrumah($data)
+{
+    global $koneksi;
+
+        $idx = $data['idx'];
+        $kabkota = $data['kabkota'];
+        $koderumah = $data['koderumah'];
+        $namarumah = $data['namarumah'];
+        $kategorirumah = $data['kategorirumah'];
+        $alamat = $data['alamat'];
+
+        
+        $namac = ucwords($namarumah);
+        $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE data_rumahsakit SET   idx = '$idx', kabkota = '$kabkota', koderumah = '$koderumah' ,namarumah = '$namac' , kategorirumah = '$kategorirumah', alamat = '$alamatc' WHERE idx = '$idx'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
+
+function tambahakreditasi($data)
+{
+    global $koneksi;
+    $id_kategori = $_REQUEST['id_kategori'];
+    $kode = $_REQUEST['kode'];
+    $nama = $_REQUEST['nama'];
+    $tahun = $_REQUEST['tahun'];
+    $jenis_akreditasi = $_REQUEST['jenis_akreditasi'];
+    // $alamat = $_REQUEST['alamat'];
+
+    $namac = ucwords($nama);
+    // $alamatc = ucwords($alamat);
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO akreditasi ( id_kategori, kode, nama, tahun, jenis_akreditasi) VALUES (
+            '$id_kategori','$kode','$namac','$tahun', '$jenis_akreditasi' )";
+    mysqli_query($koneksi, $sql);
+
+    return mysqli_affected_rows($koneksi);
+        
+}
+
+function ubahakreditasi($data)
+{
+    global $koneksi;
+
+        $id_ak = $data['id_ak'];
+        $id_kategori = $data['id_kategori'];
+        $kode = $data['kode'];
+        $nama = $data['nama'];
+        $jenis_akreditasi = $data['jenis_akreditasi'];
+        $tahun = $data['tahun'];
+
+        
+        // $namac = ucwords($namautd);
+        // $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE akreditasi SET   id_ak = '$id_ak', id_kategori = '$id_kategori', kode = '$kode' ,nama = '$nama' , jenis_akreditasi = '$jenis_akreditasi', tahun = '$tahun' WHERE id_ak = '$id_ak'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
 ?>

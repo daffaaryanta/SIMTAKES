@@ -7,10 +7,10 @@
 
         require '../../../koneksi.php';
         if (isset($_POST['simpan'])) {
-            if (tambahpmdu($_POST)) {
+            if (tambahakreditasi($_POST)) {
                 echo "<script>
                         alert('Data berhasil ditambahkan!');
-                        document.location.href = 'pm_dokterumum.php';
+                        document.location.href = 'akreditasi_rumahsakit.php';
                     </script>";
             } else {
                 // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
@@ -32,7 +32,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - PM Dokter Umum</title>
+    <title>SIMTAKES - Akreditasi Rumah Sakit</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -92,7 +92,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
@@ -103,7 +103,7 @@
             
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a class="nav-link " href="../labkes/labkes.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Labkes</span>
@@ -112,7 +112,7 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -120,8 +120,8 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header ">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item active" href="pm_dokterumum.php">Dokter Umum</a>
+                    <h6 class="collapse-header">Data Praktek Mandiri:</h6>
+                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
                         <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
                         
                     </div>
@@ -136,7 +136,7 @@
             </li>
 
            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
                     aria-expanded="true" aria-controls="collapseAkreditasi">
                     <i class="fas fa-fw fa-folder"></i>
@@ -145,9 +145,9 @@
                 <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
+                        <a class="collapse-item active" href="akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                     </div>
                 </div>
@@ -156,7 +156,21 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-           
+            <!-- Nav Item - Akun -->
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
+            
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -229,7 +243,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Tambah Data PM Dokter Umum</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Data Akreditasi Rumah Sakit</h1>
                         
                         
                     </div>
@@ -242,50 +256,82 @@
                                 <div class="card-body">
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
-                                            <select name="kabkota" id="kabkota" class="form-control" required>
-                                                <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Dasar">Dasar</option>
-                                                <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option>
-                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
-                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
-                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
-                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
-                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
-                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
-                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
-                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
-                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
+                                    <div class="form-group col-md-6">
+                                            <label for="kode"><strong>Kode Rumah Sakit </strong></label>
+                                            <input type="hidden" name="id_kategori" id="id_kategori" value="3" autocomplete="off" class="form-control" readonly>
+                                            <select name="kode" id="kode" class="form-control" required>
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <?php
+                                                $det = mysqli_query($koneksi, "SELECT * from data_rumahsakit order by kabkota ASC");
+                                                
+                                                $no = 1;
+                                                while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                    <option value="<?php echo $p['koderumah'] ?> "><?php echo $p['koderumah'] ?> - <?php echo $p['namarumah'] ?></option>
+                                                <?php
+                                                }
+                                                ?>    
+                                            
                                             </select>
+                                                
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="kodepmdrumum"><strong>Kode PM Dokter Umum</strong></label>
-                                            <input type="text" name="kodepmdrumum" id="kodepmdrumum" placeholder="Masukkan Kode PM Dokter Umum" autocomplete="off" class="form-control" required>
+                                            <label for="nama"><strong>Nama Rumah Sakit</strong></label>
+                                            <select name="nama" id="nama" class="form-control" required>
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <?php
+                                                $det = mysqli_query($koneksi, "SELECT * from data_rumahsakit order by kabkota ASC");
+                                                
+                                                $no = 1;
+                                                while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                    <option value="<?php echo $p['namarumah'] ?> "><?php echo $p['namarumah']?> - <?php echo $p['koderumah'] ?>  </option>
+                                                <?php
+                                                }
+                                                ?>    
+                                            
+                                            </select>
                                                 
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="namapmdrumum"><strong>Nama PM Dokter Umum</strong></label>
-                                                <div class="input-group ">
-                                                <input type="text" name="namapmdrumum" id="namapmdrumum" placeholder="Masukkan Nama PM Dokter Umum" autocomplete="off" class="input form-control"  required>
-                                               </div>
+                                            <label for="tahun"><strong>Tahun Akreditasi</strong></label>
+                                            <select name="tahun" id="tahun" class="form-control" required>
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <?php
+                                                $sum = 0;
+                                                for($i = 2016; $i<=2024; $i++) {
+                                                    $sum = $i;
+                                                
+                                                    
+                                                ?> 
+                                                   <option value="<?php echo $sum ?> "><?php echo $sum?></option>
+                                                <?php
+                                                }
+                                                ?>  
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="alamat"><strong>Alamat</strong></label>
-                                                <div class="input-group ">
-                                                <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control"  required>
-                                               </div>
+                                            <label for="jenis_akreditasi"><strong>Jenis Akreditasi</strong></label>
+                                            <select name="jenis_akreditasi" id="jenis_akreditasi" class="form-control" required>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Dasar">Dasar</option>
+                                                <option value="Madya">Madya</option>
+                                                <option value="Utama">Utama</option>
+                                                <option value="Paripurna">Paripurna</option>
+                                                </select>
                                         </div>
+                                    
                                     </div>
+                                    
                                 </div>
                            
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="pm_dokterumum.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="reset" class="btn"><a href="akreditasi_rumahsakit.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>

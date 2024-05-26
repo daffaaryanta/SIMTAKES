@@ -142,14 +142,20 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item - Akun -->
-            <li class="nav-item ">
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
                 <a class="nav-link" href="../user/user.php">
                 <i class="fas fa-fw fa-user"></i>
                     <span>Akun</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
+            
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -236,7 +242,7 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
                                     Download
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="../../cetak/cetak_klinik.php">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="../../cetak/cetak_rumah.php">Cetak (.pdf)</a>
                                     <a class="dropdown-item" href="#">Excel (.xls)</a>
                                     
                                 </div>
