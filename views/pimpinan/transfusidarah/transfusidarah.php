@@ -141,7 +141,21 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Nav Item - Akun -->
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
+                <li class="nav-item ">
+                <a class="nav-link" href="../user/user.php">
+                <i class="fas fa-fw fa-user"></i>
+                    <span>Akun</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">';
+            }
             
+            ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -216,14 +230,14 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Unit Tranfusi Darah</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            
+                           
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-download fa-sm text-white-50"></i>
                                     Download
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="../../cetak/cetak_transfusi.php">Cetak (.pdf)</a>
                                     <a class="dropdown-item" href="#">Excel (.xls)</a>
                                     
                                 </div>

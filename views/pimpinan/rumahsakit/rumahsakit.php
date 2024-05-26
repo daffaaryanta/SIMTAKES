@@ -1,6 +1,6 @@
 <?php
 // Memanggil atau membutuhkan file function.php
-require '../../koneksi.php';
+require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
@@ -20,16 +20,16 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
     <title>SIMTAKES - Rumah Sakit</title>
 
     <!-- Custom fonts for this template -->
-    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -142,9 +142,9 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item - Akun -->
-            <?php
-            if ($id_role == 2 ){
-              echo $user = '
+            <?php 
+            if ($id_role == 2) {
+                echo $p  = '
                 <li class="nav-item ">
                 <a class="nav-link" href="../user/user.php">
                 <i class="fas fa-fw fa-user"></i>
@@ -152,11 +152,9 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-                ';
-
+            <hr class="sidebar-divider d-none d-md-block">';
             }
-
+            
             ?>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -232,28 +230,14 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Rumah Sakit</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <?php
-            if ($id_role != 1 ){
-              echo $user = '
-              <a href="rumahsakit-tambah.php" class="btn btn-primary btn-icon-split">
-              <span class="icon text-white-50">
-                  <i class="fas fa-plus"></i>
-              </span>
-              <span class="text">Tambah Data</span>
-                </a>&nbsp;&nbsp;
-                ';
-
-            }
-
-            ?>    
-                        
+                            
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-download fa-sm text-white-50"></i>
                                     Download
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="../../cetak/cetak_rumahsakit.php">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="../../cetak/cetak_rumah.php">Cetak (.pdf)</a>
                                     <a class="dropdown-item" href="#">Excel (.xls)</a>
                                     
                                 </div>
@@ -277,15 +261,7 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
                                             <th>Nama Rumah Sakit</th>
                                             <th>Jenis Rumah Sakit</th>
                                             <th>Alamat</th>
-                                            <?php
-            if ($id_role != 1 ){
-              echo $user = '
-              <th>Opsi</th>
-                ';
-
-            }
-
-            ?>
+                                            
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -298,13 +274,8 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
                                                 <td><?= $data_klinik['namarumah'] ?></td>
                                                 <td><?= $data_klinik['kategorirumah'] ?></td>
                                                 <td><?= $data_klinik['alamat'] ?></td>
-                                                <td id="hilang">
-                                                <div class="container text-center">
-                                                    <a href="rumahsakit-edit.php?idx=<?= $data_klinik['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusrumahsakit.php?idx=<?= $data_klinik['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Rumah Sakit <?= $data_klinik['namarumah']; ?> ?');"><i class="fa fa-trash"></i></a></td>
-                                                </div>
+                                               
                                             </tr>
-                                                
                                             <?php endforeach ?>
                                         </tbody>
                                     </table>
@@ -351,46 +322,30 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../logout.php">Logout</a>
+                    <a class="btn btn-primary" href="../../../logout.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../js/sb-admin-2.min.js"></script>
+    <script src="../../../js/sb-admin-2.min.js"></script>
 
    
 
     <!-- Datatables -->
     
-    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../../../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <script src="../../js/demo/datatables-demo.js"></script>
-
-<script>
-var el = document.getElementById('content');
-    var content;
-
-    if  (!user) {
-        content = '<h1>there is no user</h1>';
-    }
-    if  (user) {
-        content = '<button type="button">Click Me!</button>';
-    }
-
-    el.insertAdjacentHTML('afterbegin', content);
-
-</script>
-
+    <script src="../../../js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

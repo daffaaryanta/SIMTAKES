@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 04:22 AM
+-- Generation Time: May 26, 2024 at 08:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,11 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `akreditasi`
+--
+
+CREATE TABLE `akreditasi` (
+  `id_ak` int(10) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
+  `kode` varchar(30) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jenis_akreditasi` varchar(30) NOT NULL,
+  `tahun` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `akreditasi`
+--
+
+INSERT INTO `akreditasi` (`id_ak`, `id_kategori`, `kode`, `nama`, `jenis_akreditasi`, `tahun`) VALUES
+(1, 3, '1260258', 'POLKES 06.09.15/ HST', 'Pratama', '2024'),
+(2, 3, 'Poskes 06.10.17 Batola', 'Poskes 06.10.17 Batola', 'Pratama', '2024'),
+(3, 2, '1060630', 'Pekauman', 'Pratama', '2024'),
+(8, 3, '6301013 ', 'RS Umum Daerah H. Boejasin Pelaihari ', 'Dasar', '2016 '),
+(9, 4, '1660058 ', 'Laboratorium Klinik Panasea ', 'Madya', '2018 ');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `data_kabkota`
 --
 
 CREATE TABLE `data_kabkota` (
-  `idx` int(11) NOT NULL,
+  `id_kabkota` int(11) NOT NULL,
   `kabkota` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -36,7 +62,7 @@ CREATE TABLE `data_kabkota` (
 -- Dumping data for table `data_kabkota`
 --
 
-INSERT INTO `data_kabkota` (`idx`, `kabkota`) VALUES
+INSERT INTO `data_kabkota` (`id_kabkota`, `kabkota`) VALUES
 (26, 'Dasar'),
 (13, 'Kabaputen Hulu Sungai Tengah'),
 (10, 'Kabupaten Balangan'),
@@ -57,6 +83,7 @@ INSERT INTO `data_kabkota` (`idx`, `kabkota`) VALUES
 
 CREATE TABLE `data_klinik` (
   `idx` int(11) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
   `kabkota` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `kodeklinik` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `namaklinik` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
@@ -68,51 +95,46 @@ CREATE TABLE `data_klinik` (
 -- Dumping data for table `data_klinik`
 --
 
-INSERT INTO `data_klinik` (`idx`, `kabkota`, `kodeklinik`, `namaklinik`, `jenisklinik`, `alamat`) VALUES
-(8, 'Kota Banjarmasin', '1260655', 'IDI Banjarmasin', 'Pratama', 'Jl. Brigjen H. Hasan Basri No.9-11'),
-(9, 'Kota Banjarmasin', '1260315', 'Klinik Gigi My Dentist Veteran', 'Pratama', 'Jl. Veteran No.77  RT 11/ 002'),
-(10, 'Kota Banjarmasin', '1260316', 'Klinik Gigi My Dentist Sutoyo', 'Pratama', 'Jl. Sutoyo No. 128 Rt 008'),
-(11, 'Kota Banjarmasin', '1260317', 'Klinik Gigi My Dentis Sultan Adam', 'Pratama', 'Jl. Pinus Raya No 10 Rt 19 (Samping i-pone bjm)'),
-(12, 'Kota Banjarmasin', '1260670', 'Rafisa Sei Andai', 'Pratama', 'Jl.Sungai Andai No 2 Rt 16'),
-(13, 'Kota Banjarmasin', '1260466', 'Abdi Persada', 'Pratama', 'Jl.Soetoyo S No 365'),
-(14, 'Kota Banjarmasin', '1260513', 'Bunda Ruth. A.S', 'Pratama', 'Jl.Sutoyo S No 1F'),
-(15, 'Kota Banjarmasin', '1260307', 'Asy-Syaafi Kilinik & Apotik', 'Pratama', 'Jl. Soetoyo S No. 56 Rt 038/003'),
-(16, 'Kota Banjarmasin', '1260263', 'Klinik Kinibalu', 'Utama', 'Jl. Kinibalu No.35 Bjm'),
-(17, 'Kota Banjarmasin', '1260648', 'Klinik Tumbuh Kembang Happy Kids', 'Utama', 'Jl.KS Tubun No 165'),
-(18, 'Kabupaten Tapin', '1260275', 'BP Polres Tapin', 'Pratama', ' Jln. Brigjen. H. Hassan Basry Rantau'),
-(19, 'Kabupaten Tapin', '1260280', 'KODIM 1010 Tapin', 'Pratama', 'Jl. Kesehatan RT. 18 Kec. Tapin Utara'),
-(20, 'Kabupaten Tapin', '1260278', 'Klinik Mitra Sehat', 'Pratama', 'Jl. A. Yani, Pulau Pinang, Binuang, Kabupaten Tapin, Kalimantan Selatan 71183, Indonesia'),
-(21, 'Kabupaten Tapin', '1260278', 'Klinik Pratama Rumah Tahanan Negara Kelas IIB Rant', 'Pratama', 'Jl. SPG kelurahan Rangda Malingkung'),
-(22, 'Kabupaten Tapin', '1260531', 'Klinik Pratama PT. Kharisma Inti Usaha', 'Pratama', 'Desa Pandahan Kecamatan Tapin Tengah Kabupaten Tapin'),
-(23, 'Kabupaten Hulu Sungai Selatan', '1260265', 'Klinik Cahaya Imami Kandangan', 'Utama', 'Klinik Cahaya Imani Kandangan'),
-(24, 'Kabaputen Hulu Sungai Tengah', '1260260', 'Klinik Dharma Usada', 'Pratama', 'Jl. Brigjend H. Hasan Baseri No.17 Kelurahan Barabai Darat'),
-(25, 'Kabaputen Hulu Sungai Tengah', '1260252', 'Klinik Polres Hulu Sungai Tengah', 'Pratama', 'Jl. Ir. P. H. M Noor No.29 Kec. Barabai Kab. HST'),
-(26, 'Kabaputen Hulu Sungai Tengah', '1260258', 'POLKES 06.09.15/ HST', 'Pratama', 'Jl. SMP Komp. Beringin RT.08 RW. 02 Kel. Barabai Barat'),
-(27, 'Kabaputen Hulu Sungai Tengah', '1260258', 'LABORATORIUM KLINIK PERMATA', 'Pratama', 'JL. Pangeran Antasario No. 18 A RT.012/004'),
-(28, 'Kabaputen Hulu Sungai Tengah', '1260269', 'KLINIK UTAMA ASY-SYIFA DARUL HIDAYAH', 'Utama', 'KLINIK UTAMA ASY-SYIFA DARUL HIDAYAH'),
-(29, 'Kabaputen Hulu Sungai Tengah', '1260259', 'Klinik Utama Mubarak', 'Utama', 'Jl. A. Yani Desa Panggung RT. 02 RW.01'),
-(30, 'Kabupaten Balangan', '1260559', 'Klinik Polres Balangan', 'Pratama', 'JL. A. YANI NO. 13 KEC. PARINGIN SELATAN KAB. BALANGAN'),
-(31, 'Kabupaten Barito Kuala', '1260616', 'Klinik Polres Batola', 'Pratama', 'Jl. Gusti M.Seman No.1 Marabahan'),
-(32, 'Kabupaten Barito Kuala', 'Poskes 06.10.17 Batola', 'Poskes 06.10.17 Batola', 'Pratama', 'Jl. AES Nasution Asrama Militer 1005/Batola'),
-(33, 'Kabupaten Tanah Laut', '1260191', 'ALMEER HEALTH & DENTAL CARE', 'Pratama', 'Komp.Gagas Permai Jl.Kakatua No.31 Angsau'),
-(34, 'Kabupaten Tanah Laut', '12606210', 'Klinik Kesehatan Politala', 'Pratama', 'Klinik Kesehatan Politala'),
-(35, 'Kabupaten Tanah Laut', '1260211', 'Klinik Azka Medical Centre', 'Pratama', 'Jl.H.Boejasin Rw 7'),
-(36, 'Kabupaten Tanah Laut', '1260221', 'Klinik Mitra Sehat', 'Pratama', 'Jl.A.Yani Km.121 Ds.Simpang Empat Sungai Baru'),
-(37, 'Kabupaten Tanah Laut', '1260323', 'Poliklinik Kesehatan 061013', 'Pratama', 'Jl.A.Yani Rt.001 Rw 001 Angsau'),
-(38, 'Kabupaten Tanah Laut', '1260561', 'Polres Tanah Laut', 'Pratama', 'Jl.Kemakmuran No.1'),
-(39, 'Kabupaten Tanah Laut', '1260562', 'Klinik Utama Ammariz', 'Utama', 'Jl.KH.Mansyur No.5 Rt.15/4 Angsau'),
-(40, 'Kabupaten Tanah Bumbu', '12600611', 'Pertama Bunda', 'Pratama', 'Jl. Provinsi KM.226 Desa Damar Indah Kec. Sungai Loban'),
-(41, 'Kabupaten Tanah Bumbu', '1260196', 'Klinik Kasih Ibu Satui', 'Pratama', 'Jl. Provinsi KM. 165 RT. 06 No.09 Desa Sungai Danau Kec. Satui'),
-(42, 'Kabupaten Tanah Bumbu', '126/195', 'Klinik Mandiri', 'Pratama', 'Jl. Transmigrasi RT.13 RW.04 Desa Kampung Baru Kec. Simpang Empat '),
-(43, 'Kabupaten Tanah Bumbu', '126041', 'Klinik Zam - Zam', 'Pratama', 'Jl. Kodeco KM. 1,5 RT.06 Ds. Gunung Antasari Kec. Simpang Empat'),
-(44, 'Kabupaten Tanah Bumbu', '1260196', 'Klinik Simpang', 'Pratama', 'Jl. Gawe Sabumi RT.08 Desa Bersujud Kec. Simpang Empat'),
-(45, 'Kabupaten Tanah Bumbu', '1260551', 'Klinik Hamdi Medika', 'Utama', 'Jl. Gawe Sabumi RT.07 no.09  Desa Bersujud Kec. Simpang Empat'),
-(46, 'Kabupaten Kotabaru', '1260579', 'Klinik Polres', 'Pratama', 'JL,DIPONEGORO'),
-(47, 'Kabupaten Kotabaru', '1260580', 'Klinik PT Smart', 'Pratama', 'DESA LANGADAI'),
-(48, 'Kabupaten Kotabaru', '1260585', 'Arutmin NPLCT', 'Pratama', 'BERANGAS'),
-(49, 'Kabupaten Kotabaru', '1260593', 'Aulia Wibisono', 'Pratama', 'Raya Stagen'),
-(50, 'Kabupaten Kotabaru', '1260593', 'Kllinik PT SILO', 'Pratama', 'Sungai Bali'),
-(51, 'Kabupaten Kotabaru', '12600619', 'Klinik BP Lanal', 'Pratama', 'Rumdin Lanal');
+INSERT INTO `data_klinik` (`idx`, `id_kategori`, `kabkota`, `kodeklinik`, `namaklinik`, `jenisklinik`, `alamat`) VALUES
+(10, 3, 'Kota Banjarmasin', '1260316', 'Klinik Gigi My Dentist Sutoyo', 'Pratama', 'Jl. Sutoyo No. 128 Rt 008'),
+(11, 3, 'Kota Banjarmasin', '1260317', 'Klinik Gigi My Dentis Sultan Adam', 'Pratama', 'Jl. Pinus Raya No 10 Rt 19 (Samping i-pone bjm)'),
+(12, 3, 'Kota Banjarmasin', '1260670', 'Rafisa Sei Andai', 'Pratama', 'Jl.Sungai Andai No 2 Rt 16'),
+(13, 3, 'Kota Banjarmasin', '1260466', 'Abdi Persada', 'Pratama', 'Jl.Soetoyo S No 365'),
+(17, 3, 'Kota Banjarmasin', '1260648', 'Klinik Tumbuh Kembang Happy Kids', 'Utama', 'Jl.KS Tubun No 165'),
+(18, 3, 'Kabupaten Tapin', '1260275', 'BP Polres Tapin', 'Pratama', ' Jln. Brigjen. H. Hassan Basry Rantau'),
+(19, 3, 'Kabupaten Tapin', '1260280', 'KODIM 1010 Tapin', 'Pratama', 'Jl. Kesehatan RT. 18 Kec. Tapin Utara'),
+(20, 3, 'Kabupaten Tapin', '1260278', 'Klinik Mitra Sehat', 'Pratama', 'Jl. A. Yani, Pulau Pinang, Binuang, Kabupaten Tapin, Kalimantan Selatan 71183, Indonesia'),
+(21, 3, 'Kabupaten Tapin', '1260278', 'Klinik Pratama Rumah Tahanan Negara Kelas IIB Rant', 'Pratama', 'Jl. SPG kelurahan Rangda Malingkung'),
+(22, 3, 'Kabupaten Tapin', '1260531', 'Klinik Pratama PT. Kharisma Inti Usaha', 'Pratama', 'Desa Pandahan Kecamatan Tapin Tengah Kabupaten Tapin'),
+(23, 3, 'Kabupaten Hulu Sungai Selatan', '1260265', 'Klinik Cahaya Imami Kandangan', 'Utama', 'Klinik Cahaya Imani Kandangan'),
+(24, 3, 'Kabaputen Hulu Sungai Tengah', '1260260', 'Klinik Dharma Usada', 'Pratama', 'Jl. Brigjend H. Hasan Baseri No.17 Kelurahan Barabai Darat'),
+(25, 3, 'Kabaputen Hulu Sungai Tengah', '1260252', 'Klinik Polres Hulu Sungai Tengah', 'Pratama', 'Jl. Ir. P. H. M Noor No.29 Kec. Barabai Kab. HST'),
+(26, 3, 'Kabaputen Hulu Sungai Tengah', '1260258', 'POLKES 06.09.15/ HST', 'Pratama', 'Jl. SMP Komp. Beringin RT.08 RW. 02 Kel. Barabai Barat'),
+(27, 3, 'Kabaputen Hulu Sungai Tengah', '1260258', 'LABORATORIUM KLINIK PERMATA', 'Pratama', 'JL. Pangeran Antasario No. 18 A RT.012/004'),
+(28, 3, 'Kabaputen Hulu Sungai Tengah', '1260269', 'KLINIK UTAMA ASY-SYIFA DARUL HIDAYAH', 'Utama', 'KLINIK UTAMA ASY-SYIFA DARUL HIDAYAH'),
+(29, 3, 'Kabaputen Hulu Sungai Tengah', '1260259', 'Klinik Utama Mubarak', 'Utama', 'Jl. A. Yani Desa Panggung RT. 02 RW.01'),
+(30, 3, 'Kabupaten Balangan', '1260559', 'Klinik Polres Balangan', 'Pratama', 'JL. A. YANI NO. 13 KEC. PARINGIN SELATAN KAB. BALANGAN'),
+(31, 3, 'Kabupaten Barito Kuala', '1260616', 'Klinik Polres Batola', 'Pratama', 'Jl. Gusti M.Seman No.1 Marabahan'),
+(32, 3, 'Kabupaten Barito Kuala', 'Poskes 06.10.17 Batola', 'Poskes 06.10.17 Batola', 'Pratama', 'Jl. AES Nasution Asrama Militer 1005/Batola'),
+(33, 3, 'Kabupaten Tanah Laut', '1260191', 'ALMEER HEALTH & DENTAL CARE', 'Pratama', 'Komp.Gagas Permai Jl.Kakatua No.31 Angsau'),
+(34, 3, 'Kabupaten Tanah Laut', '12606210', 'Klinik Kesehatan Politala', 'Pratama', 'Klinik Kesehatan Politala'),
+(35, 3, 'Kabupaten Tanah Laut', '1260211', 'Klinik Azka Medical Centre', 'Pratama', 'Jl.H.Boejasin Rw 7'),
+(36, 3, 'Kabupaten Tanah Laut', '1260221', 'Klinik Mitra Sehat', 'Pratama', 'Jl.A.Yani Km.121 Ds.Simpang Empat Sungai Baru'),
+(37, 3, 'Kabupaten Tanah Laut', '1260323', 'Poliklinik Kesehatan 061013', 'Pratama', 'Jl.A.Yani Rt.001 Rw 001 Angsau'),
+(38, 3, 'Kabupaten Tanah Laut', '1260561', 'Polres Tanah Laut', 'Pratama', 'Jl.Kemakmuran No.1'),
+(39, 3, 'Kabupaten Tanah Laut', '1260562', 'Klinik Utama Ammariz', 'Utama', 'Jl.KH.Mansyur No.5 Rt.15/4 Angsau'),
+(40, 3, 'Kabupaten Tanah Bumbu', '12600611', 'Pertama Bunda', 'Pratama', 'Jl. Provinsi KM.226 Desa Damar Indah Kec. Sungai Loban'),
+(41, 3, 'Kabupaten Tanah Bumbu', '1260196', 'Klinik Kasih Ibu Satui', 'Pratama', 'Jl. Provinsi KM. 165 RT. 06 No.09 Desa Sungai Danau Kec. Satui'),
+(42, 3, 'Kabupaten Tanah Bumbu', '126/195', 'Klinik Mandiri', 'Pratama', 'Jl. Transmigrasi RT.13 RW.04 Desa Kampung Baru Kec. Simpang Empat '),
+(43, 3, 'Kabupaten Tanah Bumbu', '126041', 'Klinik Zam - Zam', 'Pratama', 'Jl. Kodeco KM. 1,5 RT.06 Ds. Gunung Antasari Kec. Simpang Empat'),
+(44, 3, 'Kabupaten Tanah Bumbu', '1260196', 'Klinik Simpang', 'Pratama', 'Jl. Gawe Sabumi RT.08 Desa Bersujud Kec. Simpang Empat'),
+(45, 3, 'Kabupaten Tanah Bumbu', '1260551', 'Klinik Hamdi Medika', 'Utama', 'Jl. Gawe Sabumi RT.07 no.09  Desa Bersujud Kec. Simpang Empat'),
+(46, 3, 'Kabupaten Kotabaru', '1260579', 'Klinik Polres', 'Pratama', 'JL,DIPONEGORO'),
+(47, 3, 'Kabupaten Kotabaru', '1260580', 'Klinik PT Smart', 'Pratama', 'DESA LANGADAI'),
+(48, 3, 'Kabupaten Kotabaru', '1260585', 'Arutmin NPLCT', 'Pratama', 'BERANGAS'),
+(49, 3, 'Kabupaten Kotabaru', '1260593', 'Aulia Wibisono', 'Pratama', 'Raya Stagen'),
+(50, 3, 'Kabupaten Kotabaru', '1260593', 'Kllinik PT SILO', 'Pratama', 'Sungai Bali'),
+(51, 3, 'Kabupaten Kotabaru', '12600619', 'Klinik BP Lanal', 'Pratama', 'Rumdin Lanal');
 
 -- --------------------------------------------------------
 
@@ -125,7 +147,7 @@ CREATE TABLE `data_labkes` (
   `kabkota` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `kodelabkes` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `namalabkes` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `jenislabkes` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `jenislabkes` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `alamat` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -137,13 +159,13 @@ INSERT INTO `data_labkes` (`idx`, `kabkota`, `kodelabkes`, `namalabkes`, `jenisl
 (3, 'Kota Banjarmasin', '1660061', 'Laboratorium Klinik Prodia Banjarmasin', 'Laboratorium Medis Umum Pratama', 'Jl. A. Yani KM. 3,5 No. 131-133, Kel. Kebun Bunga'),
 (4, 'Kota Banjarbaru', '1660058', 'Laboratorium Klinik Panasea', 'Laboratorium Umum Pratama', 'Jl. Panglima Batur Timur, No.14, Kav.6 Banjarbaru Utara Kalimantan Selatan'),
 (5, 'Kota Banjarmasin', '1660057', 'UPTD Laboratorium Kesehatan Kota Banjarmasin', 'Laboratorium Kesehatan Masyarakat Utama', 'Jl.Pramuka Komplek Tirta Dharma (PDAM) Km.6 Banjarmasin'),
-(6, 'Kota Banjarmasin', '1660056', 'UPTD Laboratorium Kesehatan Kota Banjarmasin', 'Laboratorium Kesehatan Masyarakat dan Lab Medis Kh', 'Jl.Pramuka Komplek Tirta Dharma (PDAM) Km.6 Banjarmasin'),
-(7, 'Kabupaten Banjar', '1660055', 'Lab Klinik Prodia Martapura', 'Laboratorium Medis Umum Pratama', 'Jl. A. Yani KM. 37,5 No. 98D, Desa/Kelurahan Sungai Paring, Kec. Martapura, Kab. Banjar, Provinsi Kalimantan Selatan'),
+(6, 'Kota Banjarmasin', '1660056', 'UPTD Laboratorium Kesehatan Kota Banjarmasin', 'Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus', 'Jl.Pramuka Komplek Tirta Dharma (PDAM) Km.6 Banjarmasin'),
+(7, 'Dasar', '1660055', 'Lab Klinik Prodia Martapura', 'Laboratorium Medis Umum Pratama', 'Jl. A. Yani KM. 37,5 No. 98D, Desa/Kelurahan Sungai Paring, Kec. Martapura, Kab. Banjar, Provinsi Kalimantan Selatan'),
 (8, 'Kabupaten Tanah Bumbu', '1660053', 'Laboratorium Klinik Tirta Medical Centre', 'Laboratorium Medis Umum Pratama', 'Jl. Desa Karang Indah RT.11, Angsana, Tanah Bumbu, Kalimantan Selatan'),
-(9, 'Kabupaten Tanah Bumbu', '1660050', 'UPTD Laboratorium Kesehatan Kabupaten Tanah Bumbu', 'Laboratorium Kesehatan Masyarakat dan Lab Medis Kh', 'Jl. Lokalitbang Kelurahan Gunung Tinggi Kec Batulicin'),
+(9, 'Kabupaten Tanah Bumbu', '1660050', 'UPTD Laboratorium Kesehatan Kabupaten Tanah Bumbu', 'Laboratorium Kesehatan Masyarakat dan Lab Medis Khusus', 'Jl. Lokalitbang Kelurahan Gunung Tinggi Kec Batulicin'),
 (10, 'Kota Banjarbaru', '1660049', 'Laboratorium Medis Kimia Farma Banjarbaru', 'Laboratorium Medis Umum Pratama', 'Jl. Ahmad Yani KM.34 No.10 Banjarbaru Utara'),
 (11, 'Kabupaten Kotabaru', '1660044', 'Laboratorium Medis Klinik Safira Medika', 'Laboratorium Medis Umum Pratama', 'Jl. Silver Gg. Perintis No.100 Kotabaru'),
-(12, 'Kabupaten Banjar', '1660029', 'UPT. Labkesda Kabupaten Banjar', 'Laboratorium Kesehatan Masyarakat dan Lab Medis Um', 'Jl. Pramuka Komplek Pangeran Antasari, Martapura'),
+(12, 'Kabupaten Banjar', '1660029', 'UPT. Labkesda Kabupaten Banjar', 'Laboratorium Kesehatan Masyarakat dan Lab Medis Umum', 'Jl. Pramuka Komplek Pangeran Antasari, Martapura'),
 (13, 'Kabupaten Tanah Laut', '1660028', 'UPT. Laboratorium Kesehatan Daerah Kabupaten Tanah', 'Laboratorium Kesehatan Masyarakat Utama', 'Jl. H. Boejasin No.9 Pelaihari, kab. Tanah Laut');
 
 -- --------------------------------------------------------
@@ -167,7 +189,7 @@ CREATE TABLE `data_pkm` (
 --
 
 INSERT INTO `data_pkm` (`idx`, `kabkota`, `kodepkm`, `namapkm`, `statuspkm`, `kategori`, `alamat`) VALUES
-(36, 'Kota Banjarmasin', '1060630', 'Pekauman', 'Perkotaan', 'Rawat Jalan', 'JI. KS Tubun No. 151, Kec. Banjarmasin Selatan'),
+(36, 'Dasar', '1060630', 'Pekauman', 'Perkotaan', 'Rawat Jalan', 'JI. KS Tubun No. 151, Kec. Banjarmasin Selatan'),
 (39, 'Kota Banjarmasin', '106031', 'Kelayan Timur', 'Perkotaan', 'Rawat Jalan', 'Jl. Kelayan B, Komplek 10, Kec. Banjarmasin Selatan'),
 (40, 'Kota Banjarmasin', '1060643', 'Pelambuan', 'Perkotaan', 'Rawat Jalan', 'JI. Barito Hulu Rt. 154 No. 6, Kec. Banjarmasin Barat'),
 (41, 'Kota Banjarmasin', '1060646', 'Basirih Baru', 'Perkotaan', 'Rawat Jalan', 'JI. Purba Sakti Komplek Permata Sari Rt 26 No 41A, Kec. Banjarmasin Barat'),
@@ -321,6 +343,28 @@ INSERT INTO `data_pmdrumum` (`idx`, `kabkota`, `kodepmdrumum`, `namapmdrumum`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `data_rumahsakit`
+--
+
+CREATE TABLE `data_rumahsakit` (
+  `idx` int(11) NOT NULL,
+  `kabkota` varchar(50) NOT NULL,
+  `koderumah` varchar(30) NOT NULL,
+  `namarumah` varchar(100) NOT NULL,
+  `kategorirumah` varchar(30) NOT NULL,
+  `alamat` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `data_rumahsakit`
+--
+
+INSERT INTO `data_rumahsakit` (`idx`, `kabkota`, `koderumah`, `namarumah`, `kategorirumah`, `alamat`) VALUES
+(2, 'Kabupaten Tanah Laut', '6301013', 'RS Umum Daerah H. Boejasin Pelaihari', 'Rumah Sakit Umum', 'Tanah Laut');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `data_utd`
 --
 
@@ -354,13 +398,43 @@ INSERT INTO `data_utd` (`idx`, `kabkota`, `kodeutd`, `namautd`, `jenisutd`, `ala
 -- --------------------------------------------------------
 
 --
--- Table structure for table `level`
+-- Table structure for table `kategori`
 --
 
-CREATE TABLE `level` (
-  `id_level` int(11) NOT NULL,
-  `level` varchar(50) NOT NULL
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
+(1, 'Rumah Sakit'),
+(2, 'Puskesmas'),
+(3, 'Klinik'),
+(4, 'Labkes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id_role` int(11) NOT NULL,
+  `role` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id_role`, `role`) VALUES
+(1, 'Pimpinan'),
+(2, 'Operator Dinkes Provinsi'),
+(3, 'Operator Dinkes Kabkota');
 
 -- --------------------------------------------------------
 
@@ -373,25 +447,139 @@ CREATE TABLE `user` (
   `username` varchar(30) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `level` varchar(20) NOT NULL
+  `id_role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `nama`, `password`, `level`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin');
+INSERT INTO `user` (`id_user`, `username`, `nama`, `password`, `id_role`) VALUES
+(22, 'admin', 'Dinkes Provinsi', 'admin', 2),
+(23, 'pimpinan', 'Pimpinan', 'pimpinan', 1),
+(31, 'dinkeskabkota', 'Dinkes Kabkota', 'dinkeskabkota', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_aklinik`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_aklinik` (
+`id_ak` int(10)
+,`nama_kategori` varchar(50)
+,`kabkota` varchar(50)
+,`kode` varchar(30)
+,`nama` varchar(100)
+,`jenisklinik` varchar(50)
+,`alamat` varchar(255)
+,`jenis_akreditasi` varchar(30)
+,`tahun` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_alabkes`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_alabkes` (
+`id_ak` int(10)
+,`nama_kategori` varchar(50)
+,`kabkota` varchar(50)
+,`kode` varchar(30)
+,`nama` varchar(100)
+,`alamat` varchar(255)
+,`jenis_akreditasi` varchar(30)
+,`tahun` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_apuskes`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_apuskes` (
+`id_ak` int(10)
+,`nama_kategori` varchar(50)
+,`kabkota` varchar(50)
+,`kode` varchar(30)
+,`nama` varchar(100)
+,`alamat` varchar(255)
+,`jenis_akreditasi` varchar(30)
+,`tahun` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_arumah`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_arumah` (
+`id_ak` int(10)
+,`nama_kategori` varchar(50)
+,`kabkota` varchar(50)
+,`kode` varchar(30)
+,`nama` varchar(100)
+,`alamat` varchar(100)
+,`jenis_akreditasi` varchar(30)
+,`tahun` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_aklinik`
+--
+DROP TABLE IF EXISTS `view_aklinik`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_aklinik`  AS   (select `a`.`id_ak` AS `id_ak`,`c`.`nama_kategori` AS `nama_kategori`,`b`.`kabkota` AS `kabkota`,`a`.`kode` AS `kode`,`a`.`nama` AS `nama`,`b`.`jenisklinik` AS `jenisklinik`,`b`.`alamat` AS `alamat`,`a`.`jenis_akreditasi` AS `jenis_akreditasi`,`a`.`tahun` AS `tahun` from ((`akreditasi` `a` join `data_klinik` `b`) join `kategori` `c`) where `a`.`nama` = `b`.`namaklinik` and `a`.`id_kategori` = `c`.`id_kategori`)  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_alabkes`
+--
+DROP TABLE IF EXISTS `view_alabkes`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_alabkes`  AS   (select `a`.`id_ak` AS `id_ak`,`c`.`nama_kategori` AS `nama_kategori`,`b`.`kabkota` AS `kabkota`,`a`.`kode` AS `kode`,`a`.`nama` AS `nama`,`b`.`alamat` AS `alamat`,`a`.`jenis_akreditasi` AS `jenis_akreditasi`,`a`.`tahun` AS `tahun` from ((`akreditasi` `a` join `data_labkes` `b`) join `kategori` `c`) where `a`.`nama` = `b`.`namalabkes` and `a`.`id_kategori` = `c`.`id_kategori`)  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_apuskes`
+--
+DROP TABLE IF EXISTS `view_apuskes`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_apuskes`  AS   (select `a`.`id_ak` AS `id_ak`,`c`.`nama_kategori` AS `nama_kategori`,`b`.`kabkota` AS `kabkota`,`a`.`kode` AS `kode`,`a`.`nama` AS `nama`,`b`.`alamat` AS `alamat`,`a`.`jenis_akreditasi` AS `jenis_akreditasi`,`a`.`tahun` AS `tahun` from ((`akreditasi` `a` join `data_pkm` `b`) join `kategori` `c`) where `a`.`nama` = `b`.`namapkm` and `a`.`id_kategori` = `c`.`id_kategori`)  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_arumah`
+--
+DROP TABLE IF EXISTS `view_arumah`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_arumah`  AS   (select `a`.`id_ak` AS `id_ak`,`c`.`nama_kategori` AS `nama_kategori`,`b`.`kabkota` AS `kabkota`,`a`.`kode` AS `kode`,`a`.`nama` AS `nama`,`b`.`alamat` AS `alamat`,`a`.`jenis_akreditasi` AS `jenis_akreditasi`,`a`.`tahun` AS `tahun` from ((`akreditasi` `a` join `data_rumahsakit` `b`) join `kategori` `c`) where `a`.`nama` = `b`.`namarumah` and `a`.`id_kategori` = `c`.`id_kategori`)  ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `akreditasi`
+--
+ALTER TABLE `akreditasi`
+  ADD PRIMARY KEY (`id_ak`) USING BTREE,
+  ADD KEY `id_kategori_2` (`id_kategori`);
+
+--
 -- Indexes for table `data_kabkota`
 --
 ALTER TABLE `data_kabkota`
-  ADD PRIMARY KEY (`idx`),
+  ADD PRIMARY KEY (`id_kabkota`),
   ADD KEY `kabkota` (`kabkota`);
 
 --
@@ -399,7 +587,8 @@ ALTER TABLE `data_kabkota`
 --
 ALTER TABLE `data_klinik`
   ADD PRIMARY KEY (`idx`),
-  ADD KEY `kabkota` (`kabkota`);
+  ADD KEY `kabkota` (`kabkota`),
+  ADD KEY `id_kategori` (`id_kategori`);
 
 --
 -- Indexes for table `data_labkes`
@@ -433,6 +622,12 @@ ALTER TABLE `data_pmdrumum`
   ADD KEY `kabkota` (`kabkota`);
 
 --
+-- Indexes for table `data_rumahsakit`
+--
+ALTER TABLE `data_rumahsakit`
+  ADD PRIMARY KEY (`idx`);
+
+--
 -- Indexes for table `data_utd`
 --
 ALTER TABLE `data_utd`
@@ -440,84 +635,110 @@ ALTER TABLE `data_utd`
   ADD KEY `kabkota` (`kabkota`);
 
 --
--- Indexes for table `level`
+-- Indexes for table `kategori`
 --
-ALTER TABLE `level`
-  ADD PRIMARY KEY (`id_level`);
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id_role`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `id_role` (`id_role`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `akreditasi`
+--
+ALTER TABLE `akreditasi`
+  MODIFY `id_ak` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `data_kabkota`
 --
 ALTER TABLE `data_kabkota`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_kabkota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `data_klinik`
 --
 ALTER TABLE `data_klinik`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `data_labkes`
 --
 ALTER TABLE `data_labkes`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `data_pkm`
 --
 ALTER TABLE `data_pkm`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `data_pmdrsp`
 --
 ALTER TABLE `data_pmdrsp`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `data_pmdrumum`
 --
 ALTER TABLE `data_pmdrumum`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `data_rumahsakit`
+--
+ALTER TABLE `data_rumahsakit`
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `data_utd`
 --
 ALTER TABLE `data_utd`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `level`
+-- AUTO_INCREMENT for table `kategori`
 --
-ALTER TABLE `level`
-  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `akreditasi`
+--
+ALTER TABLE `akreditasi`
+  ADD CONSTRAINT `akreditasi_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `data_klinik`
 --
 ALTER TABLE `data_klinik`
-  ADD CONSTRAINT `data_klinik_ibfk_1` FOREIGN KEY (`kabkota`) REFERENCES `data_kabkota` (`kabkota`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `data_klinik_ibfk_1` FOREIGN KEY (`kabkota`) REFERENCES `data_kabkota` (`kabkota`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `data_klinik_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `data_pkm`
@@ -538,10 +759,10 @@ ALTER TABLE `data_pmdrumum`
   ADD CONSTRAINT `data_pmdrumum_ibfk_1` FOREIGN KEY (`kabkota`) REFERENCES `data_kabkota` (`kabkota`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `level`
+-- Constraints for table `user`
 --
-ALTER TABLE `level`
-  ADD CONSTRAINT `level_ibfk_1` FOREIGN KEY (`id_level`) REFERENCES `user` (`id_user`);
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
