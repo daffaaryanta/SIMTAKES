@@ -3,7 +3,40 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
+// $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
+
+if ($username == 'dinkesbjm') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kota Banjarmasin' ORDER BY namalabkes");
+} elseif ($username == 'dinkesbalangan') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Balangan' ORDER BY namalabkes");
+} elseif ($username == 'dinkesbanjar') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Banjar' ORDER BY namalabkes");
+} elseif ($username == 'dinkesbatola') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namalabkes");
+} elseif ($username == 'dinkeshss') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namalabkes");
+} elseif ($username == 'dinkeshst') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namalabkes");
+} elseif ($username == 'dinkeshsu') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namalabkes");
+} elseif ($username == 'dinkeskotabaru') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namalabkes");
+} elseif ($username == 'dinkestabalong') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namalabkes");
+} elseif ($username == 'dinkestanbu') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namalabkes");
+} elseif ($username == 'dinkestala') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namalabkes");
+} elseif ($username == 'dinkestapin') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tapin' ORDER BY namalabkes");
+} elseif ($username == 'dinkesbjb') {
+    $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kota Banjarbaru' ORDER BY namalabkes");
+} else {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
 ?>
 
 <!DOCTYPE html>

@@ -3,7 +3,40 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
+if ($username == 'dinkesbjm') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kota Banjarmasin' ORDER BY namaklinik");
+} elseif ($username == 'dinkesbalangan') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Balangan' ORDER BY namaklinik");
+} elseif ($username == 'dinkesbanjar') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Banjar' ORDER BY namaklinik");
+} elseif ($username == 'dinkesbatola') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namaklinik");
+} elseif ($username == 'dinkeshss') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namaklinik");
+} elseif ($username == 'dinkeshst') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namaklinik");
+} elseif ($username == 'dinkeshsu') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namaklinik");
+} elseif ($username == 'dinkeskotabaru') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namaklinik");
+} elseif ($username == 'dinkestabalong') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namaklinik");
+} elseif ($username == 'dinkestanbu') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namaklinik");
+} elseif ($username == 'dinkestala') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namaklinik");
+} elseif ($username == 'dinkestapin') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tapin' ORDER BY namaklinik");
+} elseif ($username == 'dinkesbjb') {
+    $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kota Banjarbaru' ORDER BY namaklinik");
+} else {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -134,6 +167,8 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Praktek Mandiri</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Unit Transfusi Darah</a>
                     </div>
                 </div>
             </li>

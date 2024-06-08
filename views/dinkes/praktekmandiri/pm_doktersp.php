@@ -4,6 +4,39 @@ require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 $doktersp = query("SELECT * FROM data_pmdrsp ORDER BY kabkota");
+
+if ($username == 'dinkesbjm') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kota Banjarmasin' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkesbalangan') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Balangan' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkesbanjar') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Banjar' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkesbatola') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkeshss') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkeshst') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkeshsu') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkeskotabaru') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkestabalong') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkestanbu') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkestala') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkestapin') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tapin' ORDER BY namapmdrsp");
+} elseif ($username == 'dinkesbjb') {
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kota Banjarbaru' ORDER BY namapmdrsp");
+} else {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
 ?>
 
 <!DOCTYPE html>

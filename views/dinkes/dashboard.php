@@ -143,7 +143,7 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
             if ($id_role == 2) {
                 echo $p  = '
                 <li class="nav-item ">
-                <a class="nav-link" href="../user/user.php">
+                <a class="nav-link" href="user/user.php">
                 <i class="fas fa-fw fa-user"></i>
                     <span>Akun</span></a>
             </li>

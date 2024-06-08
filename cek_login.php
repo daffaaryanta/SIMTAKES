@@ -70,11 +70,17 @@ if($cek > 0){
 	else{
 
 		// alihkan ke halaman index kembali
-		header("location:index.php");
+		echo "<script>alert('Username atau Password salah!');
+		document.location = 'index.php';
+		</script>";
+		
 	}
 
 	
 }else{
-	header("location:index.php");
+	echo "<script>alert('Username atau Password salah!');
+		document.location = 'index.php';
+		</script>";
+		
 }
 ?>
