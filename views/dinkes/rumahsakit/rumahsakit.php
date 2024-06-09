@@ -3,7 +3,42 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
+// $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
+
+if ($id_role == '15') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kota Banjarmasin' ORDER BY namarumah");
+} elseif ($id_role == '3') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Balangan' ORDER BY namarumah");
+} elseif ($id_role == '4') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Banjar' ORDER BY namarumah");
+} elseif ($id_role == '5') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namarumah");
+} elseif ($id_role == '6') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namarumah");
+} elseif ($id_role == '7') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namarumah");
+} elseif ($id_role == '8') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namarumah");
+} elseif ($id_role == '9') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namarumah");
+} elseif ($id_role == '10') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namarumah");
+} elseif ($id_role == '11') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namarumah");
+} elseif ($id_role == '12') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namarumah");
+} elseif ($id_role == '13') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Tapin' ORDER BY namarumah");
+} elseif ($id_role == '14') {
+    $rumah = query("SELECT * FROM data_rumahsakit WHERE kabkota = 'Kota Banjarbaru' ORDER BY namarumah");
+} elseif ($id_role == '2') {
+    $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
+} else {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
 ?>
 
 <!DOCTYPE html>

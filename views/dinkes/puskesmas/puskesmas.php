@@ -3,7 +3,42 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
+// $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
+
+if ($id_role == '15') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kota Banjarmasin' ORDER BY namapkm");
+} elseif ($id_role == '3') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Balangan' ORDER BY namapkm");
+} elseif ($id_role == '4') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Banjar' ORDER BY namapkm");
+} elseif ($id_role == '5') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namapkm");
+} elseif ($id_role == '6') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namapkm");
+} elseif ($id_role == '7') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namapkm");
+} elseif ($id_role == '8') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namapkm");
+} elseif ($id_role == '9') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namapkm");
+} elseif ($id_role == '10') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namapkm");
+} elseif ($id_role == '11') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namapkm");
+} elseif ($id_role == '12') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namapkm");
+} elseif ($id_role == '13') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tapin' ORDER BY namapkm");
+} elseif ($id_role == '14') {
+    $puskesmas = query("SELECT * FROM data_pkm WHERE kabkota = 'Kota Banjarbaru' ORDER BY namapkm");
+} elseif ($id_role == '2') {
+    $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
+} else {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
 ?>
 
 <!DOCTYPE html>

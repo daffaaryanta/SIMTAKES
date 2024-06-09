@@ -4,6 +4,41 @@ require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
+
+if ($id_role == '15') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kota Banjarmasin' ORDER BY namautd");
+} elseif ($id_role == '3') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Balangan' ORDER BY namautd");
+} elseif ($id_role == '4') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Banjar' ORDER BY namautd");
+} elseif ($id_role == '5') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namautd");
+} elseif ($id_role == '6') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namautd");
+} elseif ($id_role == '7') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namautd");
+} elseif ($id_role == '8') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namautd");
+} elseif ($id_role == '9') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namautd");
+} elseif ($id_role == '10') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namautd");
+} elseif ($id_role == '11') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namautd");
+} elseif ($id_role == '12') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namautd");
+} elseif ($id_role == '13') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Tapin' ORDER BY namautd");
+} elseif ($id_role == '14') {
+    $transfusi = query("SELECT * FROM data_utd WHERE kabkota = 'Kota Banjarbaru' ORDER BY namautd");
+} elseif ($id_role == '2') {
+    $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
+} else {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
 ?>
 
 <!DOCTYPE html>

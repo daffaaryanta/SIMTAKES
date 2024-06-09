@@ -3,32 +3,34 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-if ($username == 'dinkesbjm') {
+if ($id_role == '15') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kota Banjarmasin' ORDER BY namaklinik");
-} elseif ($username == 'dinkesbalangan') {
+} elseif ($id_role == '3') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Balangan' ORDER BY namaklinik");
-} elseif ($username == 'dinkesbanjar') {
+} elseif ($id_role == '4') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Banjar' ORDER BY namaklinik");
-} elseif ($username == 'dinkesbatola') {
+} elseif ($id_role == '5') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namaklinik");
-} elseif ($username == 'dinkeshss') {
+} elseif ($id_role == '6') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namaklinik");
-} elseif ($username == 'dinkeshst') {
+} elseif ($id_role == '7') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namaklinik");
-} elseif ($username == 'dinkeshsu') {
+} elseif ($id_role == '8') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namaklinik");
-} elseif ($username == 'dinkeskotabaru') {
+} elseif ($id_role == '9') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namaklinik");
-} elseif ($username == 'dinkestabalong') {
+} elseif ($id_role == '10') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namaklinik");
-} elseif ($username == 'dinkestanbu') {
+} elseif ($id_role == '11') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namaklinik");
-} elseif ($username == 'dinkestala') {
+} elseif ($id_role == '12') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namaklinik");
-} elseif ($username == 'dinkestapin') {
+} elseif ($id_role == '13') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tapin' ORDER BY namaklinik");
-} elseif ($username == 'dinkesbjb') {
+} elseif ($id_role == '14') {
     $klinik = query("SELECT * FROM data_klinik WHERE kabkota = 'Kota Banjarbaru' ORDER BY namaklinik");
+}elseif ($id_role == '2') {
+    $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
 } else {
     echo "<script>alert('Anda harus login ulang!');
 		document.location = '../../../index.php';

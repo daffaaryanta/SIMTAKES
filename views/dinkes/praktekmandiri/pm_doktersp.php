@@ -3,34 +3,36 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$doktersp = query("SELECT * FROM data_pmdrsp ORDER BY kabkota");
+// $doktersp = query("SELECT * FROM data_pmdrsp ORDER BY kabkota");
 
-if ($username == 'dinkesbjm') {
+if ($id_role == '15') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kota Banjarmasin' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkesbalangan') {
+} elseif ($id_role == '3') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Balangan' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkesbanjar') {
+} elseif ($id_role == '4') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Banjar' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkesbatola') {
+} elseif ($id_role == '5') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkeshss') {
+} elseif ($id_role == '6') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkeshst') {
+} elseif ($id_role == '7') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkeshsu') {
+} elseif ($id_role == '8') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkeskotabaru') {
+} elseif ($id_role == '9') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkestabalong') {
+} elseif ($id_role == '10') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkestanbu') {
+} elseif ($id_role == '11') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkestala') {
+} elseif ($id_role == '12') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkestapin') {
+} elseif ($id_role == '13') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tapin' ORDER BY namapmdrsp");
-} elseif ($username == 'dinkesbjb') {
+} elseif ($id_role == '14') {
     $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kota Banjarbaru' ORDER BY namapmdrsp");
+} elseif ($id_role == '2') {
+    $doktersp = query("SELECT * FROM data_pmdrsp ORDER BY kabkota");
 } else {
     echo "<script>alert('Anda harus login ulang!');
 		document.location = '../../../index.php';

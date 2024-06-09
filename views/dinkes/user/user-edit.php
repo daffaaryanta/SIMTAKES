@@ -273,7 +273,19 @@ if (isset($_POST['ubah'])) {
                                                 <option value="">-- Silahkan Pilih --</option>
                                                 <option value="1" <?php if ($user['id_role'] == '1') { ?> selected='' <?php } ?>>Pimpinan</option>
                                                 <option value="2" <?php if ($user['id_role'] == '2') { ?> selected='' <?php } ?>>Operator Dinkes Provinsi</option>
-                                                <option value="3" <?php if ($user['id_role'] == '3') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota</option>
+                                                <option value="3" <?php if ($user['id_role'] == '3') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Balangan</option>
+                                                <option value="3" <?php if ($user['id_role'] == '4') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Banjar</option>
+                                                <option value="3" <?php if ($user['id_role'] == '5') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Barito Kuala</option>
+                                                <option value="3" <?php if ($user['id_role'] == '6') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Hulu Sungai Selatan</option>
+                                                <option value="3" <?php if ($user['id_role'] == '7') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Hulu Sungai Tengah</option>
+                                                <option value="3" <?php if ($user['id_role'] == '8') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Hulu Sungai Utara</option>
+                                                <option value="3" <?php if ($user['id_role'] == '9') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Kotabaru</option>
+                                                <option value="3" <?php if ($user['id_role'] == '10') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Tabalong</option>
+                                                <option value="3" <?php if ($user['id_role'] == '11') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Tanah Bumbu</option>
+                                                <option value="3" <?php if ($user['id_role'] == '12') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Tanah Laut</option>
+                                                <option value="3" <?php if ($user['id_role'] == '13') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Tapin</option>
+                                                <option value="3" <?php if ($user['id_role'] == '3') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Banjarbaru</option>
+                                                <option value="3" <?php if ($user['id_role'] == '3') { ?> selected='' <?php } ?>>Operator Dinkes Kabkota Banjarmasin</option>
                                             </select>
                                         </div>
                                     

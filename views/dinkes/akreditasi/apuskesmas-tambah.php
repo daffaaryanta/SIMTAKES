@@ -262,7 +262,41 @@
                                             <select name="kode" id="kode" class="form-control" required>
                                             <option value="">-- Silahkan Pilih --</option>
                                             <?php
-                                                $det = mysqli_query($koneksi, "SELECT * from data_pkm order by kabkota ASC");
+                                                if ($id_role == '15') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kota Banjarmasin' ORDER BY kodepkm");
+                                                } elseif ($id_role == '3') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Balangan' ORDER BY kodepkm");
+                                                } elseif ($id_role == '4') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Banjar' ORDER BY kodepkm");
+                                                } elseif ($id_role == '5') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY kodepkm");
+                                                } elseif ($id_role == '6') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY kodepkm");
+                                                } elseif ($id_role == '7') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY kodepkm");
+                                                } elseif ($id_role == '8') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY kodepkm");
+                                                } elseif ($id_role == '9') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY kodepkm");
+                                                } elseif ($id_role == '10') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Tabalong' ORDER BY kodepkm");
+                                                } elseif ($id_role == '11') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY kodepkm");
+                                                } elseif ($id_role == '12') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY kodepkm");
+                                                } elseif ($id_role == '13') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Tapin' ORDER BY kodepkm");
+                                                } elseif ($id_role == '14') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kota Banjarbaru' ORDER BY kodepkm");
+                                                } elseif ($id_role == '2') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  ORDER BY kodepkm");
+                                                } else {
+                                                    echo "<script>alert('Anda harus login ulang!');
+                                                        document.location = '../../../index.php';
+                                                        </script>";
+                                                    exit(); // Terminate script execution after the redirect
+                                                }
+                                                // $det = mysqli_query($koneksi, "SELECT * from data_pkm order by kabkota ASC");
                                                 
                                                 $no = 1;
                                                 while ($p = mysqli_fetch_array($det)) {
@@ -280,7 +314,41 @@
                                             <select name="nama" id="nama" class="form-control" required>
                                             <option value="">-- Silahkan Pilih --</option>
                                             <?php
-                                                $det = mysqli_query($koneksi, "SELECT * from data_pkm order by kabkota ASC");
+                                                if ($id_role == '15') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kota Banjarmasin' ORDER BY namapkm");
+                                                } elseif ($id_role == '3') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Balangan' ORDER BY namapkm");
+                                                } elseif ($id_role == '4') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Banjar' ORDER BY namapkm");
+                                                } elseif ($id_role == '5') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namapkm");
+                                                } elseif ($id_role == '6') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namapkm");
+                                                } elseif ($id_role == '7') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namapkm");
+                                                } elseif ($id_role == '8') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namapkm");
+                                                } elseif ($id_role == '9') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namapkm");
+                                                } elseif ($id_role == '10') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namapkm");
+                                                } elseif ($id_role == '11') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namapkm");
+                                                } elseif ($id_role == '12') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namapkm");
+                                                } elseif ($id_role == '13') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kabupaten Tapin' ORDER BY namapkm");
+                                                } elseif ($id_role == '14') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  WHERE kabkota = 'Kota Banjarbaru' ORDER BY namapkm");
+                                                } elseif ($id_role == '2') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_pkm  ORDER BY namapkm");
+                                                } else {
+                                                    echo "<script>alert('Anda harus login ulang!');
+                                                        document.location = '../../../index.php';
+                                                        </script>";
+                                                    exit(); // Terminate script execution after the redirect
+                                                }
+                                                // $det = mysqli_query($koneksi, "SELECT * from data_pkm order by kabkota ASC");
                                                 
                                                 $no = 1;
                                                 while ($p = mysqli_fetch_array($det)) {

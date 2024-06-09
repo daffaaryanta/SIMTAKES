@@ -262,7 +262,41 @@
                                             <select name="kode" id="kode" class="form-control" required>
                                             <option value="">-- Silahkan Pilih --</option>
                                             <?php
-                                                $det = mysqli_query($koneksi, "SELECT * from data_klinik order by kabkota ASC");
+                                                if ($id_role == '15') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kota Banjarmasin' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '3') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Balangan' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '4') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Banjar' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '5') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '6') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '7') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '8') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '9') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '10') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Tabalong' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '11') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '12') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '13') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Tapin' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '14') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kota Banjarbaru' ORDER BY kodeklinik");
+                                                } elseif ($id_role == '2') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  ORDER BY kodeklinik");
+                                                } else {
+                                                    echo "<script>alert('Anda harus login ulang!');
+                                                        document.location = '../../../index.php';
+                                                        </script>";
+                                                    exit(); // Terminate script execution after the redirect
+                                                }
+                                                // $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kota Banjarmasin'");
                                                 
                                                 $no = 1;
                                                 while ($p = mysqli_fetch_array($det)) {
@@ -280,7 +314,41 @@
                                             <select name="nama" id="nama" class="form-control" required>
                                             <option value="">-- Silahkan Pilih --</option>
                                             <?php
-                                                $det = mysqli_query($koneksi, "SELECT * from data_klinik order by kabkota ASC");
+                                                if ($id_role == '15') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kota Banjarmasin' ORDER BY namaklinik");
+                                                } elseif ($id_role == '3') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Balangan' ORDER BY namaklinik");
+                                                } elseif ($id_role == '4') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Banjar' ORDER BY namaklinik");
+                                                } elseif ($id_role == '5') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namaklinik");
+                                                } elseif ($id_role == '6') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namaklinik");
+                                                } elseif ($id_role == '7') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namaklinik");
+                                                } elseif ($id_role == '8') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namaklinik");
+                                                } elseif ($id_role == '9') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namaklinik");
+                                                } elseif ($id_role == '10') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namaklinik");
+                                                } elseif ($id_role == '11') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namaklinik");
+                                                } elseif ($id_role == '12') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namaklinik");
+                                                } elseif ($id_role == '13') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kabupaten Tapin' ORDER BY namaklinik");
+                                                } elseif ($id_role == '14') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  WHERE kabkota = 'Kota Banjarbaru' ORDER BY namaklinik");
+                                                } elseif ($id_role == '2') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_klinik  ORDER BY namaklinik");
+                                                } else {
+                                                    echo "<script>alert('Anda harus login ulang!');
+                                                        document.location = '../../../index.php';
+                                                        </script>";
+                                                    exit(); // Terminate script execution after the redirect
+                                                }
+                                                // $det = mysqli_query($koneksi, "SELECT * from data_klinik order by kabkota ASC");
                                                 
                                                 $no = 1;
                                                 while ($p = mysqli_fetch_array($det)) {

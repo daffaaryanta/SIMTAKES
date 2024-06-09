@@ -273,7 +273,19 @@
                                                 <option value="">-- Silahkan Pilih --</option>
                                                 <option value="1">Pimpinan</option>
                                                 <option value="2">Operator Dinkes Provinsi</option>
-                                                <option value="3">Operator Dinkes Kabkota</option>
+                                                <option value="3">Operator Dinkes Kabkota Balangan</option>
+                                                <option value="4">Operator Dinkes Kabkota Banjar</option>
+                                                <option value="5">Operator Dinkes Kabkota Barito Kuala</option>
+                                                <option value="6">Operator Dinkes Kabkota Hulu Sungai Selatan</option>
+                                                <option value="7">Operator Dinkes Kabkota Hulu Sungai Tengah</option>
+                                                <option value="8">Operator Dinkes Kabkota Hulu Sungai Utara</option>
+                                                <option value="9">Operator Dinkes Kabkota Kotabaru</option>
+                                                <option value="10">Operator Dinkes Kabkota Tabalong</option>
+                                                <option value="11">Operator Dinkes Kabkota Tanah Bumbu</option>
+                                                <option value="12">Operator Dinkes Kabkota Tanah Laut</option>
+                                                <option value="13">Operator Dinkes Kabkota Tapin</option>
+                                                <option value="14">Operator Dinkes Kabkota Banjarbaru</option>
+                                                <option value="15">Operator Dinkes Kabkota Banjarmasin</option>
                                             </select>
                                         </div>
                                     

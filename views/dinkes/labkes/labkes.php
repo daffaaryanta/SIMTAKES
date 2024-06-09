@@ -5,32 +5,34 @@ require '../../../koneksi.php';
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 // $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
 
-if ($username == 'dinkesbjm') {
+if ($id_role == '15') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kota Banjarmasin' ORDER BY namalabkes");
-} elseif ($username == 'dinkesbalangan') {
+} elseif ($id_role == '3') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Balangan' ORDER BY namalabkes");
-} elseif ($username == 'dinkesbanjar') {
+} elseif ($id_role == '4') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Banjar' ORDER BY namalabkes");
-} elseif ($username == 'dinkesbatola') {
+} elseif ($id_role == '5') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namalabkes");
-} elseif ($username == 'dinkeshss') {
+} elseif ($id_role == '6') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namalabkes");
-} elseif ($username == 'dinkeshst') {
+} elseif ($id_role == '7') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namalabkes");
-} elseif ($username == 'dinkeshsu') {
+} elseif ($id_role == '8') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namalabkes");
-} elseif ($username == 'dinkeskotabaru') {
+} elseif ($id_role == '9') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namalabkes");
-} elseif ($username == 'dinkestabalong') {
+} elseif ($id_role == '10') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namalabkes");
-} elseif ($username == 'dinkestanbu') {
+} elseif ($id_role == '11') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namalabkes");
-} elseif ($username == 'dinkestala') {
+} elseif ($id_role == '12') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namalabkes");
-} elseif ($username == 'dinkestapin') {
+} elseif ($id_role == '13') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tapin' ORDER BY namalabkes");
-} elseif ($username == 'dinkesbjb') {
+} elseif ($id_role == '14') {
     $labkes = query("SELECT * FROM data_labkes WHERE kabkota = 'Kota Banjarbaru' ORDER BY namalabkes");
+} elseif ($id_role == '2') {
+    $labkes = query("SELECT * FROM data_labkes ORDER BY kabkota");
 } else {
     echo "<script>alert('Anda harus login ulang!');
 		document.location = '../../../index.php';

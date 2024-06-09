@@ -3,7 +3,7 @@
 require '../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
+
 ?>
 
 <!DOCTYPE html>
@@ -226,8 +226,8 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
 
                     <!-- Content Row -->
@@ -240,8 +240,149 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Data Rumah Sakit</div>
+                                                <?php
+                                                if ($id_role == 2) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 3) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Balangan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 4) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Banjar'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 5) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Barito Kuala'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 6) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 7) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 8) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 9) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Kotabaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 10) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Tabalong'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 11) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 12) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Tanah Laut'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 13) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Tapin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 14) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kota Banjarbaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 15) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kota Banjarmasin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                
+                                            
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -257,9 +398,148 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Data Puskesmas</div>
+                                                <?php
+                                                if ($id_role == 2) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 3) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Balangan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 4) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Banjar'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 5) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Barito Kuala'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 6) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 7) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 8) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 9) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Kotabaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 10) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tabalong'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 11) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 12) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tanah Laut'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 13) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tapin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 14) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kota Banjarbaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 15) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kota Banjarmasin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -274,42 +554,782 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Data Klinik</div>
+                                                <?php
+                                                if ($id_role == 2) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 3) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Balangan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 4) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Banjar'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 5) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Barito Kuala'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 6) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 7) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 8) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 9) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Kotabaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 10) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tabalong'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 11) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 12) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tanah Laut'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 13) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Tapin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 14) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kota Banjarbaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 15) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kota Banjarmasin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Pending Requests Card Example -->
+                        <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Data Labkes</div>
+                                                <?php
+                                                if ($id_role == 2) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 3) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Balangan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 4) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Banjar'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 5) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Barito Kuala'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 6) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 7) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 8) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 9) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Kotabaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 10) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tabalong'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 11) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 12) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tanah Laut'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 13) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Tapin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 14) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kota Banjarbaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 15) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kota Banjarmasin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-2 col-md-6 mb-4">
+                        </div>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Data Praktek Mandiri Dokter Umum</div>
+                                                <?php
+                                                if ($id_role == 2) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 3) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Balangan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 4) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Banjar'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 5) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Barito Kuala'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 6) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 7) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 8) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 9) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Kotabaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 10) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tabalong'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 11) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 12) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tanah Laut'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 13) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tapin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 14) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kota Banjarbaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 15) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kota Banjarmasin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Data Praktek Mandiri Dokter Spesialis</div>
+                                                <?php
+                                                if ($id_role == 2) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 3) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Balangan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 4) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Banjar'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 5) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Barito Kuala'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 6) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 7) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 8) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 9) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Kotabaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 10) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tabalong'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 11) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 12) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tanah Laut'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 13) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tapin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 14) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kota Banjarbaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 15) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kota Banjarmasin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Data Unit Transfusi Darah</div>
+                                                <?php
+                                                if ($id_role == 2) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 3) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Balangan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 4) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Banjar'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 5) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Barito Kuala'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 6) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 7) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 8) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 9) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Kotabaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 10) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Tabalong'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 11) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 12) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Tanah Laut'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 13) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Tapin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 14) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kota Banjarbaru'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == 15) { 
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kota Banjarmasin'");
+                                                    $row = mysqli_num_rows($query);
+                                                    ?>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo $row ?></div>
+                                                    <?php
+                                                }
+                                                ?>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>

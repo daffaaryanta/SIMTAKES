@@ -3,7 +3,42 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$ak = query("SELECT * FROM view_apuskes ORDER BY kabkota");
+// $ak = query("SELECT * FROM view_apuskes ORDER BY kabkota");
+
+if ($id_role == '15') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kota Banjarmasin' ORDER BY nama");
+} elseif ($id_role == '3') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Balangan' ORDER BY nama");
+} elseif ($id_role == '4') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Banjar' ORDER BY nama");
+} elseif ($id_role == '5') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY nama");
+} elseif ($id_role == '6') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY nama");
+} elseif ($id_role == '7') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY nama");
+} elseif ($id_role == '8') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY nama");
+} elseif ($id_role == '9') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY nama");
+} elseif ($id_role == '10') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Tabalong' ORDER BY nama");
+} elseif ($id_role == '11') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY nama");
+} elseif ($id_role == '12') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY nama");
+} elseif ($id_role == '13') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kabupaten Tapin' ORDER BY nama");
+} elseif ($id_role == '14') {
+    $ak = query("SELECT * FROM view_apuskes WHERE kabkota = 'Kota Banjarbaru' ORDER BY nama");
+} elseif ($id_role == '2') {
+    $ak = query("SELECT * FROM view_apuskes ORDER BY kabkota");
+} else {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
 ?>
 
 <!DOCTYPE html>

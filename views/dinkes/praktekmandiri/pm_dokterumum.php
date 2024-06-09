@@ -3,7 +3,42 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
+// $dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
+
+if ($id_role == '15') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kota Banjarmasin' ORDER BY namapmdrumum");
+} elseif ($id_role == '3') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Balangan' ORDER BY namapmdrumum");
+} elseif ($id_role == '4') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Banjar' ORDER BY namapmdrumum");
+} elseif ($id_role == '5') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namapmdrumum");
+} elseif ($id_role == '6') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namapmdrumum");
+} elseif ($id_role == '7') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namapmdrumum");
+} elseif ($id_role == '8') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namapmdrumum");
+} elseif ($id_role == '9') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namapmdrumum");
+} elseif ($id_role == '10') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namapmdrumum");
+} elseif ($id_role == '11') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namapmdrumum");
+} elseif ($id_role == '12') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namapmdrumum");
+} elseif ($id_role == '13') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tapin' ORDER BY namapmdrumum");
+} elseif ($id_role == '14') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kota Banjarbaru' ORDER BY namapmdrumum");
+} elseif ($id_role == '2') {
+    $dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
+} else {
+    echo "<script>alert('Anda harus login ulang!');
+		document.location = '../../../index.php';
+		</script>";
+    exit(); // Terminate script execution after the redirect
+}
 ?>
 
 <!DOCTYPE html>

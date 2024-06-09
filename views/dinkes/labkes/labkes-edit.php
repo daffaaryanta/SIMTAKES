@@ -258,16 +258,90 @@ if (isset($_POST['ubah'])) {
                                         <div class="form-group col-md-6">
                                             <input type="hidden" name="idx" id="idx" value="<?= $labkes['idx']; ?>" autocomplete="off" class="form-control" readonly>
                                             <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
-                                            <select name="kabkota" id="kabkota" class="form-control" required>
-                                                <?php
-                                                $det = mysqli_query($koneksi, "SELECT * from data_kabkota order by kabkota ASC");
-                                                $no = 1;
-                                                while ($p = mysqli_fetch_array($det)) {
-                                                ?>
-                                                    <option value="<?php echo $p['kabkota'] ?>"><?php echo $p['kabkota'] ?> </option>
-                                                <?php
+                                            <select name="kabkota" id="kabkota" class="form-control" required> <?php
+                                                if ($id_role == '2') { ?>
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
+                                                <option value="Kabupaten Banjar">Kabupaten Banjar</option>
+                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
+                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
+                                                <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option>
+                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
+                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
+                                                <option value="Kabupaten Tabalong">Kabupaten Tabalong</option>
+                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
+                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
+                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
+                                                <option value="Kota Banjarbaru">Kota Banjarmasin</option>
+                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
+                                                 <?php
                                                 }
                                                 ?>
+                                                <?php
+                                                if ($id_role == '3') { ?>
+                                                    <option value="Kabupaten Balangan">Kabupaten Balangan</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '4') { ?>
+                                                    <option value="Kabupaten Banjar">Kabupaten Banjar</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '5') { ?>
+                                                    <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '6') { ?>
+                                                    <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '7') { ?>
+                                                    <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '8') { ?>
+                                                    <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '9') { ?>
+                                                    <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '10') { ?>
+                                                    <option value="Kabupaten Tabalong">Kabupaten Tabalong</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '11') { ?>
+                                                    <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '12') { ?>
+                                                    <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '13') { ?>
+                                                    <option value="Kabupaten Tapin">Kabupaten Tapin</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '14') { ?>
+                                                    <option value="Kota Banjarbaru">Kota Banjarmasin</option> <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                if ($id_role == '15') { ?>
+                                                    <option value="Kota Banjarmasin">Kota Banjarmasin</option> <?php
+                                                }
+                                                ?>  
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">

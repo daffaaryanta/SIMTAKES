@@ -13,7 +13,7 @@ $password = $_POST['password'];
 
 
 // menyeleksi data user dengan username dan password yang sesuai
-$index = mysqli_query($koneksi,"select * from user where username='$username' and password='$password'");
+$index = mysqli_query($koneksi,"SELECT username, password, id_role FROM user WHERE username='$username' AND password='$password'");
 
 // menghitung jumlah data yang ditemukan
 $cek = mysqli_num_rows($index);
@@ -32,7 +32,7 @@ if($cek > 0){
 		// buat session index dan username
 		$_SESSION['username'] = $username;
 		$_SESSION['password'] = $password;
-		$_SESSION['id_role'] = "2";
+		$_SESSION['id_role'] = $data['id_role'];
 		
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Operator Dinkes Provinsi!');
@@ -48,19 +48,19 @@ if($cek > 0){
 		// buat session index dan username
 		$_SESSION['username'] = $username;
 		$_SESSION['password'] = $password;
-		$_SESSION['id_role'] = "1";
+		$_SESSION['id_role'] = $data['id_role'];
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Pimpinan!');
 		document.location = 'views/pimpinan/dashboard.php';
 		</script>";
 
 	}
-	else if($data['id_role']=="3"){
+	else if($data['id_role'] >="3"){
 
 		// buat session index dan username
 		$_SESSION['username'] = $username;
 		$_SESSION['password'] = $password;
-		$_SESSION['id_role'] = "3";
+		$_SESSION['id_role'] = $data['id_role'];
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Operator Dinkes Kabkota!');
 		document.location = 'views/dinkes/dashboard.php';
