@@ -149,6 +149,8 @@
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_pm.php">Praktek Mandiri</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
                     </div>
                 </div>
             </li>

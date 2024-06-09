@@ -131,10 +131,12 @@ require '../../koneksi.php';
                         <a class="collapse-item" href="akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
                         <a class="collapse-item" href="akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="akreditasi/akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="akreditasi/akreditasi_pm.php">Praktek Mandiri</a>
+                        <a class="collapse-item" href="akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
                     </div>
                 </div>
             </li>
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -293,7 +295,7 @@ require '../../koneksi.php';
                                                 ?>
                                                 <?php
                                                 if ($id_role == 7) { 
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
                                                     $row = mysqli_num_rows($query);
                                                     ?>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -452,7 +454,7 @@ require '../../koneksi.php';
                                                 ?>
                                                 <?php
                                                 if ($id_role == 7) { 
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
                                                     $row = mysqli_num_rows($query);
                                                     ?>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -609,7 +611,7 @@ require '../../koneksi.php';
                                                 ?>
                                                 <?php
                                                 if ($id_role == 7) { 
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
                                                     $row = mysqli_num_rows($query);
                                                     ?>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -766,7 +768,7 @@ require '../../koneksi.php';
                                                 ?>
                                                 <?php
                                                 if ($id_role == 7) { 
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
                                                     $row = mysqli_num_rows($query);
                                                     ?>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -925,7 +927,7 @@ require '../../koneksi.php';
                                                 ?>
                                                 <?php
                                                 if ($id_role == 7) { 
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
                                                     $row = mysqli_num_rows($query);
                                                     ?>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -1082,7 +1084,7 @@ require '../../koneksi.php';
                                                 ?>
                                                 <?php
                                                 if ($id_role == 7) { 
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
                                                     $row = mysqli_num_rows($query);
                                                     ?>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -1239,7 +1241,7 @@ require '../../koneksi.php';
                                                 ?>
                                                 <?php
                                                 if ($id_role == 7) { 
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabaputen Hulu Sungai Tengah'");
+                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
                                                     $row = mysqli_num_rows($query);
                                                     ?>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800">

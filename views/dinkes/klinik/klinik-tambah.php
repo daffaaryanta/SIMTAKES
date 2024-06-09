@@ -149,6 +149,8 @@
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_pm.php">Praktek Mandiri</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
                     </div>
                 </div>
             </li>
@@ -266,7 +268,7 @@
                                                 <option value="Kabupaten Banjar">Kabupaten Banjar</option>
                                                 <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
                                                 <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
-                                                <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option>
+                                                <option value="Kabupaten Hulu Sungai Tengah">Kabupaten Hulu Sungai Tengah</option>
                                                 <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
                                                 <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
                                                 <option value="Kabupaten Tabalong">Kabupaten Tabalong</option>
@@ -300,7 +302,7 @@
                                                 ?>
                                                 <?php
                                                 if ($id_role == '7') { ?>
-                                                    <option value="Kabaputen Hulu Sungai Tengah">Kabaputen Hulu Sungai Tengah</option> <?php
+                                                    <option value="Kabupaten Hulu Sungai Tengah">Kabupaten Hulu Sungai Tengah</option> <?php
                                                 }
                                                 ?>
                                                 <?php

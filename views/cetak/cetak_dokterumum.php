@@ -3,7 +3,36 @@
 require_once '../../vendor/autoload.php';
 include '../../koneksi.php';
 
-$sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum ORDER BY kabkota");
+if ($id_role == 3) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Balangan'");
+} elseif ($id_role == 4) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Banjar'");
+} elseif ($id_role == 5) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Barito Kuala'");
+} elseif ($id_role == 6) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+} elseif ($id_role == 7) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
+} elseif ($id_role == 8) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+} elseif ($id_role == 9) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Kotabaru'");
+} elseif ($id_role == 10) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tabalong'");
+} elseif ($id_role == 11) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+} elseif ($id_role == 12) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tanah Laut'");
+} elseif ($id_role == 13) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tapin'");
+} elseif ($id_role == 14) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kota Banjarbaru'");
+} elseif ($id_role == 15) {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum WHERE kabkota = 'Kota Banjarmasin'");
+} else {
+    $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum");
+}
+// $sql = mysqli_query($koneksi, "SELECT * FROM data_pmdrumum ORDER BY kabkota");
 $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
 $mpdf->SetTitle('Laporan Data Praktek Mandiri Dokter Umum');
 $stylesheet = file_get_contents('cetak.css');
