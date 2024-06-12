@@ -238,7 +238,7 @@ $transfusi = query("SELECT * FROM data_utd ORDER BY kabkota");
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="../../cetak/cetak_transfusi.php">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
+                                    <a class="dropdown-item" href="../../excel/excel_transfusi.php">Excel (.xls)</a>
                                     
                                 </div>
                             </div>

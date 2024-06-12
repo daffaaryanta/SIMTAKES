@@ -238,7 +238,7 @@ $doktersp = query("SELECT * FROM data_pmdrsp ORDER BY kabkota");
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="../../cetak/cetak_doktersp.php">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
+                                    <a class="dropdown-item" href="../../excel/excel_pmsp.php">Excel (.xls)</a>
                                     
                                 </div>
                             </div>

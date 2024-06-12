@@ -238,7 +238,7 @@ $rumah = query("SELECT * FROM data_rumahsakit ORDER BY kabkota");
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="../../cetak/cetak_rumah.php">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
+                                    <a class="dropdown-item" href="../../excel/excel_rumahsakit.php">Excel (.xls)</a>
                                     
                                 </div>
                             </div>

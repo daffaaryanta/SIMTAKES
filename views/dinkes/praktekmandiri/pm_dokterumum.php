@@ -280,7 +280,7 @@ if ($id_role == '15') {
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="../../cetak/cetak_dokterumum.php">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
+                                    <a class="dropdown-item" href="../../excel/excel_pmdu.php">Excel (.xls)</a>
                                     
                                 </div>
                             </div>

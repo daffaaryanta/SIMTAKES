@@ -253,8 +253,8 @@ if (!isset($_SESSION['username'])) {
                                     Download
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="#">Excel (.xls)</a>
+                                    <a class="dropdown-item" href="../../cetak/cetak_user.php">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="../../excel/excel_user.php">Excel (.xls)</a>
                                     
                                 </div>
                             </div>
@@ -273,12 +273,10 @@ if (!isset($_SESSION['username'])) {
                                             <tr>
                                             <th>No</th>
                                             <th>ID</th>
-                                            
                                             <th>Nama</th>
                                             <th>Username</th>
                                             <th>Password</th>
                                             <th>Level</th>
-                                            
                                             <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -288,13 +286,11 @@ if (!isset($_SESSION['username'])) {
                                             <tr>
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $data['id_user'] ?></td>
-                                                
                                                 <td><?= $data['nama'] ?></td>
                                                 <td><?= $data['username'] ?></td>
                                                 <td><?= $data['password'] ?></td>
                                                 <td><?= $data['role'] ?></td>
-                                               
-                                                <td>
+                                               <td>
                                                 <div class="container text-center">
                                                     <a href="user-edit.php?id_user=<?= $data['id_user']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>&nbsp;&nbsp;
                                                     <a  href="hapususer.php?id_user=<?= $data['id_user']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data <?= $data['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
