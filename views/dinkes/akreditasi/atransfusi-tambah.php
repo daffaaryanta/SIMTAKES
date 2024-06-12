@@ -1,26 +1,26 @@
 <?php
-// Memanggil atau membutuhkan file function.php
-require '../../../koneksi.php';
 
-$id_ak = $_GET['id_ak'];
-// Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$klinik = query("SELECT * FROM akreditasi WHERE id_ak = $id_ak")[0];
+        // servername => localhost
+        // username => root
+        // password => empty
+        // database name => staff
 
+        require '../../../koneksi.php';
+        if (isset($_POST['simpan'])) {
+            if (tambahakreditasi($_POST)) {
+                echo "<script>
+                        alert('Data berhasil ditambahkan!');
+                        document.location.href = 'akreditasi_transfusi.php';
+                    </script>";
+            } else {
+                // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
+                echo "<script>
+                        alert('Data gagal ditambahkan!');
+                    </script>";
+            }
+        }
+        ?>
 
-if (isset($_POST['ubah'])) {
-    if (ubahakreditasi($_POST) > 0) {
-        echo "<script>
-                alert('Data berhasil diubah!');
-                document.location.href = 'akreditasi_klinik.php';
-            </script>";
-    } else {
-        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
-        echo "<script>
-                alert('Data gagal diubah!');
-            </script>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +32,7 @@ if (isset($_POST['ubah'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Akreditasi Klinik</title>
+    <title>SIMTAKES - Akreditasi Unit Transfusi Darah</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -93,7 +93,7 @@ if (isset($_POST['ubah'])) {
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item ">
-                <a class="nav-link " href="klinik.php" >
+                <a class="nav-link " href="../klinik/klinik.php" >
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Klinik</span>
                 </a>
@@ -147,11 +147,11 @@ if (isset($_POST['ubah'])) {
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item active" href="akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                         <a class="collapse-item " href="../akreditasi/akreditasi_pmdu.php">PM Dokter Umum</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_pmds.php">PM Dokter Spesialis</a>
-                        <a class="collapse-item " href="../akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
+                        <a class="collapse-item active" href="akreditasi_transfusi.php">Unit Transfusi Darah</a>
                     </div>
                 </div>
             </li>
@@ -174,8 +174,6 @@ if (isset($_POST['ubah'])) {
             }
             
             ?>
-            
-            
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -212,7 +210,7 @@ if (isset($_POST['ubah'])) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 ">Selamat Datang, 
                                 <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
                                 $row = mysqli_fetch_array($index);
                                 if ($row && $row["nama"] == !'') {
@@ -223,6 +221,7 @@ if (isset($_POST['ubah'])) {
                                 }
                                 ?>
                                 </span>
+                                
                                     <i class="fas fa-caret-down fa-sm"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -247,7 +246,7 @@ if (isset($_POST['ubah'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data Akreditasi Klinik</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Data Akreditasi Unit Transfusi Darah</h1>
                         
                         
                     </div>
@@ -260,16 +259,109 @@ if (isset($_POST['ubah'])) {
                                 <div class="card-body">
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <input type="hidden" name="id_ak" id="id_ak" value="<?= $klinik['id_ak']; ?>" autocomplete="off" class="form-control" readonly>
-                                            <input type="hidden" name="id_kategori" id="id_kategori" value="<?= $klinik['id_kategori']; ?>" autocomplete="off" class="form-control" readonly>
-                                            <label for="kode"><strong>Kode Klinik </strong></label>
-                                            <input type="text" name="kode" id="kode" value="<?= $klinik['kode']; ?>" autocomplete="off" class="input form-control"  readonly>
+                                    <div class="form-group col-md-6">
+                                            <label for="kode"><strong>Kode UTD </strong></label>
+                                            <input type="hidden" name="id_kategori" id="id_kategori" value="7" autocomplete="off" class="form-control" readonly>
+                                            <select name="kode" id="kode" class="form-control" required>
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <?php
+                                                if ($id_role == '15') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kota Banjarmasin' ORDER BY kodeutd");
+                                                } elseif ($id_role == '3') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Balangan' ORDER BY kodeutd");
+                                                } elseif ($id_role == '4') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Banjar' ORDER BY kodeutd");
+                                                } elseif ($id_role == '5') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY kodeutd");
+                                                } elseif ($id_role == '6') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY kodeutd");
+                                                } elseif ($id_role == '7') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY kodeutd");
+                                                } elseif ($id_role == '8') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY kodeutd");
+                                                } elseif ($id_role == '9') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY kodeutd");
+                                                } elseif ($id_role == '10') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Tabalong' ORDER BY kodeutd");
+                                                } elseif ($id_role == '11') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY kodeutd");
+                                                } elseif ($id_role == '12') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY kodeutd");
+                                                } elseif ($id_role == '13') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Tapin' ORDER BY kodeutd");
+                                                } elseif ($id_role == '14') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kota Banjarbaru' ORDER BY kodeutd");
+                                                } elseif ($id_role == '2') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  ORDER BY kodeutd");
+                                                } else {
+                                                    echo "<script>alert('Anda harus login ulang!');
+                                                        document.location = '../../../index.php';
+                                                        </script>";
+                                                    exit(); // Terminate script execution after the redirect
+                                                }
+                                                // $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kota Banjarmasin'");
+                                                
+                                                $no = 1;
+                                                while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                    <option value="<?php echo $p['kodeutd'] ?> "><?php echo $p['kodeutd'] ?> - <?php echo $p['namautd'] ?></option>
+                                                <?php
+                                                }
+                                                ?>    
                                             
+                                            </select>
+                                                
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="nama"><strong>Nama Klinik</strong></label>
-                                            <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <label for="nama"><strong>Nama Dokter</strong></label>
+                                            <select name="nama" id="nama" class="form-control" required>
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <?php
+                                                if ($id_role == '15') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kota Banjarmasin' ORDER BY namautd");
+                                                } elseif ($id_role == '3') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Balangan' ORDER BY namautd");
+                                                } elseif ($id_role == '4') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Banjar' ORDER BY namautd");
+                                                } elseif ($id_role == '5') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namautd");
+                                                } elseif ($id_role == '6') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namautd");
+                                                } elseif ($id_role == '7') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namautd");
+                                                } elseif ($id_role == '8') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namautd");
+                                                } elseif ($id_role == '9') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namautd");
+                                                } elseif ($id_role == '10') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namautd");
+                                                } elseif ($id_role == '11') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namautd");
+                                                } elseif ($id_role == '12') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namautd");
+                                                } elseif ($id_role == '13') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kabupaten Tapin' ORDER BY namautd");
+                                                } elseif ($id_role == '14') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  WHERE kabkota = 'Kota Banjarbaru' ORDER BY namautd");
+                                                } elseif ($id_role == '2') {
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_utd  ORDER BY namautd");
+                                                } else {
+                                                    echo "<script>alert('Anda harus login ulang!');
+                                                        document.location = '../../../index.php';
+                                                        </script>";
+                                                    exit(); // Terminate script execution after the redirect
+                                                }
+                                                // $det = mysqli_query($koneksi, "SELECT * from data_klinik order by kabkota ASC");
+                                                
+                                                $no = 1;
+                                                while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                    <option value="<?php echo $p['namautd'] ?> "><?php echo $p['namautd']?> - <?php echo $p['kodeutd'] ?>  </option>
+                                                <?php
+                                                }
+                                                ?>    
+                                            
+                                            </select>
                                                 
                                         </div>
                                     </div>
@@ -277,7 +369,7 @@ if (isset($_POST['ubah'])) {
                                         <div class="form-group col-md-6">
                                             <label for="tahun"><strong>Tahun Akreditasi</strong></label>
                                             <select name="tahun" id="tahun" class="form-control" required>
-                                            <option value="<?= $klinik['tahun']; ?>"><?= $klinik['tahun']; ?></option>
+                                            <option value="">-- Silahkan Pilih --</option>
                                             <?php
                                                 $sum = 0;
                                                 for($i = 2016; $i<=2024; $i++) {
@@ -295,13 +387,11 @@ if (isset($_POST['ubah'])) {
                                             <label for="jenis_akreditasi"><strong>Jenis Akreditasi</strong></label>
                                             <select name="jenis_akreditasi" id="jenis_akreditasi" class="form-control" required>
                                                 <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Dasar" <?php if ($klinik['jenis_akreditasi'] == 'Dasar') { ?> selected='' <?php } ?>>Dasar</option>
-                                                <option value="Madya" <?php if ($klinik['jenis_akreditasi'] == 'Madya') { ?> selected='' <?php } ?>>Madya</option>
-                                                
-                                                <option value="Utama" <?php if ($klinik['jenis_akreditasi'] == 'Utama') { ?> selected='' <?php } ?>>Utama</option>
-                                                <option value="Paripurna" <?php if ($klinik['jenis_akreditasi'] == 'Paripurna') { ?> selected='' <?php } ?>>Paripurna</option>
+                                                <option value="Dasar">Dasar</option>
+                                                <option value="Madya">Madya</option>
+                                                <option value="Utama">Utama</option>
+                                                <option value="Paripurna">Paripurna</option>
                                                 </select>
-                                                
                                         </div>
                                     
                                     </div>
@@ -311,8 +401,8 @@ if (isset($_POST['ubah'])) {
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="akreditasi_klinik.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                                <button type="reset" class="btn"><a href="akreditasi_transfusi.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>

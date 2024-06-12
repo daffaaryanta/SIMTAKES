@@ -268,7 +268,7 @@ if ($id_role == '15') {
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Akreditasi PM Dokter Spesialis</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="apmdu-tambah.php" class="btn btn-primary btn-icon-split">
+                            <a href="apmds-tambah.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-plus"></i>
                                             </span>
@@ -322,8 +322,8 @@ if ($id_role == '15') {
                                                 
                                                 <td>
                                                 <div class="container text-center">
-                                                    <a href="apmdu-edit.php?id_ak=<?= $ak['id_ak']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusapmdu.php?id_ak=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi Klinik <?= $ak['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                                                    <a href="apmds-edit.php?id_ak=<?= $ak['id_ak']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                                    <a  href="hapusapmds.php?id_ak=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi <?= $ak['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>
                                             <?php endforeach ?>

@@ -147,8 +147,11 @@ if (isset($_POST['ubah'])) {
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item active" href="akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
+                        <a class="collapse-item active" href="akreditasi_pmdu.php">PM Dokter Umum</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_pmds.php">PM Dokter Spesialis</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
                     </div>
                 </div>
             </li>
@@ -260,12 +263,12 @@ if (isset($_POST['ubah'])) {
                                         <div class="form-group col-md-6">
                                             <input type="hidden" name="id_ak" id="id_ak" value="<?= $klinik['id_ak']; ?>" autocomplete="off" class="form-control" readonly>
                                             <input type="hidden" name="id_kategori" id="id_kategori" value="<?= $klinik['id_kategori']; ?>" autocomplete="off" class="form-control" readonly>
-                                            <label for="kode"><strong>Kode Klinik </strong></label>
+                                            <label for="kode"><strong>Kode Dokter </strong></label>
                                             <input type="text" name="kode" id="kode" value="<?= $klinik['kode']; ?>" autocomplete="off" class="input form-control"  readonly>
                                             
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="nama"><strong>Nama Klinik</strong></label>
+                                            <label for="nama"><strong>Nama Dokter</strong></label>
                                             <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" readonly>
                                                 
                                         </div>

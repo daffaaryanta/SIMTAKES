@@ -11,7 +11,7 @@ if (isset($_POST['ubah'])) {
     if (ubahakreditasi($_POST) > 0) {
         echo "<script>
                 alert('Data berhasil diubah!');
-                document.location.href = 'akreditasi_klinik.php';
+                document.location.href = 'akreditasi_transfusi.php';
             </script>";
     } else {
         // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
@@ -32,7 +32,7 @@ if (isset($_POST['ubah'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Akreditasi Klinik</title>
+    <title>SIMTAKES - Akreditasi Unit Transfusi Darah</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -147,11 +147,11 @@ if (isset($_POST['ubah'])) {
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item active" href="akreditasi_klinik.php">Klinik</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
                         <a class="collapse-item " href="../akreditasi/akreditasi_pmdu.php">PM Dokter Umum</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_pmds.php">PM Dokter Spesialis</a>
-                        <a class="collapse-item " href="../akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
+                        <a class="collapse-item active" href="akreditasi_transfusi.php">Unit Transfusi Darah</a>
                     </div>
                 </div>
             </li>
@@ -247,7 +247,7 @@ if (isset($_POST['ubah'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data Akreditasi Klinik</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Akreditasi Unit Transfusi Darah</h1>
                         
                         
                     </div>
@@ -263,12 +263,12 @@ if (isset($_POST['ubah'])) {
                                         <div class="form-group col-md-6">
                                             <input type="hidden" name="id_ak" id="id_ak" value="<?= $klinik['id_ak']; ?>" autocomplete="off" class="form-control" readonly>
                                             <input type="hidden" name="id_kategori" id="id_kategori" value="<?= $klinik['id_kategori']; ?>" autocomplete="off" class="form-control" readonly>
-                                            <label for="kode"><strong>Kode Klinik </strong></label>
+                                            <label for="kode"><strong>Kode UTD </strong></label>
                                             <input type="text" name="kode" id="kode" value="<?= $klinik['kode']; ?>" autocomplete="off" class="input form-control"  readonly>
                                             
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="nama"><strong>Nama Klinik</strong></label>
+                                            <label for="nama"><strong>Nama UTD</strong></label>
                                             <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" readonly>
                                                 
                                         </div>
@@ -312,7 +312,7 @@ if (isset($_POST['ubah'])) {
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="akreditasi_klinik.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="reset" class="btn"><a href="akreditasi_transfusi.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>

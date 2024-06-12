@@ -323,7 +323,7 @@ if ($id_role == '15') {
                                                 <td>
                                                 <div class="container text-center">
                                                     <a href="apmdu-edit.php?id_ak=<?= $ak['id_ak']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusapmdu.php?id_ak=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi Klinik <?= $ak['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                                                    <a  href="hapusapmdu.php?id_ak=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi <?= $ak['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>
                                             <?php endforeach ?>
