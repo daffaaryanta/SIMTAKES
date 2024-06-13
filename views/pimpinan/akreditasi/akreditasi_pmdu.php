@@ -3,7 +3,42 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$ak = query("SELECT * FROM view_aklinik ORDER BY kabkota");
+$ak = query("SELECT * FROM view_apmdu ORDER BY kabkota");
+
+// if ($id_role == '15') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kota Banjarmasin' ORDER BY nama");
+// } elseif ($id_role == '3') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Balangan' ORDER BY nama");
+// } elseif ($id_role == '4') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Banjar' ORDER BY nama");
+// } elseif ($id_role == '5') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY nama");
+// } elseif ($id_role == '6') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY nama");
+// } elseif ($id_role == '7') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY nama");
+// } elseif ($id_role == '8') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY nama");
+// } elseif ($id_role == '9') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY nama");
+// } elseif ($id_role == '10') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Tabalong' ORDER BY nama");
+// } elseif ($id_role == '11') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY nama");
+// } elseif ($id_role == '12') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY nama");
+// } elseif ($id_role == '13') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kabupaten Tapin' ORDER BY nama");
+// } elseif ($id_role == '14') {
+//     $ak = query("SELECT * FROM view_apmdu WHERE kabkota = 'Kota Banjarbaru' ORDER BY nama");
+// } elseif ($id_role == '2') {
+//     $ak = query("SELECT * FROM view_apmdu ORDER BY kabkota");
+// } else {
+//     echo "<script>alert('Anda harus login ulang!');
+// 		document.location = '../../../index.php';
+// 		</script>";
+//     exit(); // Terminate script execution after the redirect
+// }
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +52,7 @@ $ak = query("SELECT * FROM view_aklinik ORDER BY kabkota");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Akreditasi Klinik</title>
+    <title>SIMTAKES - Akreditasi PM Dokter Umum</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -132,11 +167,11 @@ $ak = query("SELECT * FROM view_aklinik ORDER BY kabkota");
                     <h6 class="collapse-header">Akreditasi:</h6>
                         <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item active" href="">Klinik</a>
+                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
-                        <a class="collapse-item " href="../akreditasi/akreditasi_pmdu.php">PM Dokter Umum</a>
+                        <a class="collapse-item active" href="">PM Dokter Umum</a>
                         <a class="collapse-item" href="../akreditasi/akreditasi_pmds.php">PM Dokter Spesialis</a>
-                        <a class="collapse-item " href="../akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
+                        <a class="collapse-item" href="../akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
                     </div>
                 </div>
             </li>
@@ -231,9 +266,14 @@ $ak = query("SELECT * FROM view_aklinik ORDER BY kabkota");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Akreditasi Klinik</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Akreditasi PM Dokter Umum</h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            
+                            <!-- <a href="apmdu-tambah.php" class="btn btn-primary btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                            <span class="text">Tambah Data</span>
+                            </a>&nbsp;&nbsp; -->
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-download fa-sm text-white-50"></i>
@@ -260,12 +300,12 @@ $ak = query("SELECT * FROM view_aklinik ORDER BY kabkota");
                                             <tr>
                                             <th>No</th>
                                             <th>Kabkota</th>
-                                            <th>Kode Klinik</th>
-                                            <th>Nama Klinik</th>
+                                            <th>Kode Praktek Mandiri</th>
+                                            <th>Nama Dokter</th>
                                             <th>Alamat</th>
                                             <th>Tahun Akreditasi</th>
                                             <th>Jenis Akreditasi</th>
-                                            
+                                            <!-- <th>Opsi</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -280,7 +320,11 @@ $ak = query("SELECT * FROM view_aklinik ORDER BY kabkota");
                                                 <td><?= $ak['tahun'] ?></td>
                                                 <td><?= $ak['jenis_akreditasi'] ?></td>
                                                 
-                                                
+                                                <!-- <td>
+                                                <div class="container text-center">
+                                                    <a href="apmdu-edit.php?id_ak=<?= $ak['id_ak']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                                    <a  href="hapusapmdu.php?id_ak=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi <?= $ak['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                                                </div> -->
                                             </tr>
                                             <?php endforeach ?>
                                         </tbody>
