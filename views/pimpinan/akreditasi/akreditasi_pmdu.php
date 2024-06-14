@@ -280,7 +280,7 @@ $ak = query("SELECT * FROM view_apmdu ORDER BY kabkota");
                                     Download
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="../../cetak/cetak_apmdu.php">Cetak (.pdf)</a>
                                     <a class="dropdown-item" href="#">Excel (.xls)</a>
                                     
                                 </div>

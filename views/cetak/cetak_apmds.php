@@ -4,37 +4,37 @@ require_once '../../vendor/autoload.php';
 include '../../koneksi.php';
 
 if ($id_role == 3) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Balangan'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Balangan'");
 } elseif ($id_role == 4) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Banjar'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Banjar'");
 } elseif ($id_role == 5) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Barito Kuala'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Barito Kuala'");
 } elseif ($id_role == 6) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Hulu Sungai Selatan'");
 } elseif ($id_role == 7) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Hulu Sungai Tengah'");
 } elseif ($id_role == 8) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Hulu Sungai Utara'");
 } elseif ($id_role == 9) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Kotabaru'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Kotabaru'");
 } elseif ($id_role == 10) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tabalong'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Tabalong'");
 } elseif ($id_role == 11) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tanah Bumbu'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Tanah Bumbu'");
 } elseif ($id_role == 12) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tanah Laut'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Tanah Laut'");
 } elseif ($id_role == 13) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kabupaten Tapin'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kabupaten Tapin'");
 } elseif ($id_role == 14) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kota Banjarbaru'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kota Banjarbaru'");
 } elseif ($id_role == 15) {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm WHERE kabkota = 'Kota Banjarmasin'");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds WHERE kabkota = 'Kota Banjarmasin'");
 } else {
-    $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm");
+    $sql = mysqli_query($koneksi, "SELECT * FROM view_apmds");
 }
-// $sql = mysqli_query($koneksi, "SELECT * FROM data_pkm ORDER BY kabkota");
+
 $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
-$mpdf->SetTitle('Laporan Data Puskesmas');
+$mpdf->SetTitle('Laporan Data Akreditasi PM Dokter Spesialis');
 $stylesheet = file_get_contents('cetak.css');
 $header = '
 <table style="width: 100%;">
@@ -58,7 +58,7 @@ $header = '
 	</table>
     <hr class="line-title">
 	<p align="center" style="font-size: 18px;">
-		Laporan Data Puskesmas
+		Laporan Data Akreditasi PM Dokter Spesialis
 	</p>
 ';
 $mpdf->WriteHTML($header, 2);
@@ -67,12 +67,12 @@ $content = '
                                         <thead>
                                             <tr>
                                             <th>No</th>
-                                            <th>Kab/kota</th>
-                                            <th>Kode Puskesmas</th>
-                                            <th>Nama Puskesmas</th>
-                                            <th>Status Puskesmas</th>
-                                            <th>Jenis Puskesmas</th>
+                                            <th>Kabkota</th>
+                                            <th>Kode PM Dokter Spesialis</th>
+                                            <th>Nama PM Dokter Spesialis</th>
                                             <th>Alamat</th>
+                                            <th>Tahun Akreditasi</th>
+                                            <th>Jenis Akreditasi</th>
                                             </tr>
                                         </thead>
                                         ';
@@ -81,11 +81,11 @@ while ($data_klinik = mysqli_fetch_array($sql)) {
     $content .= '<tbody>
     <tr><td>'.$no++.'</td>'.
                 '<td>'.$data_klinik['kabkota'].'</td>'.
-                '<td>'.$data_klinik['kodepkm'].'</td>'.
-                '<td>'.$data_klinik['namapkm'].'</td>'.
-                '<td>'.$data_klinik['statuspkm'].'</td>'.
-                '<td>'.$data_klinik['kategori'].'</td>'.
-                '<td>'.$data_klinik['alamat'].'</td>'
+                '<td>'.$data_klinik['kode'].'</td>'.
+                '<td>'.$data_klinik['nama'].'</td>'.
+                '<td>'.$data_klinik['alamat'].'</td>'.
+                '<td>'.$data_klinik['tahun'].'</td>'.
+                '<td>'.$data_klinik['jenis_akreditasi'].'</td>'
                 ;
 }
 $content .= '</tr></tbody></table>';

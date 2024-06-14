@@ -37,21 +37,20 @@ $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
 $mpdf->SetTitle('Laporan Data Klinik');
 $stylesheet = file_get_contents('cetak.css');
 $header = '
-<table style="width: 90%;">
+<table style="width: 100%;">
 		<tr>
-			
-				<td align="center">
-				<img src="../../img/logo.png" style="position: absolute; width: 200px; height: auto;">
-                </td>
-                <td align="center">
+			<td align="center">
+				<img src="../../img/logo_kalsel.svg" style="position: absolute; width: 80px; height: auto;">
+            </td>
+            <td align="center">
 				<span style="line-height: 1.6; font-weight: bold; font-size: 24px; align-content: center;">
-				DINAS KESEHATAN KOTA BANJARMASIN
+				DINAS KESEHATAN PROVINSI KALIMANTAN SELATAN
 				</span>
 				<br>
 				<span style="line-height: 1.6; font-weight: normal; font-size: 18px">
-					Jl. Mayjend D.I Panjaitan No. 27 Banjarmasin Kalimantan Selatan
- 					<br>Telp.0511-3352859  Fax. 0511-3353263
- 					<br>Email: www.pn-banjarmasin.go.id
+					Jl. Belitung Darat No.118, Belitung Utara, Kec. Banjarmasin Bar., Kota Banjarmasin, Kalimantan Selatan 70116
+ 					<br>Telp. 0511-3355661, 3354443, 3364646, Fax. 0511-3359735, 3352575
+ 					<br>Email : dinkes@kalselprov.go.id , keskalsel@yahoo.com , keskalsel@gmail.com
 				</span>
 			<br><br>
 			</td>
