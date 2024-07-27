@@ -34,125 +34,10 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
-                
-                <div class="sidebar-brand-text mx-3">SIMTAKES</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Beranda</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="rumahsakit/rumahsakit.php">
-                <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Rumah Sakit</span></a>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link " href="puskesmas/puskesmas.php" >
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Puskesmas</span>
-                </a>
-                
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link " href="klinik/klinik.php" >
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Klinik</span>
-                </a>
-                
-            </li>
-
-            
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link " href="labkes/labkes.php" >
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Labkes</span>
-                </a>
-                
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Praktek Mandiri</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
-                        
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="transfusidarah/transfusidarah.php">
-                <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Unit Tranfusi Darah</span></a>
-            </li>
-
-           <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
-                    aria-expanded="true" aria-controls="collapseAkreditasi">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Akreditasi</span>
-                </a>
-                <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item" href="akreditasi/akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="akreditasi/akreditasi_labkes.php">Labkes</a>
-                        <a class="collapse-item " href="akreditasi/akreditasi_pmdu.php">PM Dokter Umum</a>
-                        <a class="collapse-item" href=" akreditasi/akreditasi_pmds.php">PM Dokter Spesialis</a>
-                        <a class="collapse-item" href="akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            
-
-            
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
-
+<?php
+require 'template/sidebar.php';
+   
+    ?>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -217,184 +102,199 @@ $puskesmas = query("SELECT * FROM data_pkm ORDER BY kabkota");
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="card shadow mb-4">
+                    <div class="card-body">
+                    <img src="../../img/dinkes.jpg" style=" display: block; margin-left: auto; margin-right: auto; width: 100%; height: auto; position: center;">
+                    <br>
+                        <h4 style = "color: black; text-align: center;">Selamat Datang di Sistem Data Kesehatan</h4>
+                        <h6 style= "text-align: justify;">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam mi non magna pulvinar semper. Vestibulum vitae mollis arcu. Curabitur in mi vitae nisi posuere aliquet vitae a lectus. Vivamus euismod, odio ut auctor blandit, dui tellus auctor dui, id convallis est tortor et enim. Vivamus et mi lobortis, tincidunt ex at, fringilla leo. Cras consectetur lacus felis, eget euismod ex fermentum nec. Duis dictum erat lorem, egestas pellentesque mauris sodales non. Mauris malesuada porttitor arcu, sed ultricies dui faucibus eu. Cras id mauris luctus, maximus quam eget, scelerisque quam. Nulla purus augue, convallis et ex et, sagittis ornare leo. Suspendisse maximus, velit sed congue varius, leo dui placerat ex, id aliquam elit elit quis ex. Maecenas scelerisque urna ac congue dignissim.
+                        </h6>
+                    </div>
+                    </div>
                     </div>
                     
-                    <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                            </div>
+                    
+                    <div class="col-sm-6">
+                    
+                    <div class="card shadow mb-4">
+                    <div class="card text-center">
+                    <div class="card-header">
+                        Total Data Faskes
                     </div>
-                    <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                            </div>
                     </div>
-
-                    <!-- Content Row -->
+                    <div class="card-body">
                     <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Data Rumah Sakit</div>
-                                                <?php
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit");
-                                                    $row = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo $row ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-folder fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Data Puskesmas</div>
-                                                <?php
-                                                $query = mysqli_query($koneksi,"SELECT * FROM data_pkm");
-                                                $row = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo $row ?></div>
-                                                    </div>
-                                        <div class="col-auto">
-                                        <i class="fas fa-folder fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Data Klinik</div>
-                                                <?php
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_klinik");
-                                                    $row = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo $row ?></div>
-                                                    </div>
-                                        <div class="col-auto">
-                                        <i class="fas fa-folder fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Data Labkes</div>
-                                                <?php
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_labkes");
-                                                    $row = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo $row ?></div>
-                                                    </div>
-                                        <div class="col-auto">
-                                        <i class="fas fa-folder fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         
-                        <div class="col-xl-2 col-md-6 mb-4">
-                        </div>
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Data Praktek Mandiri Dokter Umum</div>
-                                                <?php
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum");
-                                                    $row = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo $row ?></div>
-                                                    </div>
-                                        <div class="col-auto">
-                                        <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-md-2 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Data Rumah Sakit</div>
+                                                        <?php
+                                                            $query = mysqli_query($koneksi,"SELECT * FROM data_rumahsakit");
+                                                            $row = mysqli_num_rows($query);
+                                                            ?>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $row ?></div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                        
+                                 <!-- Earnings (Monthly) Card Example -->
+                                 <div class="col-md-2 col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Data Puskesmas</div>
+                                                        <?php
+                                                        $query = mysqli_query($koneksi,"SELECT * FROM data_pkm");
+                                                        $row = mysqli_num_rows($query);
+                                                            ?>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $row ?></div>
+                                                            </div>
+                                                <div class="col-auto">
+                                                <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Data Praktek Mandiri Dokter Spesialis</div>
-                                                <?php
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp");
-                                                    $row = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo $row ?></div>
-                                                    </div>
-                                        <div class="col-auto">
-                                        <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-md-2 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Data Klinik</div>
+                                                        <?php
+                                                            $query = mysqli_query($koneksi,"SELECT * FROM data_klinik");
+                                                            $row = mysqli_num_rows($query);
+                                                            ?>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $row ?></div>
+                                                            </div>
+                                                <div class="col-auto">
+                                                <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Data Unit Transfusi Darah</div>
-                                                <?php
-                                                    $query = mysqli_query($koneksi,"SELECT * FROM data_utd");
-                                                    $row = mysqli_num_rows($query);
-                                                    ?>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo $row ?></div>
-                                                    </div>
-                                        <div class="col-auto">
-                                        <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-md-2 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Data Labkes</div>
+                                                        <?php
+                                                            $query = mysqli_query($koneksi,"SELECT * FROM data_labkes");
+                                                            $row = mysqli_num_rows($query);
+                                                            ?>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $row ?></div>
+                                                            </div>
+                                                <div class="col-auto">
+                                                <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+
+                                
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-md-2 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Data Praktek Mandiri Dokter Umum</div>
+                                                        <?php
+                                                            $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrumum");
+                                                            $row = mysqli_num_rows($query);
+                                                            ?>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $row ?></div>
+                                                            </div>
+                                                <div class="col-auto">
+                                                <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-md-2 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Data Praktek Mandiri Dokter Spesialis</div>
+                                                        <?php
+                                                            $query = mysqli_query($koneksi,"SELECT * FROM data_pmdrsp");
+                                                            $row = mysqli_num_rows($query);
+                                                            ?>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $row ?></div>
+                                                            </div>
+                                                <div class="col-auto">
+                                                <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-md-2 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Data Unit Transfusi Darah</div>
+                                                        <?php
+                                                            $query = mysqli_query($koneksi,"SELECT * FROM data_utd");
+                                                            $row = mysqli_num_rows($query);
+                                                            ?>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                            <?php echo $row ?></div>
+                                                            </div>
+                                                <div class="col-auto">
+                                                <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div> 
+                     
+                    </div>            
+                    </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->

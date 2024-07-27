@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laporan Data Klinik</title>
+</head>
+<body>
+	<style type="text/css">
+	body{
+		font-family: sans-serif;
+	}
+	table{
+		margin: 20px auto;
+		border-collapse: collapse;
+	}
+	table th,
+	table td{
+		border: 1px solid #3c3c3c;
+		padding: 3px 8px;
+ 
+	}
+	a{
+		background: blue;
+		color: #fff;
+		padding: 8px 10px;
+		text-decoration: none;
+		border-radius: 2px;
+	}
+	</style>
+ 
+	 
+	
+ 
+	<table border="1">
+    <thead>
+                                            <tr>
+                                            <th>No</th>
+                                            <th>ID</th>
+                                            <th>Nama</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Level</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                                                                                                    <tr>
+                                                <td>1</td>
+                                                <td>23</td>
+                                                <td>Pimpinan</td>
+                                                <td>pimpinan</td>
+                                                <td>pimpinan</td>
+                                                <td>Pimpinan</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>2</td>
+                                                <td>22</td>
+                                                <td>Dinkes Provinsi</td>
+                                                <td>admin</td>
+                                                <td>admin</td>
+                                                <td>Operator Dinkes Provinsi</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>3</td>
+                                                <td>31</td>
+                                                <td>Dinkes Kabkota Balangan</td>
+                                                <td>dinkesbalangan</td>
+                                                <td>dinkesbalangan</td>
+                                                <td>Operator Dinkes Kabkota Balangan</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>4</td>
+                                                <td>32</td>
+                                                <td>Dinkes Kabkota Banjar</td>
+                                                <td>dinkesbanjar</td>
+                                                <td>dinkesbanjar</td>
+                                                <td>Operator Dinkes Kabkota Banjar</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>5</td>
+                                                <td>33</td>
+                                                <td>Dinkes Kabkota Barito Kuala</td>
+                                                <td>dinkesbatola</td>
+                                                <td>dinkesbatola</td>
+                                                <td>Operator Dinkes Kabkota Barito Kuala</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>6</td>
+                                                <td>34</td>
+                                                <td>Dinkes Kabkota Hulu Sungai Selatan</td>
+                                                <td>dinkeshss</td>
+                                                <td>dinkeshss</td>
+                                                <td>Operator Dinkes Kabkota Hulu Sungai Selatan</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>7</td>
+                                                <td>35</td>
+                                                <td>Dinkes Kabkota Hulu Sungai Tengah</td>
+                                                <td>dinkeshst</td>
+                                                <td>dinkeshst</td>
+                                                <td>Operator Dinkes Kabkota Hulu Sungai Tengah</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>8</td>
+                                                <td>36</td>
+                                                <td>Dinkes Kabkota Hulu Sungai Utara</td>
+                                                <td>dinkeshsu</td>
+                                                <td>dinkeshsu</td>
+                                                <td>Operator Dinkes Kabkota Hulu Sungai Utara</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>9</td>
+                                                <td>37</td>
+                                                <td>Dinkes Kabkota Kotabaru</td>
+                                                <td>dinkeskotabaru</td>
+                                                <td>dinkeskotabaru</td>
+                                                <td>Operator Dinkes Kabkota Kotabaru</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>10</td>
+                                                <td>38</td>
+                                                <td>Dinkes Kabkota Tabalong</td>
+                                                <td>dinkestabalong</td>
+                                                <td>dinkestabalong</td>
+                                                <td>Operator Dinkes Kabkota Tabalong</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>11</td>
+                                                <td>39</td>
+                                                <td>Dinkes Kabkota Tanah Bumbu</td>
+                                                <td>dinkestanbu</td>
+                                                <td>dinkestanbu</td>
+                                                <td>Operator Dinkes Kabkota Tanah Bumbu</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>12</td>
+                                                <td>40</td>
+                                                <td>Dinkes Kabkota Tanah Laut</td>
+                                                <td>dinkestala</td>
+                                                <td>dinkestala</td>
+                                                <td>Operator Dinkes Kabkota Tanah Laut</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>13</td>
+                                                <td>41</td>
+                                                <td>Dinkes Kabkota Tapin</td>
+                                                <td>dinkestapin</td>
+                                                <td>dinkestapin</td>
+                                                <td>Operator Dinkes Kabkota Tapin</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>14</td>
+                                                <td>42</td>
+                                                <td>Dinkes Kabkota Banjarbaru</td>
+                                                <td>dinkesbjb</td>
+                                                <td>dinkesbjb</td>
+                                                <td>Operator Dinkes Kabkota Banjarbaru</td>
+                                                
+                                            </tr>
+                                                                                        <tr>
+                                                <td>15</td>
+                                                <td>43</td>
+                                                <td>Dinkes Kabkota Banjarmasin</td>
+                                                <td>dinkesbjm</td>
+                                                <td>dinkesbjm</td>
+                                                <td>Operator Dinkes Kabkota Banjarmasin</td>
+                                                
+                                            </tr>
+                                                                                    </tbody>
+	</table>
+</body>
+</html>

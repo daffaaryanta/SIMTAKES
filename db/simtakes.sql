@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2024 at 02:06 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 26 Jul 2024 pada 13.57
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akreditasi`
+-- Struktur dari tabel `akreditasi`
 --
 
 CREATE TABLE `akreditasi` (
@@ -37,7 +37,7 @@ CREATE TABLE `akreditasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `akreditasi`
+-- Dumping data untuk tabel `akreditasi`
 --
 
 INSERT INTO `akreditasi` (`id_ak`, `id_kategori`, `kode`, `nama`, `jenis_akreditasi`, `tahun`) VALUES
@@ -65,7 +65,7 @@ INSERT INTO `akreditasi` (`id_ak`, `id_kategori`, `kode`, `nama`, `jenis_akredit
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_kabkota`
+-- Struktur dari tabel `data_kabkota`
 --
 
 CREATE TABLE `data_kabkota` (
@@ -74,7 +74,7 @@ CREATE TABLE `data_kabkota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_kabkota`
+-- Dumping data untuk tabel `data_kabkota`
 --
 
 INSERT INTO `data_kabkota` (`id_kabkota`, `kabkota`) VALUES
@@ -95,7 +95,7 @@ INSERT INTO `data_kabkota` (`id_kabkota`, `kabkota`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_klinik`
+-- Struktur dari tabel `data_klinik`
 --
 
 CREATE TABLE `data_klinik` (
@@ -108,7 +108,7 @@ CREATE TABLE `data_klinik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_klinik`
+-- Dumping data untuk tabel `data_klinik`
 --
 
 INSERT INTO `data_klinik` (`idx`, `kabkota`, `kodeklinik`, `namaklinik`, `jenisklinik`, `alamat`) VALUES
@@ -154,7 +154,7 @@ INSERT INTO `data_klinik` (`idx`, `kabkota`, `kodeklinik`, `namaklinik`, `jenisk
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_labkes`
+-- Struktur dari tabel `data_labkes`
 --
 
 CREATE TABLE `data_labkes` (
@@ -167,7 +167,7 @@ CREATE TABLE `data_labkes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_labkes`
+-- Dumping data untuk tabel `data_labkes`
 --
 
 INSERT INTO `data_labkes` (`idx`, `kabkota`, `kodelabkes`, `namalabkes`, `jenislabkes`, `alamat`) VALUES
@@ -185,7 +185,7 @@ INSERT INTO `data_labkes` (`idx`, `kabkota`, `kodelabkes`, `namalabkes`, `jenisl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_pkm`
+-- Struktur dari tabel `data_pkm`
 --
 
 CREATE TABLE `data_pkm` (
@@ -199,7 +199,7 @@ CREATE TABLE `data_pkm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_pkm`
+-- Dumping data untuk tabel `data_pkm`
 --
 
 INSERT INTO `data_pkm` (`idx`, `kabkota`, `kodepkm`, `namapkm`, `statuspkm`, `kategori`, `alamat`) VALUES
@@ -253,7 +253,7 @@ INSERT INTO `data_pkm` (`idx`, `kabkota`, `kodepkm`, `namapkm`, `statuspkm`, `ka
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_pmdrsp`
+-- Struktur dari tabel `data_pmdrsp`
 --
 
 CREATE TABLE `data_pmdrsp` (
@@ -265,7 +265,7 @@ CREATE TABLE `data_pmdrsp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_pmdrsp`
+-- Dumping data untuk tabel `data_pmdrsp`
 --
 
 INSERT INTO `data_pmdrsp` (`idx`, `kabkota`, `kodepmdrsp`, `namapmdrsp`, `alamat`) VALUES
@@ -285,7 +285,7 @@ INSERT INTO `data_pmdrsp` (`idx`, `kabkota`, `kodepmdrsp`, `namapmdrsp`, `alamat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_pmdrumum`
+-- Struktur dari tabel `data_pmdrumum`
 --
 
 CREATE TABLE `data_pmdrumum` (
@@ -297,7 +297,7 @@ CREATE TABLE `data_pmdrumum` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_pmdrumum`
+-- Dumping data untuk tabel `data_pmdrumum`
 --
 
 INSERT INTO `data_pmdrumum` (`idx`, `kabkota`, `kodepmdrumum`, `namapmdrumum`, `alamat`) VALUES
@@ -346,7 +346,7 @@ INSERT INTO `data_pmdrumum` (`idx`, `kabkota`, `kodepmdrumum`, `namapmdrumum`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_rumahsakit`
+-- Struktur dari tabel `data_rumahsakit`
 --
 
 CREATE TABLE `data_rumahsakit` (
@@ -359,7 +359,7 @@ CREATE TABLE `data_rumahsakit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_rumahsakit`
+-- Dumping data untuk tabel `data_rumahsakit`
 --
 
 INSERT INTO `data_rumahsakit` (`idx`, `kabkota`, `koderumah`, `namarumah`, `kategorirumah`, `alamat`) VALUES
@@ -368,7 +368,7 @@ INSERT INTO `data_rumahsakit` (`idx`, `kabkota`, `koderumah`, `namarumah`, `kate
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_utd`
+-- Struktur dari tabel `data_utd`
 --
 
 CREATE TABLE `data_utd` (
@@ -381,7 +381,7 @@ CREATE TABLE `data_utd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_utd`
+-- Dumping data untuk tabel `data_utd`
 --
 
 INSERT INTO `data_utd` (`idx`, `kabkota`, `kodeutd`, `namautd`, `jenisutd`, `alamat`) VALUES
@@ -401,7 +401,7 @@ INSERT INTO `data_utd` (`idx`, `kabkota`, `kodeutd`, `namautd`, `jenisutd`, `ala
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -410,7 +410,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -425,7 +425,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Struktur dari tabel `role`
 --
 
 CREATE TABLE `role` (
@@ -434,7 +434,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `role`
+-- Dumping data untuk tabel `role`
 --
 
 INSERT INTO `role` (`id_role`, `role`) VALUES
@@ -457,7 +457,7 @@ INSERT INTO `role` (`id_role`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -469,7 +469,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `nama`, `password`, `id_role`) VALUES
@@ -492,8 +492,8 @@ INSERT INTO `user` (`id_user`, `username`, `nama`, `password`, `id_role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_aklinik`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `view_aklinik`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `view_aklinik` (
 `id_ak` int(10)
@@ -510,8 +510,8 @@ CREATE TABLE `view_aklinik` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_alabkes`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `view_alabkes`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `view_alabkes` (
 `id_ak` int(10)
@@ -527,8 +527,8 @@ CREATE TABLE `view_alabkes` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_apmds`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `view_apmds`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `view_apmds` (
 `id_ak` int(10)
@@ -544,8 +544,8 @@ CREATE TABLE `view_apmds` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_apmdu`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `view_apmdu`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `view_apmdu` (
 `id_ak` int(10)
@@ -561,8 +561,8 @@ CREATE TABLE `view_apmdu` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_apuskes`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `view_apuskes`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `view_apuskes` (
 `id_ak` int(10)
@@ -578,8 +578,8 @@ CREATE TABLE `view_apuskes` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_arumah`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `view_arumah`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `view_arumah` (
 `id_ak` int(10)
@@ -595,8 +595,8 @@ CREATE TABLE `view_arumah` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_autd`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `view_autd`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `view_autd` (
 `id_ak` int(10)
@@ -613,7 +613,7 @@ CREATE TABLE `view_autd` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_aklinik`
+-- Struktur untuk view `view_aklinik`
 --
 DROP TABLE IF EXISTS `view_aklinik`;
 
@@ -622,7 +622,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_alabkes`
+-- Struktur untuk view `view_alabkes`
 --
 DROP TABLE IF EXISTS `view_alabkes`;
 
@@ -631,7 +631,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_apmds`
+-- Struktur untuk view `view_apmds`
 --
 DROP TABLE IF EXISTS `view_apmds`;
 
@@ -640,7 +640,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_apmdu`
+-- Struktur untuk view `view_apmdu`
 --
 DROP TABLE IF EXISTS `view_apmdu`;
 
@@ -649,7 +649,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_apuskes`
+-- Struktur untuk view `view_apuskes`
 --
 DROP TABLE IF EXISTS `view_apuskes`;
 
@@ -658,7 +658,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_arumah`
+-- Struktur untuk view `view_arumah`
 --
 DROP TABLE IF EXISTS `view_arumah`;
 
@@ -667,7 +667,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_autd`
+-- Struktur untuk view `view_autd`
 --
 DROP TABLE IF EXISTS `view_autd`;
 
@@ -678,28 +678,28 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
--- Indexes for table `akreditasi`
+-- Indeks untuk tabel `akreditasi`
 --
 ALTER TABLE `akreditasi`
   ADD PRIMARY KEY (`id_ak`) USING BTREE,
   ADD KEY `id_kategori_2` (`id_kategori`);
 
 --
--- Indexes for table `data_kabkota`
+-- Indeks untuk tabel `data_kabkota`
 --
 ALTER TABLE `data_kabkota`
   ADD PRIMARY KEY (`id_kabkota`),
   ADD KEY `kabkota` (`kabkota`);
 
 --
--- Indexes for table `data_klinik`
+-- Indeks untuk tabel `data_klinik`
 --
 ALTER TABLE `data_klinik`
   ADD PRIMARY KEY (`idx`),
   ADD KEY `kabkota` (`kabkota`);
 
 --
--- Indexes for table `data_labkes`
+-- Indeks untuk tabel `data_labkes`
 --
 ALTER TABLE `data_labkes`
   ADD PRIMARY KEY (`idx`),
@@ -709,158 +709,158 @@ ALTER TABLE `data_labkes`
   ADD KEY `kabkota_4` (`kabkota`);
 
 --
--- Indexes for table `data_pkm`
+-- Indeks untuk tabel `data_pkm`
 --
 ALTER TABLE `data_pkm`
   ADD PRIMARY KEY (`idx`),
   ADD KEY `kabkota` (`kabkota`);
 
 --
--- Indexes for table `data_pmdrsp`
+-- Indeks untuk tabel `data_pmdrsp`
 --
 ALTER TABLE `data_pmdrsp`
   ADD PRIMARY KEY (`idx`),
   ADD KEY `kabkota` (`kabkota`);
 
 --
--- Indexes for table `data_pmdrumum`
+-- Indeks untuk tabel `data_pmdrumum`
 --
 ALTER TABLE `data_pmdrumum`
   ADD PRIMARY KEY (`idx`),
   ADD KEY `kabkota` (`kabkota`);
 
 --
--- Indexes for table `data_rumahsakit`
+-- Indeks untuk tabel `data_rumahsakit`
 --
 ALTER TABLE `data_rumahsakit`
   ADD PRIMARY KEY (`idx`);
 
 --
--- Indexes for table `data_utd`
+-- Indeks untuk tabel `data_utd`
 --
 ALTER TABLE `data_utd`
   ADD PRIMARY KEY (`idx`),
   ADD KEY `kabkota` (`kabkota`);
 
 --
--- Indexes for table `kategori`
+-- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indexes for table `role`
+-- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id_role`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `id_role` (`id_role`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `akreditasi`
+-- AUTO_INCREMENT untuk tabel `akreditasi`
 --
 ALTER TABLE `akreditasi`
   MODIFY `id_ak` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT for table `data_kabkota`
+-- AUTO_INCREMENT untuk tabel `data_kabkota`
 --
 ALTER TABLE `data_kabkota`
   MODIFY `id_kabkota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `data_klinik`
+-- AUTO_INCREMENT untuk tabel `data_klinik`
 --
 ALTER TABLE `data_klinik`
   MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
--- AUTO_INCREMENT for table `data_labkes`
+-- AUTO_INCREMENT untuk tabel `data_labkes`
 --
 ALTER TABLE `data_labkes`
   MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `data_pkm`
+-- AUTO_INCREMENT untuk tabel `data_pkm`
 --
 ALTER TABLE `data_pkm`
   MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
--- AUTO_INCREMENT for table `data_pmdrsp`
+-- AUTO_INCREMENT untuk tabel `data_pmdrsp`
 --
 ALTER TABLE `data_pmdrsp`
   MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `data_pmdrumum`
+-- AUTO_INCREMENT untuk tabel `data_pmdrumum`
 --
 ALTER TABLE `data_pmdrumum`
   MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- AUTO_INCREMENT for table `data_rumahsakit`
+-- AUTO_INCREMENT untuk tabel `data_rumahsakit`
 --
 ALTER TABLE `data_rumahsakit`
   MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `data_utd`
+-- AUTO_INCREMENT untuk tabel `data_utd`
 --
 ALTER TABLE `data_utd`
   MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `akreditasi`
+-- Ketidakleluasaan untuk tabel `akreditasi`
 --
 ALTER TABLE `akreditasi`
   ADD CONSTRAINT `akreditasi_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `data_pkm`
+-- Ketidakleluasaan untuk tabel `data_pkm`
 --
 ALTER TABLE `data_pkm`
   ADD CONSTRAINT `data_pkm_ibfk_1` FOREIGN KEY (`kabkota`) REFERENCES `data_kabkota` (`kabkota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `data_pmdrsp`
+-- Ketidakleluasaan untuk tabel `data_pmdrsp`
 --
 ALTER TABLE `data_pmdrsp`
   ADD CONSTRAINT `data_pmdrsp_ibfk_1` FOREIGN KEY (`kabkota`) REFERENCES `data_kabkota` (`kabkota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `data_pmdrumum`
+-- Ketidakleluasaan untuk tabel `data_pmdrumum`
 --
 ALTER TABLE `data_pmdrumum`
   ADD CONSTRAINT `data_pmdrumum_ibfk_1` FOREIGN KEY (`kabkota`) REFERENCES `data_kabkota` (`kabkota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `user`
+-- Ketidakleluasaan untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
