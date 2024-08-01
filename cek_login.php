@@ -36,7 +36,7 @@ if($cek > 0){
 		
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Operator Dinkes Provinsi!');
-		document.location = 'views/dinkes/dashboard.php';
+		document.location = 'views/dinkes/dashboard/dashboard.php';
 		</script>";
 		
 		// header("location:views/admin/user/user.php");
@@ -63,7 +63,7 @@ if($cek > 0){
 		$_SESSION['id_role'] = $data['id_role'];
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Operator Dinkes Kabkota!');
-		document.location = 'views/dinkes/dashboard.php';
+		document.location = 'views/dinkes/dashboard/dashboard.php';
 		</script>";
 
 	}

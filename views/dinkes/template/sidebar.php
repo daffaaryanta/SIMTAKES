@@ -324,15 +324,15 @@ if ($id_role == 2) {
     <i class="fas fa-fw fa-user"></i>
         <span>Akun</span></a>
 </li>
-';
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">;';
 }
 
 ?>
 
 
 
-<!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">;
+
 
 <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">

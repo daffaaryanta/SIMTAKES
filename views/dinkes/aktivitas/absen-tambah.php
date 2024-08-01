@@ -7,11 +7,15 @@
 
         require '../../../koneksi.php';
         if (isset($_POST['simpan'])) {
-            if (tambahpmds($_POST)) {
+            if (tambahabsen($_POST)) {
+                $id_aktivitasa = $_GET['id_aktivitas'];
+$aktivitas = query("SELECT * FROM aktivitas WHERE id_aktivitas = $id_aktivitasa")[0];
                 echo "<script>
                         alert('Data berhasil ditambahkan!');
-                        document.location.href = 'pm_doktersp.php';
+                        
                     </script>";
+                
+                 header('Location: aktivitas_absen.php?id_aktivitas='.$aktivitas["id_aktivitas"]);
             } else {
                 // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
                 echo "<script>
@@ -19,6 +23,8 @@
                     </script>";
             }
         }
+        $id_aktivitasa = $_GET['id_aktivitas'];
+$aktivitas = query("SELECT * FROM aktivitas WHERE id_aktivitas = $id_aktivitasa")[0];
         ?>
 
 <!DOCTYPE html>
@@ -32,7 +38,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - PM Dokter Spesialis</title>
+    <title>SIMTAKES - Absen Aktivitas</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -122,7 +128,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Tambah Data PM Dokter Spesialis</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Data Absen</h1>
                         
                         
                     </div>
@@ -136,104 +142,55 @@
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
-                                            <select name="kabkota" id="kabkota" class="form-control" required> <?php
-                                                if ($id_role == '2') { ?>
-                                                <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
-                                                <option value="Kabupaten Banjar">Kabupaten Banjar</option>
-                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
-                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
-                                                <option value="Kabupaten Hulu Sungai Tengah">Kabupaten Hulu Sungai Tengah</option>
-                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
-                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
-                                                <option value="Kabupaten Tabalong">Kabupaten Tabalong</option>
-                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
-                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
-                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
-                                                <option value="Kota Banjarbaru">Kota Banjarmasin</option>
-                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
-                                                 <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '3') { ?>
-                                                    <option value="Kabupaten Balangan">Kabupaten Balangan</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '4') { ?>
-                                                    <option value="Kabupaten Banjar">Kabupaten Banjar</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '5') { ?>
-                                                    <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '6') { ?>
-                                                    <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '7') { ?>
-                                                    <option value="Kabupaten Hulu Sungai Tengah">Kabupaten Hulu Sungai Tengah</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '8') { ?>
-                                                    <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '9') { ?>
-                                                    <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '10') { ?>
-                                                    <option value="Kabupaten Tabalong">Kabupaten Tabalong</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '11') { ?>
-                                                    <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '12') { ?>
-                                                    <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '13') { ?>
-                                                    <option value="Kabupaten Tapin">Kabupaten Tapin</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '14') { ?>
-                                                    <option value="Kota Banjarbaru">Kota Banjarmasin</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '15') { ?>
-                                                    <option value="Kota Banjarmasin">Kota Banjarmasin</option> <?php
-                                                }
-                                                ?>  
+                                            <label for="kabkota"><strong>Nama Kegiatan</strong></label>
+                                            <select name="id_aktivitas" id="id_aktivitas" class="form-control" readonly>
+                                            
+                                                
+                                                <option value="<?= $aktivitas['id_aktivitas']; ?>"><?= $aktivitas['nama']; ?></option>
+                                                
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="kodepmdrsp"><strong>Kode PM Dokter Spesialis</strong></label>
-                                            <input type="text" name="kodepmdrsp" id="kodepmdrsp" placeholder="Masukkan Kode PM Dokter Spesialis" autocomplete="off" class="form-control" required>
+                                            <label for="nama"><strong>Nama</strong></label>
+                                            <input type="text" name="nama" id="nama" placeholder="Masukkan Nama" autocomplete="off" class="form-control" required>
                                                 
                                         </div>
                                     </div>
                                     <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                            <label for="jabatan"><strong>Jabatan</strong></label>
+                                            <div class="input-group ">
+                                                <input type="text" name="jabatan" id="jabatan" placeholder="Masukkan Jabatan" autocomplete="off" class="input form-control"  required>
+                                               </div>
+                                        </div>
+                                    
                                         <div class="form-group col-md-6">
-                                            <label for="namapmdrsp"><strong>Nama PM Dokter Spesialis</strong></label>
+                                            <label for="instansi"><strong>Instansi</strong></label>
+                                            <select name="instansi" id="instansi" class="form-control" required>
+                                            
+                                            <option value="">-- Silahkan Pilih --</option>
+                                            <option value="Dinas Kesehatan Provinsi Kalimantan Selatan">Dinas Kesehatan Provinsi Kalimantan Selatan</option>
+                                                <?php
+                                                
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_kabkota");
+                                                    while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                <option value="<?php echo 'Dinas Kesehatan '.$p['kabkota'] ?> "><?php echo 'Dinas Kesehatan '.$p['kabkota'] ?></option>
+                                                <?php
+                                                }
+                                                ?> 
+                                                
+                                            </select>
+                                               
+                                                
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                            <label for="hp"><strong>Nomor HP/WA</strong></label>
                                                 <div class="input-group ">
-                                                <input type="text" name="namapmdrsp" id="namapmdrsp" placeholder="Masukkan Nama PM Dokter Spesialis" autocomplete="off" class="input form-control"  required>
+                                                <input type="text" name="hp" id="hp" placeholder="Masukkan Nomor HP/WA" autocomplete="off" class="input form-control"  required>
                                                </div>
                                         </div>
                                         <div class="form-group col-md-6">
@@ -249,7 +206,7 @@
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="pm_doktersp.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="reset" class="btn"><a href="aktivitas_absen.php?id_aktivitas=<?= $aktivitas['id_aktivitas']; ?>" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>

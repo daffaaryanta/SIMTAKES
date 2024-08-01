@@ -7,17 +7,58 @@
 
         require '../../../koneksi.php';
         if (isset($_POST['simpan'])) {
-            if (tambahpmds($_POST)) {
+            $nama = $_POST["nama"];
+            $namac = ucwords($nama);
+            $tempat = $_POST["tempat"];
+            $tempatc = ucwords($tempat);
+            $waktu = $_POST["waktu"];
+            if ($_FILES["dokumentasi"]["error"] === 4) {
                 echo "<script>
-                        alert('Data berhasil ditambahkan!');
-                        document.location.href = 'pm_doktersp.php';
-                    </script>";
-            } else {
-                // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
-                echo "<script>
-                        alert('Data gagal ditambahkan!');
-                    </script>";
+                         alert('Data gagal ditambahkan!');
+                     </script>";
             }
+            else {
+                $fileName = $_FILES["dokumentasi"]["name"];
+                $fileSize = $_FILES["dokumentasi"]["size"];
+                $tmpName = $_FILES["dokumentasi"]["tmp_name"];
+
+                $validImageExtension = ['jpg', 'jpeg', 'png'];
+                $imageExtension = explode('.', $fileName);
+                $imageExtension = strtolower(end($imageExtension));
+                if(!in_array($imageExtension, $validImageExtension)){
+                    echo "<script>
+                         alert('Ekstensi foto salah!');
+                     </script>";
+                }
+                elseif ($fileSize > 1000000) {
+                    echo "<script>
+                         alert('Ukuran foto terlalu besar!');
+                     </script>";
+                }
+                else {
+                    $a = uniqid();
+                    $newImagename = $a.'.'.$imageExtension;
+
+                    move_uploaded_file($tmpName,'../../../img/' . $newImagename);
+                    $query = "INSERT INTO aktivitas VALUES ('', '$newImagename', '$namac', '$tempatc', '$waktu')";
+                    mysqli_query($koneksi, $query);
+                    echo "<script>
+                         alert('Data berhasil ditambahkan!');
+                         document.location.href = 'aktivitas.php';
+                     </script>";
+                }
+            }
+            // if (tambahaktivitas($_POST)) {
+            //     echo "<script>
+            //             alert('Data berhasil ditambahkan!');
+            //             document.location.href = 'aktivitas.php';
+            //         </script>";
+            // } else {
+            //     // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
+            //     echo "<script>
+            //             alert('Data gagal ditambahkan!');
+            //         </script>";
+            // }
         }
         ?>
 
@@ -32,7 +73,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - PM Dokter Spesialis</title>
+    <title>SIMTAKES - Klinik</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,8 +84,15 @@
     <!-- Custom styles for this template -->
     <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- DATEPICKER -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"  />
+    
+
     <!-- Custom styles for this page -->
     <link href="../../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
 
 </head>
 
@@ -122,7 +170,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Tambah Data PM Dokter Spesialis</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Aktivitas</h1>
                         
                         
                     </div>
@@ -136,120 +184,45 @@
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
-                                            <select name="kabkota" id="kabkota" class="form-control" required> <?php
-                                                if ($id_role == '2') { ?>
-                                                <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
-                                                <option value="Kabupaten Banjar">Kabupaten Banjar</option>
-                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
-                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
-                                                <option value="Kabupaten Hulu Sungai Tengah">Kabupaten Hulu Sungai Tengah</option>
-                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
-                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
-                                                <option value="Kabupaten Tabalong">Kabupaten Tabalong</option>
-                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
-                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
-                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
-                                                <option value="Kota Banjarbaru">Kota Banjarmasin</option>
-                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
-                                                 <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '3') { ?>
-                                                    <option value="Kabupaten Balangan">Kabupaten Balangan</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '4') { ?>
-                                                    <option value="Kabupaten Banjar">Kabupaten Banjar</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '5') { ?>
-                                                    <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '6') { ?>
-                                                    <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '7') { ?>
-                                                    <option value="Kabupaten Hulu Sungai Tengah">Kabupaten Hulu Sungai Tengah</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '8') { ?>
-                                                    <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '9') { ?>
-                                                    <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '10') { ?>
-                                                    <option value="Kabupaten Tabalong">Kabupaten Tabalong</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '11') { ?>
-                                                    <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '12') { ?>
-                                                    <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '13') { ?>
-                                                    <option value="Kabupaten Tapin">Kabupaten Tapin</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '14') { ?>
-                                                    <option value="Kota Banjarbaru">Kota Banjarmasin</option> <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($id_role == '15') { ?>
-                                                    <option value="Kota Banjarmasin">Kota Banjarmasin</option> <?php
-                                                }
-                                                ?>  
-                                            </select>
+                                            <label for="dokumentasi"><strong>Dokumentasi</strong></label>
+                                            <input type="file" name="dokumentasi" id="dokumentasi" placeholder="Masukkan Dokumentasi" autocomplete="off" class="input form-control" accept=".jpg, .jpeg, .png" value="" required>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="kodepmdrsp"><strong>Kode PM Dokter Spesialis</strong></label>
-                                            <input type="text" name="kodepmdrsp" id="kodepmdrsp" placeholder="Masukkan Kode PM Dokter Spesialis" autocomplete="off" class="form-control" required>
+                                            <label for="nama"><strong>Nama Kegiatan</strong></label>
+                                            <input type="text" name="nama" id="nama" placeholder="Masukkan Nama Kegiatan" autocomplete="off" class="form-control" required>
                                                 
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="namapmdrsp"><strong>Nama PM Dokter Spesialis</strong></label>
+                                            <label for="tempat"><strong>Tempat Kegiatan</strong></label>
                                                 <div class="input-group ">
-                                                <input type="text" name="namapmdrsp" id="namapmdrsp" placeholder="Masukkan Nama PM Dokter Spesialis" autocomplete="off" class="input form-control"  required>
-                                               </div>
+                                            
+                                                <input type="text" name="tempat" id="tempat" placeholder="Masukkan Tempat Kegiatan" autocomplete="off" class="input form-control"  required>
+                                               
+                                                </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="alamat"><strong>Alamat</strong></label>
-                                                <div class="input-group ">
-                                                <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control"  required>
-                                               </div>
+                                            <label for="waktu"><strong>Waktu Kegiatan</strong></label>
+                                            <div class="input-group date" id="datepicker">
+                                            <input type="text"  name="waktu" id="waktu" placeholder="Masukkan Waktu Kegiatan" autocomplete="off" class="input form-control" required
+                                            >
+                                            <span class="input-group-append">
+                                                <span class = "input-group-text bg-white">
+                                            <i class = "fa fa-calendar"></i></span>
+                                            </span>
+                                            </div>
                                         </div>
+                                        
                                     </div>
+                                    
                                 </div>
                            
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" name="simpan"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="pm_doktersp.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="reset" class="btn"><a href="aktivitas.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
                                 </form>
                             </div>
                         </div>
@@ -312,11 +285,18 @@
    
 
     <!-- Datatables -->
-    
+    <script src="../../../js/libs/moment.min.js"></script>
+    <script src="../../../js/libs/bootstrap-datetimepicker.min.js"></script>
     <script src="../../../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="../../../js/demo/datatables-demo.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/id.js"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         function password_show_hide() {
@@ -347,6 +327,14 @@ function myFunction() {
 }
 
     </script>
+<script type="text/javascript">
+                                            $(function () {
+                                                $('#datepicker').datepicker();
+                                                
+                                            });
+                                        </script>
+    
+    
 </body>
 
 </html>

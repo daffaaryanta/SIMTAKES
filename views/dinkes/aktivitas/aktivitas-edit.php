@@ -3,42 +3,49 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-// $dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
+// if ($id_role == '15') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kota Banjarmasin' ORDER BY namaklinik");
+// } elseif ($id_role == '3') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Balangan' ORDER BY namaklinik");
+// } elseif ($id_role == '4') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Banjar' ORDER BY namaklinik");
+// } elseif ($id_role == '5') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namaklinik");
+// } elseif ($id_role == '6') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namaklinik");
+// } elseif ($id_role == '7') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namaklinik");
+// } elseif ($id_role == '8') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namaklinik");
+// } elseif ($id_role == '9') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namaklinik");
+// } elseif ($id_role == '10') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namaklinik");
+// } elseif ($id_role == '11') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namaklinik");
+// } elseif ($id_role == '12') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namaklinik");
+// } elseif ($id_role == '13') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kabupaten Tapin' ORDER BY namaklinik");
+// } elseif ($id_role == '14') {
+//     $klinik = query("SELECT * FROM aktivitas WHERE kabkota = 'Kota Banjarbaru' ORDER BY namaklinik");
+// }elseif ($id_role == '2') {
+//     $klinik = query("SELECT * FROM aktivitas ORDER BY kabkota");
+// } else {
+//     echo "<script>alert('Anda harus login ulang!');
+// 		document.location = '../../../index.php';
+// 		</script>";
+//     exit(); // Terminate script execution after the redirect
+// }
 
-if ($id_role == '15') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kota Banjarmasin' ORDER BY namapmdrumum");
-} elseif ($id_role == '3') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Balangan' ORDER BY namapmdrumum");
-} elseif ($id_role == '4') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Banjar' ORDER BY namapmdrumum");
-} elseif ($id_role == '5') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namapmdrumum");
-} elseif ($id_role == '6') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namapmdrumum");
-} elseif ($id_role == '7') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namapmdrumum");
-} elseif ($id_role == '8') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namapmdrumum");
-} elseif ($id_role == '9') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namapmdrumum");
-} elseif ($id_role == '10') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namapmdrumum");
-} elseif ($id_role == '11') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namapmdrumum");
-} elseif ($id_role == '12') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namapmdrumum");
-} elseif ($id_role == '13') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kabupaten Tapin' ORDER BY namapmdrumum");
-} elseif ($id_role == '14') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum WHERE kabkota = 'Kota Banjarbaru' ORDER BY namapmdrumum");
-} elseif ($id_role == '2') {
-    $dokterumum = query("SELECT * FROM data_pmdrumum ORDER BY kabkota");
-} else {
+$klinik = query("SELECT * FROM aktivitas ");
+if ($id_role == FALSE) {
     echo "<script>alert('Anda harus login ulang!');
-		document.location = '../../../index.php';
+ 		document.location = '../../../index.php';
 		</script>";
     exit(); // Terminate script execution after the redirect
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +59,7 @@ if ($id_role == '15') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - PM Dokter Umum</title>
+    <title>SIMTAKES - Klinik</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -77,6 +84,7 @@ if ($id_role == '15') {
         <?php
         require '../template/sidebar.php';
         ?>
+        
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -99,40 +107,9 @@ if ($id_role == '15') {
                      
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
-                                <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
-                                $row = mysqli_fetch_array($index);
-                                if ($row && $row["nama"] == !'') {
-                                echo $row['nama'];
-                                }else
-                                {
-                                echo "no class";
-                                }
-                                ?>
-                                </span>
-                                
-                                    <i class="fas fa-caret-down fa-sm"></i>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                
-                                
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
+                    <?php
+                    require '../template/navbar.php';
+                    ?>
 
                 </nav>
                 <!-- End of Topbar -->
@@ -142,9 +119,10 @@ if ($id_role == '15') {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Praktek Mandiri Dokter Umum</h1>
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="pm_dokterumum-tambah.php" class="btn btn-primary btn-icon-split">
+                        <h1 class="h3 mb-0 text-gray-800">Aktivitas</h1>
+                        
+                        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <a href="klinik-tambah.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-plus"></i>
                                             </span>
@@ -156,12 +134,12 @@ if ($id_role == '15') {
                                     Download
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="../../cetak/cetak_dokterumum.php">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="../../excel/excel_pmdu.php">Excel (.xls)</a>
+                                    <a class="dropdown-item" href="../../cetak/cetak_klinik.php">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="../../excel/excel_klinik.php">Excel (.xls)</a>
                                     
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         
                     </div>
 
@@ -175,26 +153,27 @@ if ($id_role == '15') {
                                         <thead>
                                             <tr>
                                             <th>No</th>
-                                            <th>Kabkota</th>
-                                            <th>Kode PM Dokter Umum</th>
-                                            <th>Nama PM Dokter Umum</th>
-                                            <th>Alamat</th>
+                                            <th>Dokumentasi</th>
+                                            <th>Nama Kegiatan</th>
+                                            <th>Tempat Kegiatan</th>
+                                            <th>Waktu Kegiatan</th>
                                             <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            <?php foreach ($dokterumum as $du) : ?>
+                                            <?php foreach ($klinik as $aktivitas) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $du['kabkota'] ?></td>
-                                                <td><?= $du['kodepmdrumum'] ?></td>
-                                                <td><?= $du['namapmdrumum'] ?></td>
-                                                <td><?= $du['alamat'] ?></td>
+                                                <td><?= $aktivitas['dokumentasi'] ?></td>
+                                                <td><?= $aktivitas['nama'] ?></td>
+                                                <td><?= $aktivitas['tempat'] ?></td>
+                                                <td><?= $aktivitas['waktu'] ?></td>
                                                 <td>
                                                 <div class="container text-center">
-                                                    <a href="pm_dokterumum-edit.php?idx=<?= $du['idx']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusdu.php?idx=<?= $du['idx']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data PM Dokter Umum <?= $du['namapmdrumum']; ?> ?');"><i class="fa fa-trash"></i></a></td>
+                                                    <a href="aktivitas_absen.php"class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a>
+                                                    <a href="klinik-edit.php?id_kegiatan=<?= $aktivitas['id_kegiatan']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
+                                                    <a  href="hapusklinik.php?id_kegiatan=<?= $aktivitas['id_kegiatan']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Klinik <?= $aktivitas['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>
                                             <?php endforeach ?>
@@ -209,13 +188,9 @@ if ($id_role == '15') {
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
+            <?php
+            require '../template/footer.php';
+            ?>
             <!-- End of Footer -->
 
         </div>

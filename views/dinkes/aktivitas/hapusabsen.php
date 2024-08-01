@@ -1,0 +1,29 @@
+<?php
+require '../../../koneksi.php';
+
+// Mengambil data dari nis dengan fungsi get
+$id_absen = $_GET['id_absen'];
+// $id_aktivitasa = $_POST['id'];
+$sql = "DELETE FROM absen WHERE id_absen = $id_absen";
+
+// Jika fungsi hapus jika data terhapus, maka munculkan alert dibawah
+if(mysqli_query($koneksi, $sql)){
+    $message = "Data Berhasil Dihapus!";
+
+ 
+                
+                 header('Location: aktivitas_absen.php?id_aktivitas='.$_SESSION['id_aktivitas']);
+                 echo "<script type='text/javascript'>alert('$message');</script>";
+
+
+    
+
+    
+} else{
+    echo "ERROR: Hush! Sorry $sql. "
+        . mysqli_error($koneksi);
+}
+
+// Close connection
+
+?>

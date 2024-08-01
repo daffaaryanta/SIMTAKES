@@ -12,6 +12,7 @@ $username = $_SESSION['username'];
 $password = $_SESSION['password'];
 $id_role = $_SESSION['id_role'];
 
+
 // $nama_view = mysqli_query($koneksi,"SELECT nama from user where username='$username' and password='$password'");
 
 //  // membuat varibale array
@@ -475,4 +476,26 @@ function ubahakreditasi($data)
 
         mysqli_close($koneksi);
 }
+function tambahabsen($data)
+{
+    global $koneksi;
+    $id_aktivitas = $_REQUEST['id_aktivitas'];
+    $nama = $_REQUEST['nama'];
+    $jabatan = $_REQUEST['jabatan'];
+    $instansi = $_REQUEST['instansi'];
+    $hp = $_REQUEST['hp'];
+    $alamat = $_REQUEST['alamat'];
+
+    $namac = ucwords($nama);
+    $jabatanc = ucwords($jabatan);
+    $alamatc = ucwords($alamat);
+        // We are going to insert the data into our sampleDB table
+        $sql = "INSERT INTO absen ( id_aktivitas, nama, jabatan, instansi, hp, alamat) VALUES (
+            '$id_aktivitas', '$namac','$jabatanc','$instansi', '$hp', '$alamatc' )";
+    mysqli_query($koneksi, $sql);
+
+    return mysqli_affected_rows($koneksi);
+        
+}
+
 ?>
