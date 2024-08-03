@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jul 2024 pada 13.57
+-- Waktu pembuatan: 03 Agu 2024 pada 06.13
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `simtakes`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `absen`
+--
+
+CREATE TABLE `absen` (
+  `id_absen` int(11) NOT NULL,
+  `id_aktivitas` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jabatan` varchar(50) NOT NULL,
+  `instansi` varchar(50) NOT NULL,
+  `hp` varchar(20) NOT NULL,
+  `alamat` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `absen`
+--
+
+INSERT INTO `absen` (`id_absen`, `id_aktivitas`, `nama`, `jabatan`, `instansi`, `hp`, `alamat`) VALUES
+(47, 63, 'Daffa', 'Pemasak', 'Dinas Kesehatan Provinsi Kalimantan Selatan', '123', 'Handil Bakti');
 
 -- --------------------------------------------------------
 
@@ -61,6 +84,27 @@ INSERT INTO `akreditasi` (`id_ak`, `id_kategori`, `kode`, `nama`, `jenis_akredit
 (27, 5, '- ', 'Dr. Hj. Rosally Gunawan ', 'Dasar', '2020 '),
 (29, 6, '- ', 'Dr. RISNAWATI, Sp.KK ', 'Paripurna', '2017 '),
 (31, 7, '1560027 ', 'UTD PMI Kabupaten Tanah Laut ', 'Paripurna', '2021 ');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `aktivitas`
+--
+
+CREATE TABLE `aktivitas` (
+  `id_aktivitas` int(11) NOT NULL,
+  `dokumentasi` varchar(100) DEFAULT NULL,
+  `nama` varchar(100) NOT NULL,
+  `tempat` varchar(50) NOT NULL,
+  `waktu` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `aktivitas`
+--
+
+INSERT INTO `aktivitas` (`id_aktivitas`, `dokumentasi`, `nama`, `tempat`, `waktu`) VALUES
+(63, '66ada4b8c4e01.jpg', 'Tela-tela', 'Rumah', '13 Agustus 2024');
 
 -- --------------------------------------------------------
 
@@ -678,11 +722,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
+-- Indeks untuk tabel `absen`
+--
+ALTER TABLE `absen`
+  ADD PRIMARY KEY (`id_absen`),
+  ADD KEY `id_aktivitas` (`id_aktivitas`) USING BTREE;
+
+--
 -- Indeks untuk tabel `akreditasi`
 --
 ALTER TABLE `akreditasi`
   ADD PRIMARY KEY (`id_ak`) USING BTREE,
   ADD KEY `id_kategori_2` (`id_kategori`);
+
+--
+-- Indeks untuk tabel `aktivitas`
+--
+ALTER TABLE `aktivitas`
+  ADD PRIMARY KEY (`id_aktivitas`);
 
 --
 -- Indeks untuk tabel `data_kabkota`
@@ -766,10 +823,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `absen`
+--
+ALTER TABLE `absen`
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
 -- AUTO_INCREMENT untuk tabel `akreditasi`
 --
 ALTER TABLE `akreditasi`
   MODIFY `id_ak` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT untuk tabel `aktivitas`
+--
+ALTER TABLE `aktivitas`
+  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_kabkota`
@@ -781,43 +850,43 @@ ALTER TABLE `data_kabkota`
 -- AUTO_INCREMENT untuk tabel `data_klinik`
 --
 ALTER TABLE `data_klinik`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_labkes`
 --
 ALTER TABLE `data_labkes`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_pkm`
 --
 ALTER TABLE `data_pkm`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_pmdrsp`
 --
 ALTER TABLE `data_pmdrsp`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_pmdrumum`
 --
 ALTER TABLE `data_pmdrumum`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_rumahsakit`
 --
 ALTER TABLE `data_rumahsakit`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_utd`
 --
 ALTER TABLE `data_utd`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
@@ -829,11 +898,17 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `absen`
+--
+ALTER TABLE `absen`
+  ADD CONSTRAINT `absen_ibfk_1` FOREIGN KEY (`id_aktivitas`) REFERENCES `aktivitas` (`id_aktivitas`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `akreditasi`

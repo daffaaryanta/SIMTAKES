@@ -549,4 +549,41 @@ function ubahaktivitas($data)
 
         mysqli_close($koneksi);
 }
+
+function ubahpassword($data)
+{
+    global $koneksi;
+    $klinik = query("SELECT * FROM user")[0];
+        $id_user = $data['id_user'];
+        $passwordlama = $data['passwordlama'];
+        $passwordbaru = $data['passwordbaru'];
+        $passwordbaru2 = $data['passwordbaru2'];
+        
+        if ($passwordlama == $klinik["password"] ) {
+            if ($passwordbaru == $passwordbaru2) {
+                $sql = "UPDATE user SET   id_user = '$id_user', password = '$passwordbaru' WHERE id_user = '$id_user'";
+            }
+            else {
+                echo "<script>
+                alert('Password baru salah!');
+                document.location.href = 'ganti_password.php';
+            </script>";
+            }
+        }
+        else {
+            echo "<script>
+                alert('Password lama salah!');
+                document.location.href = 'ganti_password.php';
+            </script>";
+        }
+        // We are going to insert the data into our sampleDB table
+        
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
 ?>
