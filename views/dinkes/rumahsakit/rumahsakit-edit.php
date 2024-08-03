@@ -79,39 +79,12 @@ if (isset($_POST['ubah'])) {
                      
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
+<?php
+                    require '../template/navbar.php';
+                    ?>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
-                                <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
-                                $row = mysqli_fetch_array($index);
-                                if ($row && $row["nama"] == !'') {
-                                echo $row['nama'];
-                                }else
-                                {
-                                echo "no class";
-                                }
-                                ?>
-                                </span>
-                                    <i class="fas fa-caret-down fa-sm"></i>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                
-                                
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
+                </nav>
+                <!-- End of Topbar -->
 
                 </nav>
                 <!-- End of Topbar -->
@@ -138,23 +111,14 @@ if (isset($_POST['ubah'])) {
                                             <input type="hidden" name="idx" id="idx" value="<?= $klinik['idx']; ?>" autocomplete="off" class="form-control" readonly>
                                             <label for="kabkota"><strong>Kabupaten/Kota</strong></label>
                                             <select name="kabkota" id="kabkota" class="form-control" required> <?php
-                                                if ($id_role == '2') { ?>
-                                                <option value="">-- Silahkan Pilih --</option>
-                                                <option value="Kabupaten Balangan">Kabupaten Balangan</option>
-                                                <option value="Kabupaten Banjar">Kabupaten Banjar</option>
-                                                <option value="Kabupaten Barito Kuala">Kabupaten Barito Kuala</option>
-                                                <option value="Kabupaten Hulu Sungai Selatan">Kabupaten Hulu Sungai Selatan</option>
-                                                <option value="Kabupaten Hulu Sungai Tengah">Kabupaten Hulu Sungai Tengah</option>
-                                                <option value="Kabupaten Hulu Sungai Utara">Kabupaten Hulu Sungai Utara</option>
-                                                <option value="Kabupaten Kotabaru">Kabupaten Kotabaru</option>
-                                                <option value="Kabupaten Tabalong">Kabupaten Tabalong</option>
-                                                <option value="Kabupaten Tanah Bumbu">Kabupaten Tanah Bumbu</option>
-                                                <option value="Kabupaten Tanah Laut">Kabupaten Tanah Laut</option>
-                                                <option value="Kabupaten Tapin">Kabupaten Tapin</option>
-                                                <option value="Kota Banjarbaru">Kota Banjarmasin</option>
-                                                <option value="Kota Banjarmasin">Kota Banjarmasin</option>
+                                            if ($id_role == '2') {
+                                            $det = mysqli_query($koneksi, "SELECT * from data_kabkota");
+                                            while ($p = mysqli_fetch_assoc($det)) { ?>
+                                                 <option <?php if ($p['kabkota']==$klinik['kabkota']) { ?>selected="selected"<?php } ?>>
+                                                    <?php echo htmlspecialchars($p['kabkota']); ?>
+                                                </option>
                                                  <?php
-                                                }
+                                                }}
                                                 ?>
                                                 <?php
                                                 if ($id_role == '3') { ?>
@@ -274,13 +238,9 @@ if (isset($_POST['ubah'])) {
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
+<?php
+            require '../template/footer.php';
+            ?>
             <!-- End of Footer -->
 
         </div>
@@ -295,24 +255,9 @@ if (isset($_POST['ubah'])) {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../../logout.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+        require '../template/logout_modal.php';
+        ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../../../vendor/jquery/jquery.min.js"></script>

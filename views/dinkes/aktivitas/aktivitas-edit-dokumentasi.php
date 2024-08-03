@@ -5,20 +5,47 @@ require '../../../koneksi.php';
 $id_aktivitas = $_GET['id_aktivitas'];
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 $klinik = query("SELECT * FROM aktivitas WHERE id_aktivitas = $id_aktivitas")[0];
-
+$query = mysqli_query($koneksi, "SELECT dokumentasi FROM aktivitas WHERE id_aktivitas = $id_aktivitas");
+$result = mysqli_fetch_assoc($query);
+$resultstring = $result['dokumentasi'];
 
 if (isset($_POST['ubah'])) {
-   
-    if (ubahaktivitas($_POST) > 0) {
+    if ($_FILES["dokumentasi"]["error"] === 4) {
         echo "<script>
-                alert('Data berhasil diubah!');
-                document.location.href = 'aktivitas.php';
-            </script>";
-    } else {
-        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
-        echo "<script>
-                alert('Data gagal diubah!');
-            </script>";
+                 alert('Data gagal ditambahkan!');
+             </script>";
+    }
+    else {
+        $fileName = $_FILES["dokumentasi"]["name"];
+        $fileSize = $_FILES["dokumentasi"]["size"];
+        $tmpName = $_FILES["dokumentasi"]["tmp_name"];
+
+        $validImageExtension = ['jpg', 'jpeg', 'png'];
+        $imageExtension = explode('.', $fileName);
+        $imageExtension = strtolower(end($imageExtension));
+        if(!in_array($imageExtension, $validImageExtension)){
+            echo "<script>
+                 alert('Ekstensi foto salah!');
+             </script>";
+        }
+        elseif ($fileSize > 1000000) {
+            echo "<script>
+                 alert('Ukuran foto terlalu besar!');
+             </script>";
+        }
+        else {
+            $a = uniqid();
+            $newImagename = $a.'.'.$imageExtension;
+
+            move_uploaded_file($tmpName,'../../../img/' . $newImagename);
+            unlink('../../../img/'.$resultstring);
+            $query = "UPDATE aktivitas SET dokumentasi = '$newImagename' WHERE id_aktivitas = '$id_aktivitas'";
+            mysqli_query($koneksi, $query);
+            echo "<script>
+                 alert('Data berhasil ditambahkan!');
+                 document.location.href = 'aktivitas.php';
+             </script>";
+        }
     }
 }
 ?>
@@ -127,7 +154,7 @@ if (isset($_POST['ubah'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data Aktivitas</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Dokumentasi Aktivitas <?= $klinik["nama"]; ?></h1>
                         
                         
                     </div>
@@ -135,51 +162,33 @@ if (isset($_POST['ubah'])) {
                     <!-- Content Row -->
                     
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="card shadow mb-4">
-                            
-                                <div class="card-body">
+                        
+                        <div class="col-sm-6">
+                        <div class="card shadow mb-4" >
+                            <div class="card-body">
                                 <form action="" method="post" enctype="multipart/form-data">
-                                    <div class="form-row">
+                                <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <input type="hidden" name="id_aktivitas" id="id_aktivitas" value="<?= $klinik['id_aktivitas']; ?>" autocomplete="off" class="form-control" readonly>
-                                            <label for="dokumentasi"><strong>Dokumentasi</strong></label>&nbsp;&nbsp;&nbsp;<br>
-                                            <!-- <img src='../../../img/<?php echo $klinik['dokumentasi'];?>' width='auto' height='200px' > -->
-                                            <a href='aktivitas-edit-dokumentasi.php?id_aktivitas=<?= $klinik['id_aktivitas']; ?>' class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit Dokumentasi</a>
+                                            <label for="dokumentasi"><strong>Dokumentasi Lama</strong></label>&nbsp;&nbsp;&nbsp;<br>
+                                            <img src='../../../img/<?php echo $klinik['dokumentasi'];?>' width='auto' height='400px' >
+                                            
                                             
                                             
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="nama"><strong>Nama Kegiatan</strong></label><br>
-                                            <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" required>
+                                        <label for="dokumentasi"><strong>Dokumentasi Baru</strong></label>&nbsp;&nbsp;&nbsp;<br>
+                                        <input type="file" name="dokumentasi" id="dokumentasi" placeholder="Masukkan Dokumentasi" autocomplete="off" class="input form-control" accept=".jpg, .jpeg, .png" value="" required>
                                                 
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="tempat"><strong>Tempat Kegiatan</strong></label>
-                                                <div class="input-group ">
-                                            
-                                                <input type="text" name="tempat" id="tempat" value="<?= $klinik['tempat']; ?>" autocomplete="off" class="input form-control"  required>
-                                               
-                                                </div>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="waktu"><strong>Waktu Kegiatan</strong></label>
-                                            <div class="input-group date" data-provide="datepicker" id="datepicker">
-                                            
-                                                <input type="text" name="waktu" id="waktu" value="<?= $klinik['waktu']; ?>" autocomplete="off" class="input form-control" class="datepicker" data-date-format="dd/mm/yyyy"   required>
-                                                <span class="input-group-append">
-                                                <span class = "input-group-text bg-white">
-                                            <i class = "fa fa-calendar"></i></span>
-                                            </span>
-                                                </div>
-                                        </div>
                                     
-                                    </div>
                                     
-                                </div>
-                           
+                                </div>   
+                            </div>
                         </div>
+                        </div> 
+                        
+                        
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>

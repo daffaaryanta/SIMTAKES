@@ -89,6 +89,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"  />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"  />
     
+    
 
     <!-- Custom styles for this page -->
     <link href="../../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -204,8 +205,8 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="waktu"><strong>Waktu Kegiatan</strong></label>
-                                            <div class="input-group date" id="datepicker">
-                                            <input type="text"  name="waktu" id="waktu" placeholder="Masukkan Waktu Kegiatan" autocomplete="off" class="input form-control" required
+                                            <div class="input-group date" data-provide="datepicker" id="datepicker">
+                                            <input  type="text"  name="waktu" id="waktu" placeholder="Masukkan Waktu Kegiatan" autocomplete="off" class="input form-control" class="datepicker" data-date-format="dd/mm/yyyy"required
                                             >
                                             <span class="input-group-append">
                                                 <span class = "input-group-text bg-white">
@@ -292,11 +293,10 @@
 
     <script src="../../../js/demo/datatables-demo.js"></script>
 
+     <!-- Datepicker -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/id.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
     
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         function password_show_hide() {
@@ -327,11 +327,23 @@ function myFunction() {
 }
 
     </script>
-<script type="text/javascript">
-                                            $(function () {
-                                                $('#datepicker').datepicker();
-                                                
-                                            });
+<script>
+    $.fn.datepicker.defaults.format = "dd MM yyyy";
+    $.fn.datepicker.dates['en'] = {
+    days: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+    daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    months: ["Januari", "Pebruari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+    monthsShort: ["Jan", "Peb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sept", "Okt", "Nop", "Des"],
+    today: "Hari ini",
+    clear: "Clear",
+    format: "dd MM yyyy",
+    titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+    weekStart: 0
+};
+    $('.datepicker').datepicker({
+    language: 'id'
+});
                                         </script>
     
     

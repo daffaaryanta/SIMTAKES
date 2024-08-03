@@ -2,25 +2,36 @@
 // Memanggil atau membutuhkan file function.php
 require '../../../koneksi.php';
 
-$id_aktivitas = $_GET['id_aktivitas'];
+$id_absen = $_GET['id_absen'];
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-$klinik = query("SELECT * FROM aktivitas WHERE id_aktivitas = $id_aktivitas")[0];
+$klinik = query("SELECT * FROM absen WHERE id_absen = $id_absen")[0];
+// $id_aktivitas = $klinik['id_aktivitas'];
 
 
 if (isset($_POST['ubah'])) {
-   
-    if (ubahaktivitas($_POST) > 0) {
-        echo "<script>
-                alert('Data berhasil diubah!');
-                document.location.href = 'aktivitas.php';
-            </script>";
-    } else {
-        // Jika fungsi ubah jika data tidak terubah, maka munculkan alert dibawah
-        echo "<script>
-                alert('Data gagal diubah!');
-            </script>";
-    }
-}
+    if (ubahabsen($_POST) > 0) {
+
+        
+$aktivitas = mysqli_query($koneksi, "SELECT * FROM absen WHERE id_absen = $id_absen");
+$result = mysqli_fetch_assoc($aktivitas);
+$resultstring = $result['id_aktivitas'];
+
+                echo '<script>
+                var currString =';
+                echo $resultstring;
+                echo ';
+                        alert("Data berhasil ditambahkan!");
+                        window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+                    </script>';
+                
+                //  header('Location: aktivitas_absen.php?id_aktivitas='.$aktivitas["id_aktivitas"]);
+            } else {
+                // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
+                echo "<script>
+                        alert('Data gagal ditambahkan!');
+                    </script>";
+            }
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +44,7 @@ if (isset($_POST['ubah'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Aktivitas</title>
+    <title>SIMTAKES - Absen</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,11 +57,6 @@ if (isset($_POST['ubah'])) {
 
     <!-- Custom styles for this page -->
     <link href="../../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-    <!-- DATEPICKER -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"  />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"  />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"  />
 
 </head>
 
@@ -127,7 +133,7 @@ if (isset($_POST['ubah'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Data Aktivitas</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Data Absen <?php echo $klinik["nama"] ?></h1>
                         
                         
                     </div>
@@ -141,49 +147,59 @@ if (isset($_POST['ubah'])) {
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <input type="hidden" name="id_aktivitas" id="id_aktivitas" value="<?= $klinik['id_aktivitas']; ?>" autocomplete="off" class="form-control" readonly>
-                                            <label for="dokumentasi"><strong>Dokumentasi</strong></label>&nbsp;&nbsp;&nbsp;<br>
-                                            <!-- <img src='../../../img/<?php echo $klinik['dokumentasi'];?>' width='auto' height='200px' > -->
-                                            <a href='aktivitas-edit-dokumentasi.php?id_aktivitas=<?= $klinik['id_aktivitas']; ?>' class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit Dokumentasi</a>
-                                            
-                                            
+                                            <input type="hidden" name="id_absen" id="id_absen" value="<?= $klinik['id_absen']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <label for="nama"><strong>Nama</strong></label>
+                                            <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" required>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="nama"><strong>Nama Kegiatan</strong></label><br>
-                                            <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" required>
+                                            <label for="jabatan"><strong>Jabatan</strong></label>
+                                            <input type="text" name="jabatan" id="jabatan" value="<?= $klinik['jabatan']; ?>" autocomplete="off" class="form-control" required>
                                                 
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="tempat"><strong>Tempat Kegiatan</strong></label>
-                                                <div class="input-group ">
+                                            <label for="instansi"><strong>Instansi</strong></label>
+                                            <select name="instansi" id="instansi" class="form-control" required>
                                             
-                                                <input type="text" name="tempat" id="tempat" value="<?= $klinik['tempat']; ?>" autocomplete="off" class="input form-control"  required>
-                                               
-                                                </div>
+                                            
+                                            
+                                                <?php
+                                                
+                                                    $det = mysqli_query($koneksi, "SELECT * from data_kabkota");
+                                                    while ($p = mysqli_fetch_array($det)) {
+                                                ?>
+                                                <option value="<?php echo 'Dinas Kesehatan '.$p['kabkota'] ?> " <?php if ($klinik['instansi'] == 'Dinas Kesehatan '.$p['kabkota']) { ?> selected='' <?php } ?>><?php echo 'Dinas Kesehatan '.$p['kabkota'] ?></option>
+                                                <?php
+                                                }
+                                                ?> 
+                                                <option value="Dinas Kesehatan Provinsi Kalimantan Selatan" <?php if ($klinik['instansi'] == 'Dinas Kesehatan Provinsi Kalimantan Selatan') { ?> selected='' <?php } ?>>Dinas Kesehatan Provinsi Kalimantan Selatan</option>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="waktu"><strong>Waktu Kegiatan</strong></label>
-                                            <div class="input-group date" data-provide="datepicker" id="datepicker">
-                                            
-                                                <input type="text" name="waktu" id="waktu" value="<?= $klinik['waktu']; ?>" autocomplete="off" class="input form-control" class="datepicker" data-date-format="dd/mm/yyyy"   required>
-                                                <span class="input-group-append">
-                                                <span class = "input-group-text bg-white">
-                                            <i class = "fa fa-calendar"></i></span>
-                                            </span>
-                                                </div>
+                                        <label for="hp"><strong>Nomor HP/WA</strong></label>
+                                                <div class="input-group ">
+                                                <input type="text" name="hp" id="hp" placeholder="Masukkan Nomor HP/WA" autocomplete="off" class="input form-control"  value="<?= $klinik['hp']; ?>" required>
+                                               </div>
                                         </div>
                                     
                                     </div>
-                                    
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                        <label for="alamat"><strong>Alamat</strong></label>
+                                                <div class="input-group ">
+                                                <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control" value="<?= $klinik['alamat']; ?>" required>
+                                               </div>
+                                        </div>
+                                    </div>
                                 </div>
                            
                         </div>
                         <div class="d-sm-flex align-items-right justify-content-between mb-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" name="ubah"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
-                                <button type="reset" class="btn"><a href="aktivitas.php" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                <button type="reset" class="btn"><a href="aktivitas_absen.php?id_aktivitas=<?= $klinik['id_aktivitas']; ?>" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;&nbsp;Batal</a></button>
+                                
                                 </form>
                             </div>
                         </div>
@@ -252,11 +268,6 @@ if (isset($_POST['ubah'])) {
 
     <script src="../../../js/demo/datatables-demo.js"></script>
 
-    <!-- Datepicker -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
-    
-
     <script>
         function password_show_hide() {
   var x = document.getElementById("password");
@@ -286,24 +297,6 @@ function myFunction() {
 }
 
     </script>
-    <script>
-    $.fn.datepicker.defaults.format = "dd MM yyyy";
-    $.fn.datepicker.dates['en'] = {
-    days: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
-    daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-    months: ["Januari", "Pebruari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
-    monthsShort: ["Jan", "Peb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sept", "Okt", "Nop", "Des"],
-    today: "Hari ini",
-    clear: "Clear",
-    format: "dd MM yyyy",
-    titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
-    weekStart: 0
-};
-    $('.datepicker').datepicker({
-    language: 'id'
-});
-                                        </script>
 </body>
 
 </html>

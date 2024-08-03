@@ -480,7 +480,7 @@ for (var i = 0; i < btns.length; i++) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Absen Aktivitas <?=$aktivitas['nama']  ?>
-                        <?= $ab ?></h1>
+                        </h1>
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <a href="absen-tambah.php?id_aktivitas=<?= $aktivitas['id_aktivitas']; ?>" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
@@ -537,7 +537,7 @@ for (var i = 0; i < btns.length; i++) {
                                                 <td><?= $a['alamat'] ?></td>
                                                 <td>
                                                 <div class="container text-center">
-                                                    <a href="aktivitas-edit.php?id_aktivitas=<?= $aktivitas['id_aktivitas']; ?>"class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Absen"><i class="fa fa-pen"></i></a>
+                                                    <a href="absen-edit.php?id_absen=<?= $a['id_absen']; ?>"class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Absen"><i class="fa fa-pen"></i></a>
                                                     <a  href="hapusabsen.php?id_absen=<?= $a['id_absen']; ?>" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus Absen" onclick="return confirm('Apakah anda yakin ingin menghapus data <?= $a['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
                                                 </div>
                                             </tr>

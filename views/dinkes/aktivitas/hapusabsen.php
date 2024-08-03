@@ -8,12 +8,18 @@ $sql = "DELETE FROM absen WHERE id_absen = $id_absen";
 
 // Jika fungsi hapus jika data terhapus, maka munculkan alert dibawah
 if(mysqli_query($koneksi, $sql)){
-    $message = "Data Berhasil Dihapus!";
+    
 
- 
+    echo '<script>
+    var currString =';
+    echo $_SESSION['id_aktivitas'];
+    echo ';
+            alert("Data berhasil dihapus!");
+            window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+        </script>';
                 
-                 header('Location: aktivitas_absen.php?id_aktivitas='.$_SESSION['id_aktivitas']);
-                 echo "<script type='text/javascript'>alert('$message');</script>";
+                //  header('Location: aktivitas_absen.php?id_aktivitas='.$_SESSION['id_aktivitas']);
+                //  echo "<script type='text/javascript'>alert('$message');</script>";
 
 
     

@@ -9,13 +9,19 @@
         if (isset($_POST['simpan'])) {
             if (tambahabsen($_POST)) {
                 $id_aktivitasa = $_GET['id_aktivitas'];
-$aktivitas = query("SELECT * FROM aktivitas WHERE id_aktivitas = $id_aktivitasa")[0];
-                echo "<script>
-                        alert('Data berhasil ditambahkan!');
-                        
-                    </script>";
+$aktivitas = mysqli_query($koneksi, "SELECT * FROM aktivitas WHERE id_aktivitas = $id_aktivitasa");
+$result = mysqli_fetch_assoc($aktivitas);
+$resultstring = $result['id_aktivitas'];
+
+                echo '<script>
+                var currString =';
+                echo $resultstring;
+                echo ';
+                        alert("Data berhasil ditambahkan!");
+                        window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+                    </script>';
                 
-                 header('Location: aktivitas_absen.php?id_aktivitas='.$aktivitas["id_aktivitas"]);
+                //  header('Location: aktivitas_absen.php?id_aktivitas='.$aktivitas["id_aktivitas"]);
             } else {
                 // Jika fungsi tambah jika data tidak tersimpan, maka munculkan alert dibawah
                 echo "<script>

@@ -498,4 +498,55 @@ function tambahabsen($data)
         
 }
 
+function ubahabsen($data)
+{
+    global $koneksi;
+
+        $id_absen = $data['id_absen'];
+        $nama = $data['nama'];
+        $jabatan = $_REQUEST['jabatan'];
+    $instansi = $_REQUEST['instansi'];
+    $hp = $_REQUEST['hp'];
+    $alamat = $_REQUEST['alamat'];
+
+    $namac = ucwords($nama);
+    $jabatanc = ucwords($jabatan);
+    $alamatc = ucwords($alamat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE absen SET   id_absen = '$id_absen', nama = '$namac', jabatan = '$jabatanc' ,instansi = '$instansi' , hp = '$hp', alamat = '$alamatc' WHERE id_absen = '$id_absen'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
+
+function ubahaktivitas($data)
+{
+    global $koneksi;
+
+        $id_aktivitas = $data['id_aktivitas'];
+        // $dokumentasi = $data['dokumentasi'];
+        $nama = $data['nama'];
+        $tempat = $data['tempat'];
+        $waktu = $data['waktu'];
+        
+
+        
+        $namac = ucwords($nama);
+        $tempatc = ucwords($tempat);
+        
+        // We are going to insert the data into our sampleDB table
+        $sql = "UPDATE aktivitas SET   id_aktivitas = '$id_aktivitas',  nama = '$namac' ,tempat = '$tempatc' , waktu = '$waktu' WHERE id_aktivitas = '$id_aktivitas'";
+        
+
+        mysqli_query($koneksi, $sql);
+
+        return mysqli_affected_rows($koneksi);
+
+        mysqli_close($koneksi);
+}
 ?>
