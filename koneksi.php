@@ -553,19 +553,23 @@ function ubahaktivitas($data)
 function ubahpassword($data)
 {
     global $koneksi;
-    $klinik = query("SELECT * FROM user")[0];
+     
         $id_user = $data['id_user'];
         $passwordlama = $data['passwordlama'];
         $passwordbaru = $data['passwordbaru'];
         $passwordbaru2 = $data['passwordbaru2'];
+
+        $aktivitas = mysqli_query($koneksi,"SELECT * FROM user WHERE password = '$passwordlama'");
+    $result = mysqli_fetch_assoc($aktivitas);
+    $resultstring = $result['password'];
         
-        if ($passwordlama == $klinik["password"] ) {
+        if ($passwordlama == $resultstring ) {
             if ($passwordbaru == $passwordbaru2) {
                 $sql = "UPDATE user SET   id_user = '$id_user', password = '$passwordbaru' WHERE id_user = '$id_user'";
             }
             else {
                 echo "<script>
-                alert('Password baru salah!');
+                alert('Password baru tidak sama!');
                 document.location.href = 'ganti_password.php';
             </script>";
             }

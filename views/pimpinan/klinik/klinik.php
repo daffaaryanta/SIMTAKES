@@ -39,133 +39,9 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
-                
-                <div class="sidebar-brand-text mx-3">SIMTAKES</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item ">
-                <a class="nav-link" href="../dashboard.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Beranda</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="../rumahsakit/rumahsakit.php">
-                <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Rumah Sakit</span></a>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item ">
-                <a class="nav-link " href="../puskesmas/puskesmas.php" >
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Puskesmas</span>
-                </a>
-                
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link " href="" >
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Klinik</span>
-                </a>
-                
-            </li>
-
-            
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link " href="../labkes/labkes.php" >
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Labkes</span>
-                </a>
-                
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Praktek Mandiri</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Data Praktek Mandiri:</h6>
-                        <a class="collapse-item" href="../praktekmandiri/pm_dokterumum.php">Dokter Umum</a>
-                        <a class="collapse-item" href="../praktekmandiri/pm_doktersp.php">Dokter Spesialis</a>
-                        
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="../transfusidarah/transfusidarah.php">
-                <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Unit Tranfusi Darah</span></a>
-            </li>
-
-           <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAkreditasi"
-                    aria-expanded="true" aria-controls="collapseAkreditasi">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Akreditasi</span>
-                </a>
-                <div id="collapseAkreditasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Akreditasi:</h6>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_rumahsakit.php">Rumah Sakit</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_puskesmas.php">Puskesmas</a>
-                        <a class="collapse-item " href="../akreditasi/akreditasi_klinik.php">Klinik</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_labkes.php">Labkes</a>
-                        <a class="collapse-item " href="../akreditasi/akreditasi_pmdu.php">PM Dokter Umum</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_pmds.php">PM Dokter Spesialis</a>
-                        <a class="collapse-item" href="../akreditasi/akreditasi_transfusi.php">Unit Transfusi Darah</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Nav Item - Akun -->
-            <?php 
-            if ($id_role == 2) {
-                echo $p  = '
-                <li class="nav-item ">
-                <a class="nav-link" href="../user/user.php">
-                <i class="fas fa-fw fa-user"></i>
-                    <span>Akun</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">';
-            }
-            
-            ?>
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php
+        require '../template/sidebar.php';
+        ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -188,40 +64,9 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
                      
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Selamat Datang, 
-                                <?php $index = mysqli_query($koneksi,"SELECT nama from user where username='$username' AND id_role = '$id_role'");
-                                $row = mysqli_fetch_array($index);
-                                if ($row && $row["nama"] == !'') {
-                                echo $row['nama'];
-                                }else
-                                {
-                                echo "no class";
-                                }
-                                ?>
-                                </span>
-                                
-                                    <i class="fas fa-caret-down fa-sm"></i>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                
-                                
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
+                    <?php
+                    require '../template/navbar.php';
+                    ?>
 
                 </nav>
                 <!-- End of Topbar -->
@@ -291,13 +136,9 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
+            <?php
+            require '../template/footer.php';
+            ?>
             <!-- End of Footer -->
 
         </div>
@@ -312,24 +153,9 @@ $klinik = query("SELECT * FROM data_klinik ORDER BY kabkota");
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../../../logout.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+        require '../template/logout_modal.php';
+        ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../../../vendor/jquery/jquery.min.js"></script>

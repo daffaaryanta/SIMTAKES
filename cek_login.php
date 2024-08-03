@@ -51,7 +51,7 @@ if($cek > 0){
 		$_SESSION['id_role'] = $data['id_role'];
 		// alihkan ke halaman dashboard admin
 		echo "<script>alert('Anda login sebagai Pimpinan!');
-		document.location = 'views/pimpinan/dashboard.php';
+		document.location = 'views/pimpinan/dashboard/dashboard.php';
 		</script>";
 
 	}
