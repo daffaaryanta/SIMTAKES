@@ -1,13 +1,4 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
-    
-    <div class="sidebar-brand-text mx-3">SIMTAKES</div>
-</a>
-
-
 <?php  
     if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
          $url = "https://";   
@@ -20,6 +11,28 @@
     $url.= $_SERVER['REQUEST_URI'];    
       
     ?>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<!-- Sidebar - Brand -->
+<?php 
+    if (strpos($url, "dashboard/dashboard") !== false) {
+        ?>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+            <?php
+        
+     } else {
+        ?>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../dashboard/dashboard.php">
+        <?php
+     }
+  ?> 
+<!-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php"> -->
+    
+    <div class="sidebar-brand-text mx-3">SIMTAKES</div>
+</a>
+
+
+
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
@@ -294,7 +307,7 @@
 
 <!-- Nav Item - Charts -->
 <?php 
-    if (strpos($url, "aktivitas") !== false) {
+    if (strpos($url, "aktivitas/aktivitas") !== false) {
         ?>
         <li class="nav-item active">
         <a class="nav-link" href="">

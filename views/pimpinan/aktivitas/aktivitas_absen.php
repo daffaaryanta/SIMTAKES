@@ -85,16 +85,7 @@ $_SESSION['id_aktivitas'] = $ab;
 
         <!-- Sidebar -->
         <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
-    
-    <div class="sidebar-brand-text mx-3">SIMTAKES</div>
-</a>
-
-
-<?php  
+        <?php  
     if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
          $url = "https://";   
     else  
@@ -106,6 +97,27 @@ $_SESSION['id_aktivitas'] = $ab;
     $url.= $_SERVER['REQUEST_URI'];    
       
     ?>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<!-- Sidebar - Brand -->
+<?php 
+    if (strpos($url, "dashboard/dashboard") !== false) {
+        ?>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+            <?php
+        
+     } else {
+        ?>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../dashboard/dashboard.php">
+        <?php
+     }
+  ?> 
+    
+    <div class="sidebar-brand-text mx-3">SIMTAKES</div>
+</a>
+
+
+
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 

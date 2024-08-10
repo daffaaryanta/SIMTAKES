@@ -47,7 +47,7 @@ if ($id_role == FALSE) {
 		</script>";
     exit(); // Terminate script execution after the redirect
 }
-$ab = $aktivitas['id_aktivitas'];
+$ab = $id_aktivitasa;
 $_SESSION['id_aktivitas'] = $ab;
 ?>
 
@@ -88,12 +88,6 @@ $_SESSION['id_aktivitas'] = $ab;
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
-    
-    <div class="sidebar-brand-text mx-3">SIMTAKES</div>
-</a>
-
-
 <?php  
     if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
          $url = "https://";   
@@ -106,6 +100,25 @@ $_SESSION['id_aktivitas'] = $ab;
     $url.= $_SERVER['REQUEST_URI'];    
       
     ?>
+
+<?php 
+    if (strpos($url, "dashboard/dashboard") !== false) {
+        ?>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+            <?php
+        
+     } else {
+        ?>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../dashboard/dashboard.php">
+        <?php
+     }
+  ?> 
+    
+    <div class="sidebar-brand-text mx-3">SIMTAKES</div>
+</a>
+
+
+
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
@@ -489,19 +502,23 @@ for (var i = 0; i < btns.length; i++) {
                                             <span class="text">Tambah Absen</span>
                             </a>&nbsp;&nbsp;
                             
-                            </div>
-                            <!-- <div class="btn-group">
+                            <?php
+                            if ($id_role == 2) {
+                                echo $p  = '
+                            <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-download fa-sm text-white-50"></i>
                                     Download
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="../../cetak/cetak_klinik.php">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="../../excel/excel_klinik.php">Excel (.xls)</a>
+                                    <a class="dropdown-item" href="../../cetak/cetak_absen.php">Cetak (.pdf)</a>
+                                    <a class="dropdown-item" href="../../excel/excel_absen.php">Excel (.xls)</a>
                                     
                                 </div>
-                            </div> -->
-                        
+                            </div>';
+                            }
+                            ?>
+                        </div>
                         
                     </div>
 

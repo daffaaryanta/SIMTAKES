@@ -38,7 +38,7 @@ require '../../../koneksi.php';
 //     exit(); // Terminate script execution after the redirect
 // }
 
-$klinik = query("SELECT * FROM aktivitas ");
+$klinik = query("SELECT * FROM aktivitas ORDER BY waktu");
 if ($id_role == FALSE) {
     echo "<script>alert('Anda harus login ulang!');
  		document.location = '../../../index.php';
