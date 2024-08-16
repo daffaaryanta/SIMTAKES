@@ -485,14 +485,52 @@ function tambahabsen($data)
     $instansi = $_REQUEST['instansi'];
     $hp = $_REQUEST['hp'];
     $alamat = $_REQUEST['alamat'];
-
     $namac = ucwords($nama);
     $jabatanc = ucwords($jabatan);
     $alamatc = ucwords($alamat);
+    if ($_FILES["surat"]["error"] === 4) {
+        echo "<script>
+                 alert('Data gagal ditambahkan!');
+             </script>";
+    }
+    else {
+        $fileName = $_FILES["surat"]["name"];
+        $fileSize = $_FILES["surat"]["size"];
+        $tmpName = $_FILES["surat"]["tmp_name"];
+
+        $validImageExtension = ['pdf', 'doc', 'docx'];
+        $imageExtension = explode('.', $fileName);
+        $imageExtension = strtolower(end($imageExtension));
+        if(!in_array($imageExtension, $validImageExtension)){
+            echo "<script>
+                 alert('Ekstensi foto harus pdf atau word!');
+             </script>";
+        }
+        elseif ($fileSize > 10000000) {
+            echo "<script>
+                 alert('Ukuran file terlalu besar! Maksimal 10MB');
+             </script>";
+        }
+        else {
+            $a = uniqid();
+            $newImagename = $a.'.'.$imageExtension;
+
+            move_uploaded_file($tmpName,'../../../file/' . $newImagename);
+            $query = "INSERT INTO absen VALUES ('','$id_aktivitas', '$namac', '$jabatanc', '$instansi', '$hp', '$alamatc', '$newImagename')";
+            mysqli_query($koneksi, $query);
+            echo '<script>
+                var currString =';
+                echo $id_aktivitas;
+                echo ';
+                        alert("Data berhasil ditambahkan!");
+                        window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+                    </script>';
+        }
+    }
         // We are going to insert the data into our sampleDB table
-        $sql = "INSERT INTO absen ( id_aktivitas, nama, jabatan, instansi, hp, alamat) VALUES (
-            '$id_aktivitas', '$namac','$jabatanc','$instansi', '$hp', '$alamatc' )";
-    mysqli_query($koneksi, $sql);
+        // $sql = "INSERT INTO absen ( id_aktivitas, nama, jabatan, instansi, hp, alamat) VALUES (
+        //     '$id_aktivitas', '$namac','$jabatanc','$instansi', '$hp', '$alamatc' )";
+    // mysqli_query($koneksi, $sql);
 
     return mysqli_affected_rows($koneksi);
         
@@ -501,7 +539,7 @@ function tambahabsen($data)
 function ubahabsen($data)
 {
     global $koneksi;
-
+    $id_aktivitas = $data['id_aktivitas'];
         $id_absen = $data['id_absen'];
         $nama = $data['nama'];
         $jabatan = $_REQUEST['jabatan'];
@@ -512,12 +550,58 @@ function ubahabsen($data)
     $namac = ucwords($nama);
     $jabatanc = ucwords($jabatan);
     $alamatc = ucwords($alamat);
-        
-        // We are going to insert the data into our sampleDB table
+
+    if ($_FILES["surat"]["error"] === 4) {
         $sql = "UPDATE absen SET   id_absen = '$id_absen', nama = '$namac', jabatan = '$jabatanc' ,instansi = '$instansi' , hp = '$hp', alamat = '$alamatc' WHERE id_absen = '$id_absen'";
         
 
         mysqli_query($koneksi, $sql);
+        echo '<script>
+        var currString =';
+        echo $id_aktivitas;
+        echo ';
+                alert("Data berhasil ditambahkan tanpa perubahan surat!");
+                window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+            </script>';
+
+    }
+    else {
+        $fileName = $_FILES["surat"]["name"];
+        $fileSize = $_FILES["surat"]["size"];
+        $tmpName = $_FILES["surat"]["tmp_name"];
+
+        $validImageExtension = ['pdf', 'doc', 'docx'];
+        $imageExtension = explode('.', $fileName);
+        $imageExtension = strtolower(end($imageExtension));
+        if(!in_array($imageExtension, $validImageExtension)){
+            echo "<script>
+                 alert('Ekstensi foto harus pdf atau word!');
+             </script>";
+        }
+        elseif ($fileSize > 10000000) {
+            echo "<script>
+                 alert('Ukuran file terlalu besar! Maksimal 10MB');
+             </script>";
+        }
+        else {
+            $a = uniqid();
+            $newImagename = $a.'.'.$imageExtension;
+
+            move_uploaded_file($tmpName,'../../../file/' . $newImagename);
+            $query = "UPDATE absen SET   id_absen = '$id_absen', nama = '$namac', jabatan = '$jabatanc' ,instansi = '$instansi' , hp = '$hp', alamat = '$alamatc', surat = '$newImagename' WHERE id_absen = '$id_absen'";
+            mysqli_query($koneksi, $query);
+            echo '<script>
+                var currString =';
+                echo $id_aktivitas;
+                echo ';
+                        alert("Data berhasil ditambahkan!");
+                        window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+                    </script>';
+        }
+    }
+        
+        // We are going to insert the data into our sampleDB table
+        
 
         return mysqli_affected_rows($koneksi);
 
@@ -533,6 +617,7 @@ function ubahaktivitas($data)
         $nama = $data['nama'];
         $tempat = $data['tempat'];
         $waktu = $data['waktu'];
+        $notulen = $data['notulen'];
         
 
         
@@ -540,7 +625,7 @@ function ubahaktivitas($data)
         $tempatc = ucwords($tempat);
         
         // We are going to insert the data into our sampleDB table
-        $sql = "UPDATE aktivitas SET   id_aktivitas = '$id_aktivitas',  nama = '$namac' ,tempat = '$tempatc' , waktu = '$waktu' WHERE id_aktivitas = '$id_aktivitas'";
+        $sql = "UPDATE aktivitas SET   id_aktivitas = '$id_aktivitas',  nama = '$namac' ,tempat = '$tempatc' , waktu = '$waktu', notulen = '$notulen' WHERE id_aktivitas = '$id_aktivitas'";
         
 
         mysqli_query($koneksi, $sql);

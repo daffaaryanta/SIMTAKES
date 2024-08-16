@@ -534,6 +534,7 @@ for (var i = 0; i < btns.length; i++) {
                                             <th>Instansi</th>
                                             <th>No. HP/WA</th>
                                             <th>Alamat</th>
+                                            <th>Surat Tugas</th>
                                             <!-- <th>Opsi</th> -->
                                             </tr>
                                         </thead>
@@ -547,6 +548,7 @@ for (var i = 0; i < btns.length; i++) {
                                                 <td><?= $a['instansi'] ?></td>
                                                 <td><?= $a['hp'] ?></td>
                                                 <td><?= $a['alamat'] ?></td>
+                                                <td><a href='../../../file/<?php echo $a['surat'];?>' target="_blank">Lihat Surat Tugas</a></td>
                                                 <!-- <td>
                                                 <div class="container text-center">
                                                     <a href="absen-edit.php?id_absen=<?= $a['id_absen']; ?>"class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Absen"><i class="fa fa-pen"></i></a>

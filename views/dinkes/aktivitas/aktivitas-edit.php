@@ -146,6 +146,18 @@ require '../template/sidebar.php';
                                         </div>
                                     
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="notulen"><strong>Notulen Kegiatan</strong></label>
+                                                <div class="input-group ">
+                                            
+                                                <textarea class="form-control" name="notulen" id="notulen" rows="5" required></textarea>
+                                               
+                                                </div>
+                                        </div>
+                                        
+                                    
+                                    </div>
                                     
                                 </div>
                            

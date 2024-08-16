@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Agu 2024 pada 06.13
+-- Waktu pembuatan: 15 Agu 2024 pada 09.31
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -34,15 +34,16 @@ CREATE TABLE `absen` (
   `jabatan` varchar(50) NOT NULL,
   `instansi` varchar(50) NOT NULL,
   `hp` varchar(20) NOT NULL,
-  `alamat` varchar(100) NOT NULL
+  `alamat` varchar(100) NOT NULL,
+  `surat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `absen`
 --
 
-INSERT INTO `absen` (`id_absen`, `id_aktivitas`, `nama`, `jabatan`, `instansi`, `hp`, `alamat`) VALUES
-(47, 63, 'Daffa', 'Pemasak', 'Dinas Kesehatan Provinsi Kalimantan Selatan', '123', 'Handil Bakti');
+INSERT INTO `absen` (`id_absen`, `id_aktivitas`, `nama`, `jabatan`, `instansi`, `hp`, `alamat`, `surat`) VALUES
+(52, 64, 'Aa', 'A', 'Dinas Kesehatan Kabupaten Balangan ', '1', '1', '66bb808411127.pdf');
 
 -- --------------------------------------------------------
 
@@ -96,15 +97,16 @@ CREATE TABLE `aktivitas` (
   `dokumentasi` varchar(100) DEFAULT NULL,
   `nama` varchar(100) NOT NULL,
   `tempat` varchar(50) NOT NULL,
-  `waktu` varchar(50) NOT NULL
+  `waktu` varchar(50) NOT NULL,
+  `notulen` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `aktivitas`
 --
 
-INSERT INTO `aktivitas` (`id_aktivitas`, `dokumentasi`, `nama`, `tempat`, `waktu`) VALUES
-(63, '66ada4b8c4e01.jpg', 'Tela-tela', 'Rumah', '13 Agustus 2024');
+INSERT INTO `aktivitas` (`id_aktivitas`, `dokumentasi`, `nama`, `tempat`, `waktu`, `notulen`) VALUES
+(64, '66b6d25c8014f.jpg', 'Kue Pukis', 'Rumah', '10 Agustus 2024', 'Kegiatan memasak kue pukis oleh teman-teman\r\n');
 
 -- --------------------------------------------------------
 
@@ -826,7 +828,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT untuk tabel `akreditasi`
@@ -838,7 +840,7 @@ ALTER TABLE `akreditasi`
 -- AUTO_INCREMENT untuk tabel `aktivitas`
 --
 ALTER TABLE `aktivitas`
-  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_aktivitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_kabkota`

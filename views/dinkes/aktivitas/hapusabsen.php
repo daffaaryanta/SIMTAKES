@@ -4,6 +4,20 @@ require '../../../koneksi.php';
 // Mengambil data dari nis dengan fungsi get
 $id_absen = $_GET['id_absen'];
 // $id_aktivitasa = $_POST['id'];
+$query = mysqli_query($koneksi, "SELECT surat FROM absen WHERE id_absen = $id_absen");
+$result = mysqli_fetch_assoc($query);
+$resultstring = $result['surat'];
+if (file_exists($resultstring)) {
+
+    // last resort setting
+    // chmod($oldPicture, 0777);
+    chmod($resultstring, 0777);
+        unlink($resultstring);
+        echo 'Deleted old file';
+    } 
+    
+
+unlink('../../../file/'.$resultstring);
 $sql = "DELETE FROM absen WHERE id_absen = $id_absen";
 
 // Jika fungsi hapus jika data terhapus, maka munculkan alert dibawah

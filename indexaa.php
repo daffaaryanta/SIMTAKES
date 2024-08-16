@@ -1,8 +1,6 @@
 <?php
 
-session_start();
-// Koneksi Database
-$koneksi = mysqli_connect("localhost", "root", "", "simtakes") or die(mysqli_error($koneksi));
+// require 'koneksi.php';
 
 ?>
 <!DOCTYPE html>
@@ -26,47 +24,35 @@ $koneksi = mysqli_connect("localhost", "root", "", "simtakes") or die(mysqli_err
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    
 
 </head>
 
-<body class="g-0" style="background-image: url('img/dinkes.jpeg');
-     background-repeat: contain;
-     background-size: cover;">
+<body class="bg-gradient-primary">
 
+    
 
-<div class="row justify-content-center align-items-center">
-<div class="col">
-    
-<div class="card text-center w-25 h-100  " style="min-height: 100vh;">
-    
-    <div class="col g-0  ">
-    
-    <div class="card-body ">
+        <!-- Outer Row -->
         
-    <div class="text-center">
-        <br><br><br>
+        <div class="row g-0  ">
+
+            <div class="col-xl-15">
+
+                <div class="card  ">
+                    <div class="card-body  p-md-5 mx-md-4">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row mh-100 ">
+                            <div class="col-lg-3 d-none d-lg-block "></div>
+                            <div class="col-xl-6">
+                                
+                                    <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
                                     <form class="user" action = "cek_login.php" method="POST">
-                                    <div class="form-row">
-                                            <div class="form-group  w-100 ">
-                                            
-                                            <select name="akun" id="akun" class="form-control" required>
-                                            <option value="">-- Silahkan Pilih Akun --</option>
-                                            <?php 
-                                            $det = mysqli_query($koneksi, "SELECT * FROM user");
-                                            while ($p = mysqli_fetch_assoc($det)) { ?>
-                                            <option value="<?php echo $p['nama'].'|'. $p['username']; ?>|"><?= $p['nama'];?></option><?php
-                                             }
-                                            ?>
-                                            </select> 
-                                            </div>
-                                            <div class="form-group w-100">
+                                            <div class="form-group">
                                                 <input type="text" class="form-control form-control-user" name="username"
                                                 id="username"placeholder="Username" required>
                                             </div>
-                                            <div class="form-group w-100">
+                                            <div class="form-group">
                                              <input type="password" class="form-control form-control-user" name="password"
                                                 id="password" placeholder="Password" required>
                                             </div>
@@ -77,28 +63,25 @@ $koneksi = mysqli_connect("localhost", "root", "", "simtakes") or die(mysqli_err
                                                 </div>
                                             </div>
                                             <button class="btn btn-primary btn-user btn-block">Login</button>
-                                        </div>
                                     </form>
+                                    <!-- <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="register.html">Create an Account!</a>
+                                    </div> -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
     
-    </div>
-    
-    <!-- <img src="img/dinkes.jpg" class="img-fluid" style="background-size: 100vw 100vh;"> -->
-    
-    </div>
-</div>
-</div>
-
-</div>
-</div>
-
-
-
-
-
-    
- 
-
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -109,20 +92,6 @@ $koneksi = mysqli_connect("localhost", "root", "", "simtakes") or die(mysqli_err
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', function() {
-  const art = document.getElementById("akun");
-  const setPrice = function() {
-    var val = akun.value; 
-    document.getElementById("username").value=val?val.split("|")[1]:"";
-  };
-  art.addEventListener("change", setPrice);
-  setPrice(); // initialise
-})
-    </script>
-
-
-
     <script>
 function myFunction() {
   var x = document.getElementById("password");

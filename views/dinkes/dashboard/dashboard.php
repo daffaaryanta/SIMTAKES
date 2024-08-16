@@ -28,6 +28,10 @@ require '../../../koneksi.php';
     <!-- Custom styles for this template-->
     <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Chart.js script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+
 </head>
 
 <body id="page-top">
@@ -1217,6 +1221,52 @@ require '../../../koneksi.php';
                     </div>            
                     </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card shadow mb-4">
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                    Grafik Data Fasilitas Kesehatan 2024
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                                    
+                                
+                                
+                                </div>
+                            </div>
+                        </div>
+                    
+                         
+                        <div class="col-sm-6">
+                    
+                            <div class="card shadow mb-4">
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                        Grafik Data Fasilitas Kesehatan 2022-2024
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                    <select id="selectchart" class="form-select form-select-lg mb-3">
+                                    <option value="130, 170, 180">2022-2024</option>
+                                    <option value="10, 15, 30">Rumah Sakit</option>
+                                    <option value="130, 170, 180">Puskesmas</option>
+                                    <option value="130, 170, 180">Klinik</option>
+                                    <option value="10, 15, 30">Labkes</option>
+                                    <option value="130, 170, 180">PM Dokter Umum</option>
+                                    <option value="10, 15, 30">PM Dokter Spesialis</option>
+                                    <option value="130, 170, 180">Unit Transfusi Darah</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="card-body" >
+                                <canvas id="chartTotal1" style="width:100%;max-width:700px"></canvas>
+                                </div> 
+                     
+                    </div>            
+                    </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -1263,6 +1313,68 @@ require '../../../koneksi.php';
     <!-- Page level custom scripts -->
     <script src="../../../js/demo/chart-area-demo.js"></script>
     <script src="../../../js/demo/chart-pie-demo.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <?php
+     require '../../../js_chart/chart_2024.php';
+    ?>
+
+<script>
+var ctx = document.getElementById('chartTotal1').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['2022', '2023', '2024'],
+        datasets: [{
+            label: 'Jumlah Faskes',
+            data: [
+                130, 170,180
+            ],
+            backgroundColor: [
+                'rgba(255, 0, 0, 0.2)',
+                'rgba(0, 0, 255, 0.2)',
+                'rgba(255, 255, 0, 0.2)',
+                'rgba(0, 255, 0, 0.2)',
+                'rgba(255, 165, 0, 0.2)',
+                'rgba(128, 0, 128, 0.2)',
+                'rgba(139, 69, 19, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 0, 0, 1)',
+                'rgba(0, 0, 255, 1)',
+                'rgba(255, 255, 0, 1)',
+                'rgba(0, 255, 0, 1)',
+                'rgba(255, 165, 0, 1)',
+                'rgba(128, 0, 128, 1)',
+                'rgba(139, 69, 19, 1)'
+            ],
+            borderWidth: 1
+        }]
+    }
+});
+
+const selectchart = document.getElementById('selectchart');
+selectchart.addEventListener('change', chartDropdown);
+function chartDropdown(){
+// console.log(selectchart.value);
+// }
+    const label = selectchart.options[selectchart.selectedIndex].text;
+    myChart.data.datasets[0].label = label;
+    myChart.data.datasets[0].data = selectchart.value.split(',');
+
+    myChart.update();
+}
+
+</script>
+    
+    
+
+<script>
+
+    </script>
+
 
 </body>
 

@@ -479,6 +479,7 @@ for (var i = 0; i < btns.length; i++) {
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <input type="hidden" name="id_absen" id="id_absen" value="<?= $klinik['id_absen']; ?>" autocomplete="off" class="form-control" readonly>
+                                            <input type="hidden" name="id_aktivitas" id="id_aktivitas" value="<?= $klinik['id_aktivitas']; ?>" autocomplete="off" class="form-control" readonly>
                                             <label for="nama"><strong>Nama</strong></label>
                                             <input type="text" name="nama" id="nama" value="<?= $klinik['nama']; ?>" autocomplete="off" class="form-control" required>
                                         </div>
@@ -520,6 +521,13 @@ for (var i = 0; i < btns.length; i++) {
                                         <label for="alamat"><strong>Alamat</strong></label>
                                                 <div class="input-group ">
                                                 <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control" value="<?= $klinik['alamat']; ?>" required>
+                                               </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                        <label for="surat"><strong>Surat Tugas</strong></label>
+                                                <div class="input-group ">
+                                                <a href='../../../file/<?php echo $klinik['surat'];?>' target="_blank">Surat Tugas Sebelumnya</a>&nbsp;&nbsp;&nbsp;
+                                                <input type="file" name="surat" id="surat" placeholder="Masukkan Surat Tugas" autocomplete="off" class="input form-control" accept=".pdf, .doc, .docx" value="" >
                                                </div>
                                         </div>
                                     </div>

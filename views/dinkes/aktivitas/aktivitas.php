@@ -164,6 +164,7 @@ if ($id_role == FALSE) {
                                             <th>Nama Kegiatan</th>
                                             <th>Tempat Kegiatan</th>
                                             <th>Waktu Kegiatan</th>
+                                            <th>Notulen Kegiatan</th>
                                             <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -183,6 +184,7 @@ if ($id_role == FALSE) {
                                                 <td><?= $aktivitas['nama'] ?></td>
                                                 <td><?= $aktivitas['tempat'] ?></td>
                                                 <td><?= $aktivitas['waktu'] ?></td>
+                                                <td><?= $aktivitas['notulen'] ?></td>
                                                 <td>
                                                 <div class="container text-center">
                                                     <a href="aktivitas_absen.php?id_aktivitas=<?= $aktivitas['id_aktivitas']; ?>"class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Tambah Absen"><i class="fa fa-plus"></i></a>

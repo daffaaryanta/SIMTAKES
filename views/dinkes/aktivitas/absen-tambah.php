@@ -9,9 +9,9 @@
         if (isset($_POST['simpan'])) {
             if (tambahabsen($_POST)) {
                 $id_aktivitasa = $_GET['id_aktivitas'];
-$aktivitas = mysqli_query($koneksi, "SELECT * FROM aktivitas WHERE id_aktivitas = $id_aktivitasa");
-$result = mysqli_fetch_assoc($aktivitas);
-$resultstring = $result['id_aktivitas'];
+                $aktivitas = mysqli_query($koneksi, "SELECT * FROM aktivitas WHERE id_aktivitas = $id_aktivitasa");
+                $result = mysqli_fetch_assoc($aktivitas);
+                $resultstring = $result['id_aktivitas'];
 
                 echo '<script>
                 var currString =';
@@ -535,6 +535,13 @@ for (var i = 0; i < btns.length; i++) {
                                                 <input type="text" name="alamat" id="alamat" placeholder="Masukkan Alamat" autocomplete="off" class="input form-control"  required>
                                                </div>
                                         </div>
+                                    </div>
+                                    <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                            <label for="surat"><strong>Surat Tugas</strong></label>
+                                            <input type="file" name="surat" id="surat" placeholder="Masukkan Surat Tugas" autocomplete="off" class="input form-control" accept=".pdf, .doc, .docx" value="" required>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                            
