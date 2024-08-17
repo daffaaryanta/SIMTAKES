@@ -1,115 +1,7 @@
 <?php
 // Memanggil atau membutuhkan file function.php
 require '../../../koneksi.php';
-if (isset($_POST['simpan'])) {
 
-    $cetak = $_REQUEST['cetak'];
-    if ($cetak == 1) {
-        
-        echo "<script>
-                
-                document.location.href = '../../cetak/cetak_rumah.php';
-            </script>";
-    } elseif ($cetak == 2) {
-        
-        echo "<script>
-                
-                document.location.href = '../../cetak/cetak_puskesmas.php';
-            </script>";
-    } elseif ($cetak == 3) {
-        
-        echo "<script>
-                
-                document.location.href = '../../cetak/cetak_klinik.php';
-            </script>";
-    } elseif ($cetak == 4) {
-        
-        echo "<script>
-                
-                document.location.href = '../../cetak/cetak_labkes.php';
-            </script>";
-    } elseif ($cetak == 5) {
-        
-        echo "<script>
-                
-                document.location.href = '../../cetak/cetak_dokterumum.php';
-            </script>";
-    } elseif ($cetak == 6) {
-        
-        echo "<script>
-                
-                document.location.href = '../../cetak/cetak_doktersp.php';
-            </script>";
-    } elseif ($cetak == 7) {
-        
-        echo "<script>
-                
-                document.location.href = '../../cetak/cetak_transfusi.php';
-            </script>";
-    } 
-    else{
-        echo "<script>
-                        alert('Terjadi error!');
-                        document.location.href = '../../dashboard/dashboard.php';
-                    </script>";
-       
-    }
-}
-
-if (isset($_POST['excel'])) {
-
-    $cetak = $_REQUEST['cetak'];
-    if ($cetak == 1) {
-        
-        echo "<script>
-                
-                document.location.href = '../../excel/excel_rumahsakit.php';
-            </script>";
-    } elseif ($cetak == 2) {
-        
-        echo "<script>
-                
-                document.location.href = '../../excel/excel_puskesmas.php';
-            </script>";
-    } elseif ($cetak == 3) {
-        
-        echo "<script>
-                
-                document.location.href = '../../excel/excel_klinik.php';
-            </script>";
-    } elseif ($cetak == 4) {
-        
-        echo "<script>
-                
-                document.location.href = '../../excel/excel_labkes.php';
-            </script>";
-    } elseif ($cetak == 5) {
-        
-        echo "<script>
-                
-                document.location.href = '../../excel/excel_pmdu.php';
-            </script>";
-    } elseif ($cetak == 6) {
-        
-        echo "<script>
-                
-                document.location.href = '../../excel/excel_pmsp.php';
-            </script>";
-    } elseif ($cetak == 7) {
-        
-        echo "<script>
-                
-                document.location.href = '../../excel/excel_transfusi.php';
-            </script>";
-    } 
-    else{
-        echo "<script>
-                        alert('Terjadi error!');
-                        document.location.href = '../../dashboard/dashboard.php';
-                    </script>";
-       
-    }
-}
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
 
 ?>
@@ -125,7 +17,7 @@ if (isset($_POST['excel'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Cetak Fasyankes</title>
+    <title>SIMTAKES - Grafik</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -186,7 +78,7 @@ if (isset($_POST['excel'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Cetak Fasyankes</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Grafik</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
@@ -194,40 +86,49 @@ if (isset($_POST['excel'])) {
 
                     
                     <div class="row ml-5">
-                        <div class="col-sm-6">
+                        <div class="col col-lg-10">
                             <div class="card shadow mb-4">
                                 <div class="card text-center">
-                                    
-                                </div>
-                                <div class="card-body">
-                                <form action="" method="post" enctype="multipart/form-data">
-                                <!-- <canvas id="myChart" style="width:100%;max-width:700px"></canvas> -->
-                                <label for="cetak"><strong>Cetak Fasyankes</strong></label>
-                                <select name="cetak" id="cetak" class="form-control" required>
-                                <option value="">-- Silahkan Pilih --</option>
-                                <option value="1">Rumah Sakit</option>
-                                <option value="2">Puskesmas</option>
-                                <option value="3">Klinik</option>
-                                <option value="4">Labkes</option>
-                                <option value="5">Praktek Mandiri Dokter Umum</option>
-                                <option value="6">Praktek Mandiri Dokter Spesialis</option>
-                                <option value="7">Unit Transfusi Darah</option>
-                                </select>
-                                </div>
-                            </div>
-                                <div class="d-sm-flex align-items-right justify-content-between mb-4">
-                                    <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" name="simpan"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;&nbsp;Cetak</button>
-                                    <button type="submit" class="btn btn-primary" name="excel"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;&nbsp;Excel</button>
+                                    <div class="card-header">
+                                    Grafik Data Fasilitas Kesehatan 2024
                                     </div>
                                 </div>
-                                </form>
+                                <div class="card-body">
+                                <canvas id="myChart" style="width:100%"></canvas>
+                                    
                                 
-                            
+                                
+                                </div>
+                            </div>
                         </div>
-                    
-                         
-                        
+                    </div>
+                    <div class="row ml-5">
+                        <div class="col col-lg-10">
+                            <div class="card shadow mb-4">
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                        Grafik Data Fasilitas Kesehatan 2022-2024
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                    <select id="selectchart" class="form-select form-select-lg mb-3">
+                                    <option value="130, 170, 180">2022-2024</option>
+                                    <option value="10, 15, 30">Rumah Sakit</option>
+                                    <option value="130, 170, 180">Puskesmas</option>
+                                    <option value="130, 170, 180">Klinik</option>
+                                    <option value="10, 15, 30">Labkes</option>
+                                    <option value="130, 170, 180">PM Dokter Umum</option>
+                                    <option value="10, 15, 30">PM Dokter Spesialis</option>
+                                    <option value="130, 170, 180">Unit Transfusi Darah</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="card-body" >
+                                <canvas id="chartTotal1" style="width:100%;max-width:700px"></canvas>
+                                </div> 
+                     
+                    </div>            
+                    </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->

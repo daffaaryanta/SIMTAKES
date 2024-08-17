@@ -29,7 +29,7 @@ if(mysqli_query($koneksi, $sql)){
     echo $_SESSION['id_aktivitas'];
     echo ';
             alert("Data berhasil dihapus!");
-            window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+            window.location.href= "absen.php?id_aktivitas=" + currString;
         </script>';
                 
                 //  header('Location: aktivitas_absen.php?id_aktivitas='.$_SESSION['id_aktivitas']);

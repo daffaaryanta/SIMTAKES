@@ -187,7 +187,7 @@ if ($id_role == FALSE) {
                                                 <td><?= $aktivitas['notulen'] ?></td>
                                                 <td>
                                                 <div class="container text-center">
-                                                    <a href="aktivitas_absen.php?id_aktivitas=<?= $aktivitas['id_aktivitas']; ?>"class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Tambah Absen"><i class="fa fa-plus"></i></a>
+                                                    <a href="absen.php?id_aktivitas=<?= $aktivitas['id_aktivitas']; ?>"class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Tambah Absen"><i class="fa fa-plus"></i></a>
                                                     <?php if ($id_role == 2) {
                                                         
                                                    ?>

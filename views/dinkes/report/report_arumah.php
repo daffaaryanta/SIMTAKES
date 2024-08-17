@@ -108,33 +108,24 @@ if ($id_role == '15') {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Akreditasi Rumah Sakit</h1>
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="arumah-tambah.php" class="btn btn-primary btn-icon-split">
+                    <div class="d-sm-flex align-items-center left-content-between mb-4">
+                            <a href="../../cetak/cetak_arumahsakit.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
+                                                <i class="fas fa-download fa-sm text-white-50"></i>
                                             </span>
-                                            <span class="text">Tambah Data</span>
+                                            <span class="text">Cetak PDF</span>
                             </a>&nbsp;&nbsp;
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>
-                                    Download
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="../../cetak/cetak_arumahsakit.php">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="../../excel/excel_arumahsakit.php">Excel (.xls)</a>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
+                            <a href="../../excel/excel_arumahsakit.php" class="btn btn-primary btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-download fa-sm text-white-50"></i>
+                                            </span>
+                                            <span class="text">Cetak Excel</span>
+                            </a>&nbsp;&nbsp;
+                    
                     </div>
-
-                    <!-- Content Row -->
+                     <!-- Content Row -->
                     
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="card shadow mb-4">
@@ -150,7 +141,6 @@ if ($id_role == '15') {
                                             <th>Alamat</th>
                                             <th>Tahun Akreditasi</th>
                                             <th>Jenis Akreditasi</th>
-                                            <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -164,12 +154,6 @@ if ($id_role == '15') {
                                                 <td><?= $ak['alamat'] ?></td>
                                                 <td><?= $ak['tahun'] ?></td>
                                                 <td><?= $ak['jenis_akreditasi'] ?></td>
-                                                
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="arumah-edit.php?id_ak=<?= $ak['id_ak']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusarumah.php?id_ak=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi Rumah Sakit <?= $ak['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
-                                                </div>
                                             </tr>
                                             <?php endforeach ?>
                                         </tbody>

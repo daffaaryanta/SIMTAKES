@@ -325,6 +325,61 @@
         <span>Aktivitas</span></a>
 </li>
 
+<!-- Nav Item - Pages Collapse Menu Report Data -->
+
+<?php 
+    if (strpos($url, "report") !== false) {
+        ?>
+        <li class="nav-item active">
+        <?php
+        } else { ?>
+        <li class="nav-item ">
+        <?php
+     }
+  ?> 
+   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
+   aria-expanded="true" aria-controls="collapseReport">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Report Data</span>
+    </a>
+    <div id="collapseReport" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Report Data:</h6>
+        <?php 
+    if (strpos($url, "report/report_fasyankes") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Cetak Fasyankes</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_fasyankes.php">Cetak Fasyankes</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_akreditasi") !== false) {
+        ?>
+        <a class="collapse-item active" href=""> Cetak Akreditasi Fasyankes</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_akreditasi.php">Cetak Akreditasi Fasyankes</a>
+        <?php
+     }
+  ?> 
+  <!-- <?php 
+    if (strpos($url, "report/report_grafik") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Cetak Grafik Fasyankes</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_grafik.php">Cetak Grafik Fasyankes</a>
+        <?php
+     }
+  ?>  -->
+             
+        </div>
+    </div>
+</li>
+
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 

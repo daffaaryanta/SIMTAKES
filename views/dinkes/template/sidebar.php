@@ -344,24 +344,146 @@
     </a>
     <div id="collapseReport" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Report Data:</h6>
+        <h6 class="collapse-header">Cetak Fasyankes:</h6>
         <?php 
-    if (strpos($url, "report/report_fasyankes") !== false) {
+    if (strpos($url, "report/report_rumah") !== false) {
         ?>
-        <a class="collapse-item active" href="">Cetak Fasyankes</a>
+        <a class="collapse-item active" href="">Rumah Sakit</a>
         <?php
         } else { ?>
-        <a class="collapse-item" href="../report/report_fasyankes.php">Cetak Fasyankes</a>
+        <a class="collapse-item" href="../report/report_rumah.php">Rumah Sakit</a>
         <?php
      }
   ?> 
   <?php 
-    if (strpos($url, "report/report_akreditasi") !== false) {
+    if (strpos($url, "report/report_puskesmas") !== false) {
         ?>
-        <a class="collapse-item active" href=""> Cetak Akreditasi Fasyankes</a>
+        <a class="collapse-item active" href="">Puskesmas</a>
         <?php
         } else { ?>
-        <a class="collapse-item" href="../report/report_akreditasi.php">Cetak Akreditasi Fasyankes</a>
+        <a class="collapse-item" href="../report/report_puskesmas.php">Puskesmas</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_klinik") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Klinik</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_klinik.php">Klinik</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_labkes") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Labkes</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_labkes.php">Labkes</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_pmdu") !== false) {
+        ?>
+        <a class="collapse-item active" href="">PM Dokter Umum</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_pmdu.php">PM Dokter Umum</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_pmds") !== false) {
+        ?>
+        <a class="collapse-item active" href="">PM Dokter Spesialis</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_pmds.php">PM Dokter Spesialis</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_utd") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Unit Transfusi Darah</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_utd.php">Unit Transfusi Darah</a>
+        <?php
+     }
+  ?> 
+  <div class="bg-white py-2 collapse-inner rounded">
+  <h6 class="collapse-header">Cetak Akreditasi Fasyankes:</h6>
+  <?php 
+    if (strpos($url, "report/report_arumah") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Akreditasi Rumah Sakit</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_arumah.php">Akreditasi Rumah Sakit</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_apuskesmas") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Akreditasi Puskesmas</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_apuskesmas.php">Akreditasi Puskesmas</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_aklinik") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Akreditasi Klinik</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_aklinik.php">Akreditasi Klinik</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_alabkes") !== false) {
+        ?>
+        <a class="collapse-item active" href="">Akreditasi Labkes</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_alabkes.php">Akreditasi Labkes</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_apmdu") !== false) {
+        ?>
+        <a class="collapse-item active" href="" style="font-size: 13px;">Akreditasi PM Dokter Umum</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_apmdu.php" style="font-size: 13px;">Akreditasi PM Dokter Umum</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_apmds") !== false) {
+        ?>
+        <a class="collapse-item active" href="" style="font-size: 12px;">Akreditasi PM Dokter Spesialis</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_apmds.php" style="font-size: 12px;">Akreditasi PM Dokter Spesialis</a>
+        <?php
+     }
+  ?> 
+  <?php 
+    if (strpos($url, "report/report_autd") !== false) {
+        ?>
+        <a class="collapse-item active" href="" style="font-size: 12px;">Akreditasi Unit Transfusi Darah</a>
+        <?php
+        } else { ?>
+        <a class="collapse-item" href="../report/report_autd.php" style="font-size: 12px;">Akreditasi Unit Transfusi Darah</a>
         <?php
      }
   ?> 

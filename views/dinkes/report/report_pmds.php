@@ -3,36 +3,36 @@
 require '../../../koneksi.php';
 
 // Menampilkan semua data dari table mahasiswa berdasarkan nim secara Descending
-// $ak = query("SELECT * FROM view_arumah ORDER BY kabkota");
+// $doktersp = query("SELECT * FROM data_pmdrsp ORDER BY kabkota");
 
 if ($id_role == '15') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kota Banjarmasin' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kota Banjarmasin' ORDER BY namapmdrsp");
 } elseif ($id_role == '3') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Balangan' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Balangan' ORDER BY namapmdrsp");
 } elseif ($id_role == '4') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Banjar' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Banjar' ORDER BY namapmdrsp");
 } elseif ($id_role == '5') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Barito Kuala' ORDER BY namapmdrsp");
 } elseif ($id_role == '6') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Selatan' ORDER BY namapmdrsp");
 } elseif ($id_role == '7') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Tengah' ORDER BY namapmdrsp");
 } elseif ($id_role == '8') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Hulu Sungai Utara' ORDER BY namapmdrsp");
 } elseif ($id_role == '9') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Kotabaru' ORDER BY namapmdrsp");
 } elseif ($id_role == '10') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Tabalong' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tabalong' ORDER BY namapmdrsp");
 } elseif ($id_role == '11') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tanah Bumbu' ORDER BY namapmdrsp");
 } elseif ($id_role == '12') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tanah Laut' ORDER BY namapmdrsp");
 } elseif ($id_role == '13') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kabupaten Tapin' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kabupaten Tapin' ORDER BY namapmdrsp");
 } elseif ($id_role == '14') {
-    $ak = query("SELECT * FROM view_arumah WHERE kabkota = 'Kota Banjarbaru' ORDER BY nama");
+    $doktersp = query("SELECT * FROM data_pmdrsp WHERE kabkota = 'Kota Banjarbaru' ORDER BY namapmdrsp");
 } elseif ($id_role == '2') {
-    $ak = query("SELECT * FROM view_arumah ORDER BY kabkota");
+    $doktersp = query("SELECT * FROM data_pmdrsp ORDER BY kabkota");
 } else {
     echo "<script>alert('Anda harus login ulang!');
 		document.location = '../../../index.php';
@@ -52,7 +52,7 @@ if ($id_role == '15') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SIMTAKES - Akreditasi Rumah Sakit</title>
+    <title>SIMTAKES - PM Dokter Spesialis</title>
 
     <!-- Custom fonts for this template -->
     <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -110,66 +110,47 @@ if ($id_role == '15') {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Akreditasi Rumah Sakit</h1>
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <a href="arumah-tambah.php" class="btn btn-primary btn-icon-split">
+                    <div class="d-sm-flex align-items-center left-content-between mb-4">
+                            <a href="../../cetak/cetak_doktersp.php" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
+                                                <i class="fas fa-download fa-sm text-white-50"></i>
                                             </span>
-                                            <span class="text">Tambah Data</span>
+                                            <span class="text">Cetak PDF</span>
                             </a>&nbsp;&nbsp;
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-download fa-sm text-white-50"></i>
-                                    Download
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="../../cetak/cetak_arumahsakit.php">Cetak (.pdf)</a>
-                                    <a class="dropdown-item" href="../../excel/excel_arumahsakit.php">Excel (.xls)</a>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
+                            <a href="../../excel/excel_pmsp.php" class="btn btn-primary btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-download fa-sm text-white-50"></i>
+                                            </span>
+                                            <span class="text">Cetak Excel</span>
+                            </a>&nbsp;&nbsp;
+                    
                     </div>
-
                     <!-- Content Row -->
                     
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="card shadow mb-4">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="5">
+                                    <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                             <th>No</th>
                                             <th>Kabkota</th>
-                                            <th>Kode Rumah Sakit</th>
-                                            <th>Nama Rumah Sakit</th>
+                                            <th>Kode PM Dokter Spesialis</th>
+                                            <th>Nama PM Dokter Spesialis</th>
                                             <th>Alamat</th>
-                                            <th>Tahun Akreditasi</th>
-                                            <th>Jenis Akreditasi</th>
-                                            <th>Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            <?php foreach ($ak as $ak) : ?>
+                                            <?php foreach ($doktersp as $sp) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $ak['kabkota'] ?></td>
-                                                <td><?= $ak['kode'] ?></td>
-                                                <td><?= $ak['nama'] ?></td>
-                                                <td><?= $ak['alamat'] ?></td>
-                                                <td><?= $ak['tahun'] ?></td>
-                                                <td><?= $ak['jenis_akreditasi'] ?></td>
+                                                <td><?= $sp['kabkota'] ?></td>
+                                                <td><?= $sp['kodepmdrsp'] ?></td>
+                                                <td><?= $sp['namapmdrsp'] ?></td>
+                                                <td><?= $sp['alamat'] ?></td>
                                                 
-                                                <td>
-                                                <div class="container text-center">
-                                                    <a href="arumah-edit.php?id_ak=<?= $ak['id_ak']; ?>"class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
-                                                    <a  href="hapusarumah.php?id_ak=<?= $ak['id_ak']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data Akreditasi Rumah Sakit <?= $ak['nama']; ?> ?');"><i class="fa fa-trash"></i></a></td>
-                                                </div>
                                             </tr>
                                             <?php endforeach ?>
                                         </tbody>

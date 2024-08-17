@@ -9,7 +9,7 @@ var myChart = new Chart(ctx, {
             label: 'Jumlah Faskes',
             data: [
                 <?php
-                if ($id_role == 2) {
+                if ($id_role == 2 || $id_role == 1) {
                     $qry = $koneksi->query("SELECT * FROM data_rumahsakit " );
                 }
                 elseif ($id_role == 3) {
@@ -56,7 +56,7 @@ var myChart = new Chart(ctx, {
                 ?>,
                 
                 <?php
-                if ($id_role == 2) {
+                if ($id_role == 2 || $id_role == 1 ) {
                     $qry = $koneksi->query("SELECT * FROM data_pkm");
                 }
                 elseif ($id_role == 3) {
@@ -103,7 +103,7 @@ var myChart = new Chart(ctx, {
                 
                 ?>,
                 <?php
-                if ($id_role == 2) {
+                if ($id_role == 2 || $id_role == 1) {
                     $qry = $koneksi->query("SELECT * FROM data_klinik");
                 }
                 elseif ($id_role == 3) {
@@ -150,7 +150,7 @@ var myChart = new Chart(ctx, {
                 
                 ?>,
                 <?php
-                if ($id_role == 2) {
+                if ($id_role == 2 || $id_role == 1) {
                     $qry = $koneksi->query("SELECT * FROM data_labkes");
                 }
                 elseif ($id_role == 3) {
@@ -197,7 +197,7 @@ var myChart = new Chart(ctx, {
                 echo $resF;
                 ?>,
                 <?php
-                if ($id_role == 2) {
+                if ($id_role == 2 || $id_role == 1) {
                     $qry = $koneksi->query("SELECT * FROM data_pmdrumum");
                 }
                 elseif ($id_role == 3) {
@@ -244,7 +244,7 @@ var myChart = new Chart(ctx, {
                 echo $resF;
                 ?>,
                 <?php
-                if ($id_role == 2) {
+                if ($id_role == 2 || $id_role == 1) {
                     $qry = $koneksi->query("SELECT * FROM data_pmdrsp");
                 }
                 elseif ($id_role == 3) {
@@ -291,7 +291,7 @@ var myChart = new Chart(ctx, {
                 echo $resF;
                 ?>,
                 <?php
-                if ($id_role == 2) {
+                if ($id_role == 2 || $id_role == 1) {
                     $qry = $koneksi->query("SELECT * FROM data_utd");
                 }
                 elseif ($id_role == 3) {

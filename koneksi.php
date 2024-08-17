@@ -523,7 +523,7 @@ function tambahabsen($data)
                 echo $id_aktivitas;
                 echo ';
                         alert("Data berhasil ditambahkan!");
-                        window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+                        window.location.href= "absen.php?id_aktivitas=" + currString;
                     </script>';
         }
     }
@@ -561,7 +561,7 @@ function ubahabsen($data)
         echo $id_aktivitas;
         echo ';
                 alert("Data berhasil ditambahkan tanpa perubahan surat!");
-                window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+                window.location.href= "absen.php?id_aktivitas=" + currString;
             </script>';
 
     }
@@ -595,7 +595,7 @@ function ubahabsen($data)
                 echo $id_aktivitas;
                 echo ';
                         alert("Data berhasil ditambahkan!");
-                        window.location.href= "aktivitas_absen.php?id_aktivitas=" + currString;
+                        window.location.href= "absen.php?id_aktivitas=" + currString;
                     </script>';
         }
     }
